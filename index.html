@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C3 Gestão — Financeira · BPO · Administrativa</title>
+<style>
+@font-face { font-family:'Sora'; src:url('Sora-Thin.ttf');        font-weight:100; }
+@font-face { font-family:'Sora'; src:url('Sora-ExtraLight.ttf');  font-weight:200; }
+@font-face { font-family:'Sora'; src:url('Sora-Light.ttf');       font-weight:300; }
+@font-face { font-family:'Sora'; src:url('Sora-Regular.ttf');     font-weight:400; }
+@font-face { font-family:'Sora'; src:url('Sora-Medium.ttf');      font-weight:500; }
+@font-face { font-family:'Sora'; src:url('Sora-SemiBold.ttf');    font-weight:600; }
+@font-face { font-family:'Sora'; src:url('Sora-Bold.ttf');        font-weight:700; }
+@font-face { font-family:'Sora'; src:url('Sora-ExtraBold.ttf');   font-weight:800; }
+
+:root {
+  --cinza-hero:  #242426;
+  --cinza-fundo: #2c2c2e;
+  --cinza-card:  #353537;
+  --cinza-borda: #464648;
+  --cinza-claro: #f0eeea;
+  --ouro:        #a89060;
+  --ouro-claro:  #c8ae80;
+  --ouro-escuro: #7a6840;
+  --branco:      #f5f3ef;
+  --muted:       rgba(245,243,239,0.52);
+  --body:        rgba(245,243,239,0.78);
+}
+
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { font-family:'Sora',sans-serif; background:var(--cinza-fundo); color:var(--branco); overflow-x:hidden; }
+
+/* marca d'água hexágono */
+body::before {
+  content:'';
+  position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:min(88vw,860px); height:min(88vw,860px);
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,5 188,52 188,148 100,195 12,148 12,52' fill='none' stroke='%23a89060' stroke-width='1.5'/%3E%3Cpolygon points='100,20 175,62 175,138 100,180 25,138 25,62' fill='none' stroke='%23a89060' stroke-width='0.7'/%3E%3Cpath d='M84 58 L54 100 L84 142' stroke='%23f5f3ef' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='108' y='58' width='14' height='84' rx='3' fill='%23a89060'/%3E%3Crect x='128' y='70' width='14' height='72' rx='3' fill='%23a89060' opacity='0.65'/%3E%3Crect x='148' y='82' width='14' height='60' rx='3' fill='%23a89060' opacity='0.38'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-size:contain;
+  opacity:0.03; pointer-events:none; z-index:0;
+}
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; width:100%; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 60px;
+  background:rgba(26,26,28,0.97); backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(168,144,96,0.2);
+}
+.nav-logo { display:flex; align-items:center; gap:12px; }
+/* símbolo escuro — já tem fundo escuro, funciona direto */
+.nav-logo img { height:44px; width:auto; object-fit:contain; }
+nav ul { list-style:none; display:flex; gap:32px; align-items:center; }
+nav ul a { color:var(--muted); text-decoration:none; font-size:0.8rem; font-weight:400; letter-spacing:0.08em; text-transform:uppercase; transition:color .3s; }
+nav ul a:hover { color:var(--ouro); }
+.nav-cta { background:var(--ouro) !important; color:#1a1a1c !important; padding:9px 22px !important; font-weight:600 !important; }
+.nav-cta:hover { background:var(--ouro-claro) !important; }
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh; background:var(--cinza-hero);
+  display:grid; grid-template-columns:1fr 1fr;
+  align-items:center; padding:120px 60px 80px;
+  position:relative; overflow:hidden;
+}
+.hero-glow { position:absolute; right:0; top:0; bottom:0; width:52%; background:linear-gradient(135deg,rgba(168,144,96,0.08) 0%,transparent 65%); pointer-events:none; }
+
+.hero-content { position:relative; z-index:2; }
+
+/* logo no hero: símbolo grande + texto SVG */
+.hero-logo { margin-bottom:38px; display:flex; align-items:center; gap:20px; }
+.hero-logo img { height:100px; width:auto; object-fit:contain; }
+.hero-logo-text { display:flex; flex-direction:column; }
+.hero-logo-text .brand { font-size:2.4rem; font-weight:700; color:var(--branco); letter-spacing:-0.01em; line-height:1; }
+.hero-logo-text .brand span { color:var(--ouro); }
+.hero-logo-text .sub { font-size:0.72rem; font-weight:300; letter-spacing:0.2em; color:var(--ouro); text-transform:uppercase; margin-top:6px; }
+
+.eyebrow { display:inline-flex; align-items:center; gap:10px; color:var(--ouro); font-size:0.72rem; font-weight:500; letter-spacing:0.26em; text-transform:uppercase; margin-bottom:20px; }
+.eyebrow::before { content:''; width:22px; height:1px; background:var(--ouro); }
+
+/* FRASE PRINCIPAL — tamanho aumentado */
+.hero h1 { font-size:clamp(2.4rem,4.4vw,3.8rem); font-weight:300; line-height:1.1; color:var(--branco); margin-bottom:10px; }
+.hero h1 em { font-style:normal; font-weight:800; color:var(--ouro); display:block; }
+.hero-tagline { font-size:0.82rem; font-weight:300; letter-spacing:0.2em; color:var(--muted); text-transform:uppercase; margin-bottom:28px; }
+.hero-desc { font-size:1.05rem; font-weight:300; line-height:1.85; color:var(--body); max-width:490px; margin-bottom:44px; }
+
+/* ── PILARES — origem do nome C3 ── */
+.pilares-wrap { margin-bottom:44px; }
+.pilares-label { font-size:0.68rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+.pilares { display:flex; gap:0; border:1px solid rgba(168,144,96,0.22); }
+.pilar { flex:1; padding:18px 14px; text-align:center; border-right:1px solid rgba(168,144,96,0.22); position:relative; }
+.pilar:last-child { border-right:none; }
+.pilar-letter { font-size:2rem; font-weight:800; color:var(--ouro); line-height:1; margin-bottom:4px; }
+.pilar-label { font-size:0.6rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--branco); opacity:0.7; }
+/* destaque origem do nome */
+.pilares-origem { margin-top:10px; font-size:0.68rem; font-weight:300; color:var(--ouro); letter-spacing:0.08em; font-style:italic; }
+
+.btns { display:flex; gap:14px; flex-wrap:wrap; }
+.btn-gold { background:var(--ouro); color:#1a1a1c; padding:14px 32px; font-family:'Sora',sans-serif; font-size:0.85rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; transition:all .3s; border:none; cursor:pointer; display:inline-block; }
+.btn-gold:hover { background:var(--ouro-claro); transform:translateY(-2px); }
+.btn-ghost { border:1px solid rgba(168,144,96,0.45); color:var(--ouro); padding:14px 32px; font-family:'Sora',sans-serif; font-size:0.85rem; font-weight:400; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; transition:all .3s; display:inline-block; }
+.btn-ghost:hover { border-color:var(--ouro); background:rgba(168,144,96,0.07); }
+
+/* hero right */
+.hero-right { display:flex; justify-content:center; align-items:center; position:relative; z-index:2; }
+.hero-card { background:var(--cinza-card); border:1px solid rgba(168,144,96,0.2); padding:38px 34px; max-width:360px; width:100%; position:relative; }
+.hero-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ouro-escuro),var(--ouro),var(--ouro-claro)); }
+.card-lbl { font-size:0.63rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--ouro); margin-bottom:12px; }
+.card-title { font-size:1.1rem; font-weight:300; color:var(--branco); margin-bottom:22px; line-height:1.45; }
+.card-title strong { font-weight:700; color:var(--ouro); }
+.card-list { list-style:none; }
+.card-list li { display:flex; align-items:center; gap:11px; padding:9px 0; border-bottom:1px solid rgba(168,144,96,0.1); font-size:0.85rem; font-weight:300; color:var(--body); }
+.card-list li:last-child { border-bottom:none; }
+.card-list li::before { content:''; width:5px; height:5px; background:var(--ouro); border-radius:50%; flex-shrink:0; }
+.card-footer { margin-top:22px; padding-top:16px; border-top:1px solid rgba(168,144,96,0.12); font-size:0.66rem; font-weight:300; letter-spacing:0.12em; text-transform:uppercase; color:var(--ouro); text-align:center; }
+
+/* ── STRIP ── */
+.strip { background:var(--ouro); padding:22px 60px; display:flex; justify-content:space-around; align-items:center; gap:20px; flex-wrap:wrap; position:relative; z-index:1; }
+.strip-item { text-align:center; }
+.strip-item .n { font-size:2rem; font-weight:700; color:#1a1a1c; line-height:1; }
+.strip-item .l { font-size:0.62rem; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; color:rgba(26,26,28,0.65); margin-top:4px; }
+
+/* ── SHARED ── */
+section { padding:96px 60px; position:relative; z-index:1; }
+.sec-eye { display:inline-block; font-size:0.68rem; font-weight:500; letter-spacing:0.28em; text-transform:uppercase; color:var(--ouro); margin-bottom:14px; }
+
+/* TÍTULO DE SEÇÃO MAIOR */
+.sec-title { font-size:clamp(1.9rem,3.4vw,2.8rem); font-weight:300; line-height:1.15; margin-bottom:20px; }
+.sec-title strong { font-weight:700; color:var(--ouro); }
+.sec-desc { font-size:1rem; font-weight:300; line-height:1.82; color:var(--muted); max-width:560px; }
+
+/* ── SERVIÇOS 4+4 ── */
+#servicos { background:var(--cinza-card); }
+.serv-head { margin-bottom:52px; }
+.serv-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(168,144,96,0.14); border:1px solid rgba(168,144,96,0.14); }
+.serv-card { background:var(--cinza-fundo); padding:38px 28px; transition:background .3s; }
+.serv-card:hover { background:rgba(168,144,96,0.06); }
+.serv-ico { font-size:2rem; margin-bottom:18px; display:block; }
+.serv-card h3 { font-size:0.95rem; font-weight:600; color:var(--branco); margin-bottom:10px; }
+.serv-card p  { font-size:0.84rem; font-weight:300; color:var(--muted); line-height:1.75; }
+
+/* ── COMO ── */
+#como { background:var(--cinza-claro); }
+#como .sec-eye { color:var(--ouro-escuro); }
+.como-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; margin-top:56px; }
+.steps { display:flex; flex-direction:column; }
+.step { display:flex; gap:22px; padding:24px 0; border-bottom:1px solid rgba(30,28,26,0.1); }
+.step:last-child { border-bottom:none; }
+.step-n { font-size:2.6rem; font-weight:200; color:rgba(168,144,96,0.28); line-height:1; flex-shrink:0; width:56px; }
+.step h4 { font-size:0.92rem; font-weight:600; color:#1a1a1c; margin-bottom:6px; }
+.step p  { font-size:0.85rem; font-weight:300; color:#6a6865; line-height:1.75; }
+.info-box { background:var(--cinza-fundo); border:1px solid rgba(168,144,96,0.18); padding:42px 38px; position:relative; }
+.info-box::before { content:''; position:absolute; top:0; left:0; bottom:0; width:3px; background:linear-gradient(180deg,var(--ouro-escuro),var(--ouro),var(--ouro-claro)); }
+.info-box-t { font-size:1.2rem; font-weight:300; color:var(--branco); margin-bottom:6px; }
+.info-box-t strong { font-weight:700; color:var(--ouro); }
+.info-box-s { font-size:0.73rem; font-weight:300; letter-spacing:0.1em; color:var(--muted); margin-bottom:28px; }
+.info-list { list-style:none; }
+.info-list li { display:flex; align-items:center; gap:13px; padding:10px 0; border-bottom:1px solid rgba(168,144,96,0.08); font-size:0.86rem; font-weight:300; color:var(--body); }
+.info-list li:last-child { border-bottom:none; }
+.info-list li .i { color:var(--ouro); font-size:0.9rem; flex-shrink:0; }
+.info-cta { margin-top:28px; padding-top:24px; border-top:1px solid rgba(168,144,96,0.12); }
+
+/* ── PARA QUEM ── */
+#paraquem { background:var(--cinza-fundo); }
+.pq-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; margin-top:56px; }
+.publicos { display:flex; flex-direction:column; gap:11px; }
+.pub-tag { display:flex; align-items:center; gap:15px; padding:16px 18px; background:var(--cinza-card); border-left:3px solid var(--ouro); font-size:0.88rem; font-weight:300; color:var(--body); transition:transform .2s; }
+.pub-tag:hover { transform:translateX(5px); }
+.pub-tag span { font-size:1.2rem; }
+.dores-title { font-size:1.35rem; font-weight:300; color:var(--branco); margin-bottom:20px; line-height:1.35; }
+.dores-title strong { font-weight:700; color:var(--ouro); }
+.dores { display:flex; flex-direction:column; gap:11px; }
+.dor { display:flex; align-items:flex-start; gap:13px; padding:16px 17px; background:var(--cinza-card); }
+.dor-x { color:#e05c5c; font-size:1.1rem; flex-shrink:0; margin-top:1px; }
+.dor p { font-size:0.85rem; font-weight:300; line-height:1.68; color:var(--muted); }
+.dor p strong { display:block; font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--branco); margin-bottom:3px; }
+
+/* ── CONTATO — 2 colunas IGUAIS e proporcionais ── */
+#contato { background:var(--cinza-card); }
+
+/* logo centralizado acima do grid */
+.ct-logo { display:flex; justify-content:center; align-items:center; margin-bottom:50px; }
+.ct-logo img { height:72px; width:auto; object-fit:contain; }
+
+.ct-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;   /* ← mesma largura */
+  gap:40px;
+  align-items:stretch;             /* ← mesma altura */
+}
+
+/* coluna esquerda — info */
+.ct-left { display:flex; flex-direction:column; }
+.ct-desc { font-size:0.95rem; font-weight:300; line-height:1.85; color:var(--muted); margin-bottom:32px; }
+
+/* 4 quadros de contato — todos iguais */
+.ct-items { display:grid; grid-template-columns:1fr 1fr; gap:14px; flex:1; }
+.ct-item {
+  display:flex; align-items:center; gap:14px;
+  padding:20px 18px;
+  border:1px solid rgba(168,144,96,0.18);
+  background:var(--cinza-fundo);
+  min-height:80px;         /* altura mínima igual */
+}
+.ct-ico { width:38px; height:38px; background:rgba(168,144,96,0.1); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; border-radius:2px; }
+.ct-lbl { font-size:0.6rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--ouro); }
+.ct-val { font-size:0.86rem; font-weight:400; color:var(--branco); margin-top:3px; }
+.ct-val a { color:var(--branco); text-decoration:none; }
+.ct-val a:hover { color:var(--ouro); }
+
+/* coluna direita — formulário */
+.form-box { background:var(--cinza-fundo); border:1px solid rgba(168,144,96,0.18); padding:40px 36px; display:flex; flex-direction:column; }
+.form-box::before { content:''; height:2px; background:linear-gradient(90deg,var(--ouro-escuro),var(--ouro),var(--ouro-claro)); margin-bottom:30px; display:block; }
+.form-title { font-size:1.2rem; font-weight:300; color:var(--branco); margin-bottom:5px; }
+.form-title strong { font-weight:700; color:var(--ouro); }
+.form-sub { font-size:0.75rem; font-weight:300; color:var(--muted); margin-bottom:26px; }
+.fg { margin-bottom:14px; }
+.fg label { display:block; font-size:0.62rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#8a8885; margin-bottom:6px; }
+.fg input,.fg select,.fg textarea { width:100%; background:var(--cinza-card); border:1px solid rgba(168,144,96,0.18); color:var(--branco); padding:11px 14px; font-size:0.86rem; font-family:'Sora',sans-serif; font-weight:300; outline:none; transition:border-color .3s; appearance:none; }
+.fg input::placeholder,.fg textarea::placeholder { color:rgba(245,243,239,0.26); }
+.fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--ouro); }
+.fg select option { background:#2c2c2e; }
+.fg textarea { height:88px; resize:none; }
+.btn-form { width:100%; background:var(--ouro); color:#1a1a1c; padding:15px; font-family:'Sora',sans-serif; font-size:0.84rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; border:none; cursor:pointer; transition:background .3s; margin-top:auto; }
+.btn-form:hover { background:var(--ouro-claro); }
+
+/* ── FOOTER ── */
+footer { background:#1c1c1e; padding:34px 60px; display:flex; align-items:center; justify-content:space-between; border-top:1px solid rgba(168,144,96,0.12); flex-wrap:wrap; gap:16px; position:relative; z-index:1; }
+.foot-brand { display:flex; align-items:center; gap:14px; }
+.foot-brand img { height:36px; width:auto; object-fit:contain; }
+.foot-copy { font-size:0.74rem; font-weight:300; color:rgba(245,243,239,0.35); }
+.foot-links { display:flex; gap:22px; }
+.foot-links a { font-size:0.74rem; font-weight:300; color:rgba(245,243,239,0.35); text-decoration:none; transition:color .3s; }
+.foot-links a:hover { color:var(--ouro); }
+
+/* ── WPP ── */
+.wpp { position:fixed; bottom:26px; right:26px; z-index:999; width:52px; height:52px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; text-decoration:none; box-shadow:0 4px 18px rgba(37,211,102,0.4); transition:transform .3s; }
+.wpp:hover { transform:scale(1.1); }
+.wpp svg { width:26px; height:26px; fill:white; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+.hero-content>* { animation:fadeUp .65s ease both; }
+.hero-content>*:nth-child(1){animation-delay:.08s}
+.hero-content>*:nth-child(2){animation-delay:.18s}
+.hero-content>*:nth-child(3){animation-delay:.28s}
+.hero-content>*:nth-child(4){animation-delay:.38s}
+.hero-content>*:nth-child(5){animation-delay:.48s}
+.hero-content>*:nth-child(6){animation-delay:.58s}
+.hero-content>*:nth-child(7){animation-delay:.68s}
+.hero-right { animation:fadeUp .7s ease .5s both; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .serv-grid{grid-template-columns:repeat(2,1fr);}
+  .ct-items{grid-template-columns:1fr;}
+}
+@media(max-width:900px){
+  nav{padding:14px 20px;} nav ul{display:none;}
+  section{padding:60px 20px;} .strip{padding:20px;}
+  .hero{grid-template-columns:1fr;padding:100px 20px 60px;}
+  .hero-right{display:none;}
+  .como-grid,.pq-grid,.ct-grid{grid-template-columns:1fr;gap:32px;}
+  footer{padding:24px 20px;}
+  .hero h1{font-size:2.2rem;}
+}
+@media(max-width:500px){
+  .serv-grid{grid-template-columns:1fr;}
+  .ct-items{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <!-- símbolo versão escura (fundo já é escuro, sem distorção) -->
+    <img src="simbolo_c3_dark.png" alt="C3 Gestão">
+  </div>
+  <ul>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#como">Como funciona</a></li>
+    <li><a href="#paraquem">Para quem</a></li>
+    <li><a href="#contato" class="nav-cta">Fale Conosco</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-glow"></div>
+
+  <div class="hero-content">
+
+    <!-- LOGO GRANDE: símbolo + texto da marca -->
+    <div class="hero-logo">
+      <img src="simbolo_c3_dark.png" alt="C3 Gestão">
+      <div class="hero-logo-text">
+        <div class="brand"><span>C3</span> gestão</div>
+        <div class="sub">Financeira · BPO · Administrativa</div>
+      </div>
+    </div>
+
+    <div class="eyebrow">BPO Financeiro · Gestão Estratégica</div>
+
+    <h1>Sou sua parceira
+      <em>Estratégica</em>
+    </h1>
+    <p class="hero-tagline">na Gestão Financeira da sua Empresa</p>
+
+    <p class="hero-desc">Mais do que números — entregamos visão estratégica, clareza nos dados e suporte para decisões que impulsionam o crescimento da sua empresa. Atendimento 100% online.</p>
+
+    <!-- PILARES: origem do nome C3 -->
+    <div class="pilares-wrap">
+      <div class="pilares-label">A origem do nosso nome</div>
+      <div class="pilares">
+        <div class="pilar">
+          <div class="pilar-letter">C</div>
+          <div class="pilar-label">Confidencialidade</div>
+        </div>
+        <div class="pilar">
+          <div class="pilar-letter">C</div>
+          <div class="pilar-label">Confiança</div>
+        </div>
+        <div class="pilar">
+          <div class="pilar-letter">C</div>
+          <div class="pilar-label">Controle</div>
+        </div>
+      </div>
+      <div class="pilares-origem">Os 3 C's que deram origem ao nome C3 Gestão</div>
+    </div>
+
+    <div class="btns">
+      <a href="https://wa.me/5511973420686" class="btn-gold" target="_blank">Diagnóstico Gratuito</a>
+      <a href="#servicos" class="btn-ghost">Ver Serviços</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="card-lbl">Terceirize seu financeiro</div>
+      <div class="card-title">Reduza custos com quem tem <strong>25 anos de mercado</strong></div>
+      <ul class="card-list">
+        <li>Contas a Pagar e Receber</li>
+        <li>Conciliação Bancária (D+1)</li>
+        <li>Fluxo de Caixa e Tesouraria</li>
+        <li>DRE e Relatórios Gerenciais</li>
+        <li>Implantação de ERP (NIBO)</li>
+        <li>Consultoria Financeira Estratégica</li>
+        <li>Organização de Documentos</li>
+        <li>Facilities</li>
+      </ul>
+      <div class="card-footer">Confidencialidade · Confiança · Controle</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip" style="position:relative;z-index:1;">
+  <div class="strip-item"><div class="n">25+</div><div class="l">Anos de Mercado</div></div>
+  <div class="strip-item"><div class="n">100%</div><div class="l">Atendimento Online</div></div>
+  <div class="strip-item"><div class="n">PME</div><div class="l">Pequenas e Médias Empresas</div></div>
+  <div class="strip-item"><div class="n">3C</div><div class="l">Confidencialidade · Confiança · Controle</div></div>
+</div>
+
+<!-- SERVIÇOS 4+4 -->
+<section id="servicos">
+  <div class="serv-head">
+    <span class="sec-eye">O que oferecemos</span>
+    <h2 class="sec-title">Soluções completas para a <strong>saúde financeira</strong> da sua empresa</h2>
+    <p class="sec-desc">Assumimos o financeiro da sua empresa para que você foque no crescimento do seu negócio.</p>
+  </div>
+  <div class="serv-grid">
+    <div class="serv-card"><span class="serv-ico">💳</span><h3>Contas a Pagar e Receber</h3><p>Controle rigoroso dos compromissos — vencimentos, cobranças e pagamentos sem perder um prazo.</p></div>
+    <div class="serv-card"><span class="serv-ico">🏦</span><h3>Conciliação Bancária</h3><p>Conferência diária das movimentações (D+1), garantindo precisão nos registros e prevenção de erros.</p></div>
+    <div class="serv-card"><span class="serv-ico">📈</span><h3>Fluxo de Caixa</h3><p>Visibilidade total das entradas e saídas. Projeções para antecipar decisões com segurança.</p></div>
+    <div class="serv-card"><span class="serv-ico">📋</span><h3>DRE e Relatórios Gerenciais</h3><p>Demonstrativos de resultados e relatórios semanais e mensais para decisões com dados reais.</p></div>
+    <div class="serv-card"><span class="serv-ico">⚙️</span><h3>Implantação de ERP</h3><p>Configuramos NIBO e outros sistemas com plano de contas, conciliação automática e cadastro completo.</p></div>
+    <div class="serv-card"><span class="serv-ico">🎯</span><h3>Consultoria Financeira</h3><p>Análise estratégica, centros de custo, categorização de despesas e planejamento financeiro.</p></div>
+    <div class="serv-card"><span class="serv-ico">🗂️</span><h3>Organização de Documentos</h3><p>Gestão de comprovantes, notas e boletos em drive organizado com nomenclatura adequada.</p></div>
+    <div class="serv-card"><span class="serv-ico">🏢</span><h3>BPO Financeiro · Facilities</h3><p>Terceirização completa do departamento financeiro. Redução de custos operacionais e eficiência.</p></div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como">
+  <span class="sec-eye">Como funciona</span>
+  <h2 class="sec-title" style="color:#1a1a1c">Do diagnóstico à <strong>parceria estratégica</strong></h2>
+  <div class="como-grid">
+    <div class="steps">
+      <div class="step"><div class="step-n">01</div><div><h4>Diagnóstico Financeiro Gratuito</h4><p>Análise sem compromisso da situação atual. Identificamos pontos de melhoria e oportunidades de organização.</p></div></div>
+      <div class="step"><div class="step-n">02</div><div><h4>Proposta Personalizada</h4><p>Elaboramos um escopo sob medida com base no tamanho e necessidade real do seu negócio.</p></div></div>
+      <div class="step"><div class="step-n">03</div><div><h4>Implantação e Estruturação</h4><p>Configuramos sistemas, organizamos documentos e estruturamos o plano de contas.</p></div></div>
+      <div class="step"><div class="step-n">04</div><div><h4>Gestão Contínua e Relatórios</h4><p>Acompanhamento permanente com relatórios semanais, mensais e reuniões de alinhamento.</p></div></div>
+    </div>
+    <div class="info-box">
+      <div class="info-box-t">Formato de <strong>Atendimento</strong></div>
+      <div class="info-box-s">100% online · Sem burocracia · Com resultado</div>
+      <ul class="info-list">
+        <li><span class="i">💬</span> WhatsApp e e-mail com resposta rápida</li>
+        <li><span class="i">🔐</span> Acesso remoto seguro aos sistemas</li>
+        <li><span class="i">📁</span> Documentos organizados em nuvem (Drive)</li>
+        <li><span class="i">📅</span> Reuniões pontuais de alinhamento</li>
+        <li><span class="i">📊</span> Relatórios semanais e mensais</li>
+        <li><span class="i">🤝</span> Integração com sua contabilidade parceira</li>
+      </ul>
+      <div class="info-cta">
+        <a href="https://wa.me/5511973420686" class="btn-gold" target="_blank">Solicitar Diagnóstico →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM -->
+<section id="paraquem">
+  <span class="sec-eye">Para quem é</span>
+  <h2 class="sec-title">Feita para quem quer <strong>crescer com segurança</strong></h2>
+  <div class="pq-grid">
+    <div class="publicos">
+      <div class="pub-tag"><span>🚀</span> Startups em fase de estruturação</div>
+      <div class="pub-tag"><span>🏪</span> Pequenos negócios — serviços e comércio</div>
+      <div class="pub-tag"><span>🏢</span> Empresas de médio porte</div>
+      <div class="pub-tag"><span>👔</span> CEOs e Diretores sem financeiro estruturado</div>
+      <div class="pub-tag"><span>🎮</span> Empresas de tecnologia e entretenimento</div>
+      <div class="pub-tag"><span>🔄</span> Empresas que querem terceirizar o financeiro</div>
+    </div>
+    <div>
+      <div class="dores-title">Sua empresa sofre com algum<br>desses <strong>problemas?</strong></div>
+      <div class="dores">
+        <div class="dor"><div class="dor-x">✗</div><p><strong>Sem controle financeiro</strong>Não sabe quanto realmente sobra ou falta no final do mês.</p></div>
+        <div class="dor"><div class="dor-x">✗</div><p><strong>Despesas desorganizadas</strong>Perde tempo procurando documentos e não categoriza gastos.</p></div>
+        <div class="dor"><div class="dor-x">✗</div><p><strong>Decisões sem dados reais</strong>Toma decisões no feeling, sem relatórios confiáveis.</p></div>
+        <div class="dor"><div class="dor-x">✗</div><p><strong>Financeiro tomando seu tempo</strong>Você, dono do negócio, perdendo horas em tarefas operacionais.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <span class="sec-eye">Fale Conosco</span>
+  <h2 class="sec-title">Vamos <strong>descomplicar</strong> esse processo juntos?</h2>
+
+  <!-- logo centralizado -->
+  <div class="ct-logo">
+    <img src="simbolo_c3_dark.png" alt="C3 Gestão">
+  </div>
+
+  <div class="ct-grid">
+    <!-- COLUNA ESQUERDA -->
+    <div class="ct-left">
+      <p class="ct-desc">Entre em contato e solicite seu diagnóstico financeiro gratuito. Sem compromisso — apenas uma conversa para entender como podemos ajudar seu negócio a crescer com organização e controle.</p>
+      <!-- 4 quadros em grid 2x2 — todos iguais -->
+      <div class="ct-items">
+        <div class="ct-item">
+          <div class="ct-ico">📱</div>
+          <div><div class="ct-lbl">WhatsApp</div><div class="ct-val"><a href="https://wa.me/5511973420686" target="_blank">(11) 97342-0686</a></div></div>
+        </div>
+        <div class="ct-item">
+          <div class="ct-ico">✉️</div>
+          <div><div class="ct-lbl">E-mail</div><div class="ct-val"><a href="mailto:adriana@c3gestao.com.br">adriana@c3gestao.com.br</a></div></div>
+        </div>
+        <div class="ct-item">
+          <div class="ct-ico">📷</div>
+          <div><div class="ct-lbl">Instagram</div><div class="ct-val"><a href="https://instagram.com/c3gestao" target="_blank">@c3gestao</a></div></div>
+        </div>
+        <div class="ct-item">
+          <div class="ct-ico">💼</div>
+          <div><div class="ct-lbl">LinkedIn</div><div class="ct-val"><a href="https://linkedin.com/company/c3gestao" target="_blank">/c3gestao</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUNA DIREITA -->
+    <div class="form-box">
+      <div class="form-title">Solicite um <strong>diagnóstico</strong></div>
+      <div class="form-sub">Resposta em até 24 horas úteis</div>
+      <div class="fg"><label>Seu nome</label><input type="text" placeholder="Como posso te chamar?"></div>
+      <div class="fg"><label>WhatsApp</label><input type="tel" placeholder="(11) 99999-9999"></div>
+      <div class="fg"><label>E-mail</label><input type="email" placeholder="seu@email.com"></div>
+      <div class="fg"><label>Tipo de empresa</label>
+        <select><option value="">Selecione...</option><option>Startup / Empresa nova</option><option>Pequena empresa (até 20 funcionários)</option><option>Média empresa</option><option>Autônomo / MEI</option></select>
+      </div>
+      <div class="fg"><label>Sua maior dificuldade financeira</label><textarea placeholder="Descreva brevemente o desafio que enfrenta..."></textarea></div>
+      <button class="btn-form" onclick="window.open('https://wa.me/5511973420686','_blank')">Quero meu diagnóstico gratuito →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-brand">
+    <img src="simbolo_c3_dark.png" alt="C3 Gestão">
+    <span class="foot-copy">© 2025 C3 Gestão · Financeira · BPO · Administrativa</span>
+  </div>
+  <div class="foot-links">
+    <a href="https://instagram.com/c3gestao" target="_blank">Instagram</a>
+    <a href="https://linkedin.com/company/c3gestao" target="_blank">LinkedIn</a>
+    <a href="mailto:adriana@c3gestao.com.br">E-mail</a>
+  </div>
+</footer>
+
+<a href="https://wa.me/5511973420686" class="wpp" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+</body>
+</html>
