@@ -1083,6 +1083,44 @@ function showResult() {
     `Olá! Sou ${firstName}, fiz o diagnóstico financeiro no site da C3 Gestão e obtive ${score} pontos (${title}). Gostaria de conversar sobre como a C3 pode ajudar minha empresa (${segment}).`
   );
   document.getElementById('wppLink').href = `https://wa.me/5511973420686?text=${msg}`;
+
+  // --- FORMSUBMIT: envia todas as respostas para adriana@c3gestao.com.br ---
+  const qLabels = {
+    1: 'Controle de caixa',
+    2: 'Contas a pagar',
+    3: 'DRE / Relatórios',
+    4: 'Separação PF/PJ',
+    5: 'Planejamento financeiro',
+    6: 'Organização documental',
+    7: 'Tempo gasto no financeiro',
+    8: 'Base das decisões',
+  };
+
+  let respostasTexto = '';
+  for (let i = 1; i <= 8; i++) {
+    const a = answers[i];
+    respostasTexto += `Q${i} — ${qLabels[i]}: ${a ? a.icon + ' ' + a.label + ' (score ' + a.score + '/3)' : 'Não respondido'}\n`;
+  }
+
+  const payload = {
+    _subject: `🔔 Novo Diagnóstico C3 Gestão — ${name} | Score: ${score}/100 (${title})`,
+    _template: 'table',
+    _captcha: 'false',
+    Nome: name,
+    WhatsApp: phone || '(não informado)',
+    Segmento: segment,
+    Score: `${score}/100 — ${title}`,
+    'Resumo do diagnóstico': respostasTexto,
+  };
+
+  fetch('https://formsubmit.co/ajax/adriana@c3gestao.com.br', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+  .then(r => r.json())
+  .then(data => console.log('FormSubmit OK:', data))
+  .catch(err => console.warn('FormSubmit erro:', err));
 }
 </script>
 </body>
