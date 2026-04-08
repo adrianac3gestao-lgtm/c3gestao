@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Financeiro Gratuito · C3 Gestão</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD6;
+    --dark: #1A1A1A;
+    --charcoal: #2E2E2E;
+    --mid: #5A5A5A;
+    --soft: #8A8A8A;
+    --bg: #F8F5EF;
+    --white: #FEFCF8;
+    --red-alert: #C0392B;
+    --amber: #E67E22;
+    --green: #27AE60;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--dark);
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo-mark {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-mark img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+
+  .logo-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .logo-sub {
+    font-size: 10px;
+    color: var(--gold-light);
+    letter-spacing: 1px;
+    display: block;
+    margin-top: 1px;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--dark);
+    padding: 48px 24px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 120%, rgba(184,150,46,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(184,150,46,0.15);
+    border: 1px solid rgba(184,150,46,0.4);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .hero p {
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    line-height: 1.65;
+    max-width: 320px;
+    margin: 0 auto 28px;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 8px;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat span {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+
+  .hero-stat small {
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* PROGRESS */
+  .progress-wrap {
+    background: var(--white);
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    position: sticky;
+    top: 72px;
+    z-index: 90;
+  }
+
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .progress-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--soft);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .progress-count {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  .progress-bar {
+    height: 3px;
+    background: #E8E3D8;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 2px;
+    transition: width 0.5s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* MAIN */
+  .main {
+    padding: 0 16px 48px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* QUESTION CARD */
+  .question-card {
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 16px;
+    padding: 28px 20px;
+    margin-top: 24px;
+    display: none;
+    animation: fadeUp 0.4s ease forwards;
+  }
+
+  .question-card.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .q-number {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+
+  .q-sub {
+    font-size: 13px;
+    color: var(--soft);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  /* OPTIONS */
+  .options { display: flex; flex-direction: column; gap: 10px; }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 1.5px solid #E8E3D8;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--bg);
+  }
+
+  .option:active { transform: scale(0.98); }
+
+  .option.selected {
+    border-color: var(--gold);
+    background: var(--gold-pale);
+  }
+
+  .option-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    width: 32px;
+    text-align: center;
+  }
+
+  .option-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--charcoal);
+    line-height: 1.4;
+  }
+
+  .option.selected .option-label { color: var(--dark); font-weight: 600; }
+
+  .option-score {
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  /* NAV */
+  .nav-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .btn-back {
+    flex: 0 0 44px;
+    height: 44px;
+    border: 1.5px solid #E8E3D8;
+    background: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .btn-back:hover { border-color: var(--gold); color: var(--gold); }
+
+  .btn-next {
+    flex: 1;
+    height: 44px;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .btn-next:hover { background: var(--gold-light); }
+  .btn-next:disabled { background: #D0C9BC; cursor: not-allowed; }
+
+  /* LEAD FORM */
+  .lead-form { display: flex; flex-direction: column; gap: 14px; }
+
+  .form-field { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--mid);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid #E8E3D8;
+    border-radius: 10px;
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--dark);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .form-input:focus { border-color: var(--gold); }
+
+  /* RESULT */
+  .result-card {
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 16px;
+    padding: 28px 20px;
+    margin-top: 24px;
+    display: none;
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .result-card.active { display: block; }
+
+  .result-header {
+    text-align: center;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #EDE9DF;
+    margin-bottom: 24px;
+  }
+
+  .score-ring {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 16px;
+    position: relative;
+  }
+
+  .score-ring svg { transform: rotate(-90deg); }
+
+  .score-ring .ring-bg { fill: none; stroke: #EDE9DF; stroke-width: 8; }
+
+  .score-ring .ring-fill {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 251.2;
+    transition: stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1);
+  }
+
+  .score-number {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .score-number span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .score-number small { font-size: 10px; color: var(--soft); }
+
+  .result-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .result-subtitle { font-size: 13px; color: var(--soft); line-height: 1.5; }
+
+  /* ALERTS */
+  .alert-section { margin-bottom: 24px; }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--soft);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .alert-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    align-items: flex-start;
+  }
+
+  .alert-item.critical { background: #FDF2F0; border-left: 3px solid var(--red-alert); }
+  .alert-item.warning  { background: #FEF8F0; border-left: 3px solid var(--amber); }
+  .alert-item.ok       { background: #F0FAF4; border-left: 3px solid var(--green); }
+
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  .alert-text { font-size: 13px; line-height: 1.5; color: var(--charcoal); }
+  .alert-text strong { font-weight: 600; color: var(--dark); display: block; margin-bottom: 2px; }
+
+  /* CTA RESULT */
+  .cta-result {
+    background: var(--dark);
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  .cta-result h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .cta-result h3 em { color: var(--gold-light); font-style: italic; }
+
+  .cta-result p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .btn-wpp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px;
+    background: #25D366;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-wpp:hover { background: #1EB858; }
+
+  .trust-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 16px;
+  }
+
+  .trust-item {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .trust-item span {
+    display: block;
+    color: var(--gold-light);
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+
+  /* DIMENSION BARS */
+  .dimension { margin-bottom: 12px; }
+
+  .dim-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .dim-label { font-size: 12px; font-weight: 500; color: var(--charcoal); }
+  .dim-score { font-size: 11px; font-weight: 600; }
+
+  .dim-bar {
+    height: 6px;
+    background: #EDE9DF;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .dim-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1.2s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 380px) {
+    .hero h1 { font-size: 30px; }
+    .q-text { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo-mark"><img src="https://adrianac3gestao-lgtm.github.io/c3gestao/SIMBOLO_C3_GESTAO-24.png" alt="C3 Gestão"></div>
+  <div>
+    <div class="logo-text">C3 Gestão</div>
+    <span class="logo-sub">Financeira · BPO · Administrativa</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="badge">✦ Gratuito · Sem compromisso</div>
+  <h1>Diagnóstico<br><em>Financeiro</em></h1>
+  <p>Responda 8 perguntas e descubra os pontos críticos da saúde financeira da sua empresa.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span>~3min</span><small>duração</small></div>
+    <div class="hero-stat"><span>8</span><small>perguntas</small></div>
+    <div class="hero-stat"><span>100%</span><small>gratuito</small></div>
+  </div>
+</section>
+
+<div class="progress-wrap" id="progressWrap" style="display:none">
+  <div class="progress-info">
+    <span class="progress-label">Seu progresso</span>
+    <span class="progress-count" id="progressCount">1 de 8</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill" style="width:12.5%"></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- Q1 -->
+  <div class="question-card active" id="q1">
+    <div class="q-number">Pergunta 01 de 08</div>
+    <div class="q-text">Você sabe quanto sobra (ou falta) no caixa ao final de cada mês?</div>
+    <div class="q-sub">Controle de caixa é a base de tudo.</div>
+    <div class="options">
+      <div class="option" onclick="select(1,0,'🚨','Não tenho controle nenhum')">
+        <div class="option-icon">🚨</div>
+        <div class="option-label">Não tenho controle nenhum</div>
+      </div>
+      <div class="option" onclick="select(1,1,'🤷','Tenho uma noção aproximada')">
+        <div class="option-icon">🤷</div>
+        <div class="option-label">Tenho uma noção aproximada</div>
+      </div>
+      <div class="option" onclick="select(1,2,'📊','Acompanho, mas de forma informal')">
+        <div class="option-icon">📊</div>
+        <div class="option-label">Acompanho, mas de forma informal</div>
+      </div>
+      <div class="option" onclick="select(1,3,'✅','Tenho controle claro e atualizado')">
+        <div class="option-icon">✅</div>
+        <div class="option-label">Tenho controle claro e atualizado</div>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-next" id="next1" onclick="goTo(2)" disabled>Próximo →</button>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question-card" id="q2">
+    <div class="q-number">Pergunta 02 de 08</div>
+    <div class="q-text">Como são gerenciadas as contas a pagar da sua empresa?</div>
+    <div class="q-sub">Organização dos compromissos financeiros.</div>
+    <div class="options">
+      <div class="option" onclick="select(2,0,'🔥','Já perdi prazos e paguei juros')">
+        <div class="option-icon">🔥</div>
+        <div class="option-label">Já perdi prazos e paguei juros</div>
+      </div>
+      <div class="option" onclick="select(2,1,'📱','Controlo pelo WhatsApp / anotações')">
+        <div class="option-icon">📱</div>
+        <div class="option-label">Controlo pelo WhatsApp / anotações</div>
+      </div>
+      <div class="option" onclick="select(2,2,'📋','Tenho planilha, mas não é 100% confiável')">
+        <div class="option-icon">📋</div>
+        <div class="option-label">Tenho planilha, mas não é 100% confiável</div>
+      </div>
+      <div class="option" onclick="select(2,3,'⚙️','Uso sistema ou processo estruturado')">
+        <div class="option-icon">⚙️</div>
+        <div class="option-label">Uso sistema ou processo estruturado</div>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-back" onclick="goTo(1)">←</button>
+      <button class="btn-next" id="next2" onclick="goTo(3)" disabled>Próximo →</button>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="question-card" id="q3">
+    <div class="q-number">Pergunta 03 de 08</div>
+    <div class="q-text">Você tem um DRE (Demonstrativo de Resultados) atualizado?</div>
+    <div class="q-sub">Saber se a empresa está lucrando ou perdendo.</div>
+    <div class="options">
+      <div class="option" onclick="select(3,0,'❓','Nem sei o que é isso')">
+        <div class="option-icon">❓</div>
+        <div class="option-label">Nem sei o que é isso</div>
+      </div>
+      <div class="option" onclick="select(3,1,'📅','Só vejo quando o contador envia')">
+        <div class="option-icon">📅</div>
+        <div class="option-label">Só vejo quando o contador envia</div>
+      </div>
+      <div class="option" onclick="select(3,2,'📊','Faço manualmente às vezes')">
+        <div class="option-icon">📊</div>
+        <div class="option-label">Faço manualmente às vezes</div>
+      </div>
+      <div class="option" onclick="select(3,3,'✅','Tenho DRE mensal sempre atualizado')">
+        <div class="option-icon">✅</div>
+        <div class="option-label">Tenho DRE mensal sempre atualizado</div>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-back" onclick="goTo(2)">←</button>
+      <button class="btn-next" id="next3" onclick="goTo(4)" disabled>Próximo →</button>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question-card" id="q4">
+    <div class="q-number">Pergunta 04 de 08</div>
+    <div class="q-text">As finanças pessoais e empresariais são separadas?</div>
+    <div class="q-sub">Misturar as contas é um dos erros mais comuns — e perigosos.</div>
+    <div class="options">
+      <div class="option" onclick="select(4,0,'🔴','Misturo tudo na mesma conta')">
+        <div class="option-icon">🔴</div>
+        <div class="option-label">Misturo tudo na mesma conta</div>
+      </div>
+      <div class="option" onclick="select(4,1,'🟡','Às vezes uso a empresa para gastos pessoais')">
+        <div class="option-icon">🟡</div>
+        <div class="option-label">Às vezes uso a empresa para gastos pessoais</div>
+      </div>
+      <div class="option" onclick="select(4,2,'🟢','Tenho contas separadas, mas sem pró-labore fixo')">
+        <div class="option-icon">🟢</div>
+        <div class="option-label">Tenho contas separadas, mas sem pró-labore fixo</div>
+      </div>
+      <div class="option" onclick="select(4,3,'💎','Totalmente separado, com pró-labore definido')">
+        <div class="option-icon">💎</div>
+        <div class="option-label">Totalmente separado, com pró-labore definido</div>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-back" onclick="goTo(3)">←</button>
+      <button class="btn-next" id="next4" onclick="goTo(5)" disabled>Próximo →</button>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question-card" id="q5">
+    <div class="q-number">Pergunta 05 de 08</div>
+    <div class="q-text">Você tem previsão de receitas e despesas para os próximos meses?</div>
+    <div class="q-sub">Planejamento financeiro — a base das decisões estratégicas.</div>
+    <div class="options">
+      <div class="option" onclick="select(5,0,'😰','Não, vivo no improviso')">
+        <div class="option-icon">😰</div>
+        <div class="option-label">Não, vivo no improviso</div>
+      </div>
+      <div class="option" onclick="select(5,1,'🤔','Faço mentalmente, mas não registro')">
+        <div class="option-icon">🤔</div>
+        <div class="option-label">Faço mentalmente, mas não registro</div>
+      </div>
+      <div class="option" onclick="select(5,2,'📝','Tenho uma planilha básica de projeção')">
+        <div class="option-icon">📝</div>
+        <div class="option-label">Tenho uma planilha básica de projeção</div>
+      </div>
+      <div class="option" onclick="select(5,3,'🎯','Tenho budget e acompanho regularmente')">
+        <div class="option-icon">🎯</div>
+        <div class="option-label">Tenho budget e acompanho regularmente</div>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-back" onclick="goTo(4)">←</button>
+      <button class="btn-next" id="next5" onclick="goTo(6)" disabled>Próximo →</button>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="question-card" id="q6">
+    <div class="q-number">Pergunta 06 de 08</div>
+    <div class="q-text">Seus documentos financeiros (NFs, boletos, comprovantes) estão organizados?</div>
+    <div class="q-sub">Gestão documental impacta direto no tempo e no controle.</div>
+    <div class="options">
+      <div class="option" onclick="select(6,0,'📦','Estão espalhados, difícil achar algo')">
+        <div class="option-icon">📦</div>
+        <div class="option-label">Estão espalhados, difícil achar algo</div>
+      </div>
+      <div class="option" onclick="select(6,1,'📧','Ficam no e-mail e WhatsApp')">
+        <div class="option-icon">📧</div>
+        <div class="option-label">Ficam no e-mail e WhatsApp</div>
+      </div>
+      <div class="option" onclick="select(6,2,'💾','Tenho pastas, mas sem padrão claro')">
+        <div class="option-icon">💾</div>
+        <div class="option-label">Tenho pastas, mas sem padrão claro</div>
+      </div>
+      <div class="option" onclick="select(6,3,'☁️','Drive organizado e com nomenclatura padrão')">
+        <div class="option-icon">☁️</div>
+        <div class="option-label">Drive organizado e com nomenclatura padrão</div>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-back" onclick="goTo(5)">←</button>
+      <button class="btn-next" id="next6" onclick="goTo(7)" disabled>Próximo →</button>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="question-card" id="q7">
+    <div class="q-number">Pergunta 07 de 08</div>
+    <div class="q-text">Quanto tempo você (ou alguém da equipe) gasta com tarefas financeiras por semana?</div>
+    <div class="q-sub">Tempo é o recurso mais caro de um empreendedor.</div>
+    <div class="options">
+      <div class="option" onclick="select(7,0,'😩','Mais de 10h — consome meu dia')">
+        <div class="option-icon">😩</div>
+        <div class="option-label">Mais de 10h — consome meu dia</div>
+      </div>
+      <div class="option" onclick="select(7,1,'😓','Entre 5h e 10h por semana')">
+        <div class="option-icon">😓</div>
+        <div class="option-label">Entre 5h e 10h por semana</div>
+      </div>
+      <div class="option" onclick="select(7,2,'😐','Entre 2h e 5h por semana')">
+        <div class="option-icon">😐</div>
+        <div class="option-label">Entre 2h e 5h por semana</div>
+      </div>
+      <div class="option" onclick="select(7,3,'😌','Menos de 2h — processo bem azeitado')">
+        <div class="option-icon">😌</div>
+        <div class="option-label">Menos de 2h — processo bem azeitado</div>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-back" onclick="goTo(6)">←</button>
+      <button class="btn-next" id="next7" onclick="goTo(8)" disabled>Próximo →</button>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="question-card" id="q8">
+    <div class="q-number">Pergunta 08 de 08</div>
+    <div class="q-text">Como você toma as principais decisões financeiras do negócio?</div>
+    <div class="q-sub">Intuição vs. dados reais.</div>
+    <div class="options">
+      <div class="option" onclick="select(8,0,'🎲','Basicamente no feeling')">
+        <div class="option-icon">🎲</div>
+        <div class="option-label">Basicamente no feeling</div>
+      </div>
+      <div class="option" onclick="select(8,1,'💬','Converso com o contador quando preciso')">
+        <div class="option-icon">💬</div>
+        <div class="option-label">Converso com o contador quando preciso</div>
+      </div>
+      <div class="option" onclick="select(8,2,'📊','Olho alguns números, mas faltam relatórios')">
+        <div class="option-icon">📊</div>
+        <div class="option-label">Olho alguns números, mas faltam relatórios</div>
+      </div>
+      <div class="option" onclick="select(8,3,'🎯','Baseado em relatórios gerenciais regulares')">
+        <div class="option-icon">🎯</div>
+        <div class="option-label">Baseado em relatórios gerenciais regulares</div>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-back" onclick="goTo(7)">←</button>
+      <button class="btn-next" id="next8" onclick="showLeadForm()" disabled>Ver meu diagnóstico →</button>
+    </div>
+  </div>
+
+  <!-- LEAD FORM -->
+  <div class="question-card" id="qLead">
+    <div class="q-number">Quase lá! ✦</div>
+    <div class="q-text">Seu diagnóstico está pronto.</div>
+    <div class="q-sub">Informe seus dados para revelar o resultado e receber orientações personalizadas.</div>
+    <div class="lead-form">
+      <div class="form-field">
+        <label class="form-label">Seu nome</label>
+        <input class="form-input" type="text" id="leadName" placeholder="Como posso te chamar?">
+      </div>
+      <div class="form-field">
+        <label class="form-label">WhatsApp</label>
+        <input class="form-input" type="tel" id="leadPhone" placeholder="(11) 99999-9999">
+      </div>
+      <div class="form-field">
+        <label class="form-label">Segmento da empresa</label>
+        <select class="form-input" id="leadSegment">
+          <option value="">Selecione...</option>
+          <option>Comércio / Varejo</option>
+          <option>Serviços</option>
+          <option>Tecnologia / SaaS</option>
+          <option>Saúde / Clínica</option>
+          <option>Alimentação / Food</option>
+          <option>Outro</option>
+        </select>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-back" onclick="goTo(8)">←</button>
+      <button class="btn-next" id="nextLead" onclick="showResult()">Revelar diagnóstico →</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result-card" id="resultCard">
+
+    <div class="result-header">
+      <div class="score-ring">
+        <svg width="100" height="100" viewBox="0 0 100 100">
+          <circle class="ring-bg" cx="50" cy="50" r="40"/>
+          <circle class="ring-fill" id="ringFill" cx="50" cy="50" r="40"
+            stroke-dashoffset="251.2"/>
+        </svg>
+        <div class="score-number">
+          <span id="scoreDisplay" style="color:var(--gold)">0</span>
+          <small>/ 100</small>
+        </div>
+      </div>
+      <div class="result-title" id="resultTitle">–</div>
+      <div class="result-subtitle" id="resultSubtitle">–</div>
+    </div>
+
+    <!-- DIMENSIONS -->
+    <div class="alert-section">
+      <div class="section-title">Dimensões avaliadas</div>
+      <div id="dimensionsSection"></div>
+    </div>
+
+    <!-- ALERTS -->
+    <div class="alert-section">
+      <div class="section-title">Pontos de atenção</div>
+      <div id="alertsSection"></div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-result">
+      <h3>Próximo passo:<br><em>30 min com a Adriana</em></h3>
+      <p>Uma conversa estratégica gratuita para aprofundar seu diagnóstico e mostrar exatamente o que a C3 Gestão faria pela sua empresa.</p>
+      <a class="btn-wpp" id="wppLink" href="#" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.528 5.852L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.371l-.36-.214-3.732.979.998-3.645-.235-.375A9.818 9.818 0 112 12c0 5.415 4.403 9.818 9.818 9.818h.182z"/>
+        </svg>
+        Falar com a Adriana — é gratuito
+      </a>
+      <div class="trust-row">
+        <div class="trust-item"><span>🔒</span>Confidencial</div>
+        <div class="trust-item"><span>25+</span>Anos mercado</div>
+        <div class="trust-item"><span>100%</span>Online</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+const answers = {};
+let currentQ = 1;
+const totalQ = 8;
+
+function select(q, score, icon, label) {
+  answers[q] = { score, icon, label };
+  document.querySelectorAll(`#q${q} .option`).forEach(o => o.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  document.getElementById(`next${q}`).disabled = false;
+}
+
+function goTo(q) {
+  document.getElementById(`q${currentQ}`).classList.remove('active');
+  document.getElementById(`q${q}`).classList.add('active');
+  currentQ = q;
+
+  const pw = document.getElementById('progressWrap');
+  pw.style.display = 'block';
+
+  const pct = (q / totalQ) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressCount').textContent = q + ' de ' + totalQ;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showLeadForm() {
+  document.getElementById(`q${currentQ}`).classList.remove('active');
+  document.getElementById('qLead').classList.add('active');
+  currentQ = 'Lead';
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('progressCount').textContent = '✓ Concluído';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showResult() {
+  const name = document.getElementById('leadName').value.trim();
+  if (!name) { document.getElementById('leadName').focus(); return; }
+
+  // Score calculation (0-3 per question, max 24 → map to 100)
+  let total = 0;
+  for (let i = 1; i <= 8; i++) {
+    total += answers[i] ? answers[i].score : 0;
+  }
+  const score = Math.round((total / 24) * 100);
+
+  // Dimensions (grouped)
+  const dims = [
+    { label: 'Controle de Caixa', qs: [1,2], max: 6 },
+    { label: 'Relatórios & Visibilidade', qs: [3,8], max: 6 },
+    { label: 'Estrutura Financeira', qs: [4,6], max: 6 },
+    { label: 'Planejamento & Eficiência', qs: [5,7], max: 6 },
+  ];
+
+  // Title & subtitle
+  let title, subtitle, ringColor;
+  if (score <= 30) {
+    title = 'Situação Crítica'; subtitle = 'O financeiro da sua empresa precisa de atenção urgente. Existem riscos reais de descapitalização.'; ringColor = '#C0392B';
+  } else if (score <= 55) {
+    title = 'Em Desenvolvimento'; subtitle = 'Você tem iniciativas, mas os processos ainda são frágeis. Com estrutura, o crescimento vem mais rápido.'; ringColor = '#E67E22';
+  } else if (score <= 79) {
+    title = 'Avançando Bem'; subtitle = 'O financeiro tem boa base, mas ainda há pontos que podem ser otimizados para mais clareza e controle.'; ringColor = '#F0C040';
+  } else {
+    title = 'Financeiro Estruturado'; subtitle = 'Sua empresa está bem posicionada. O foco agora é escalar com segurança e visão estratégica.'; ringColor = '#27AE60';
+  }
+
+  // Alerts based on low scores
+  const alertDefs = {
+    1: { label: 'Controle de Caixa', critical: 'Sem saber o saldo real, qualquer decisão é um risco.' },
+    2: { label: 'Contas a Pagar', critical: 'Perder prazos gera juros e prejudica o crédito da empresa.' },
+    3: { label: 'DRE & Resultados', critical: 'Sem DRE, você não sabe se está lucrando ou perdendo de verdade.' },
+    4: { label: 'Separação PF/PJ', critical: 'Misturar finanças pessoais e empresariais é a origem de muitos problemas graves.' },
+    5: { label: 'Planejamento', critical: 'Sem projeção, a empresa fica refém do presente e sem capacidade de reagir.' },
+    6: { label: 'Organização Documental', critical: 'Documentos desorganizados geram retrabalho e risco fiscal.' },
+    7: { label: 'Tempo no Financeiro', critical: 'Horas do fundador no operacional financeiro são horas fora do crescimento.' },
+    8: { label: 'Decisões com Dados', critical: 'Decisões no feeling têm custo — geralmente alto.' },
+  };
+
+  document.getElementById('qLead').classList.remove('active');
+  document.getElementById('resultCard').classList.add('active');
+  document.getElementById('progressWrap').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultSubtitle').textContent = subtitle;
+
+  // Animate score
+  const scoreEl = document.getElementById('scoreDisplay');
+  scoreEl.style.color = ringColor;
+  let cur = 0;
+  const step = setInterval(() => {
+    cur = Math.min(cur + 2, score);
+    scoreEl.textContent = cur;
+    if (cur >= score) clearInterval(step);
+  }, 25);
+
+  // Ring
+  const ring = document.getElementById('ringFill');
+  ring.style.stroke = ringColor;
+  const offset = 251.2 - (251.2 * score / 100);
+  setTimeout(() => { ring.style.strokeDashoffset = offset; }, 100);
+
+  // Dimensions
+  const dimSection = document.getElementById('dimensionsSection');
+  dimSection.innerHTML = '';
+  dims.forEach(d => {
+    let pts = 0;
+    d.qs.forEach(q => { pts += answers[q] ? answers[q].score : 0; });
+    const pct = Math.round((pts / d.max) * 100);
+    let color = pct >= 70 ? '#27AE60' : pct >= 40 ? '#E67E22' : '#C0392B';
+    dimSection.innerHTML += `
+      <div class="dimension">
+        <div class="dim-row">
+          <span class="dim-label">${d.label}</span>
+          <span class="dim-score" style="color:${color}">${pct}%</span>
+        </div>
+        <div class="dim-bar">
+          <div class="dim-fill" id="dim_${d.label.replace(/\s/g,'')}"
+            style="width:0%;background:${color}"></div>
+        </div>
+      </div>`;
+    setTimeout(() => {
+      const el = document.getElementById('dim_' + d.label.replace(/\s/g,''));
+      if (el) el.style.width = pct + '%';
+    }, 300);
+  });
+
+  // Alerts
+  const alertSection = document.getElementById('alertsSection');
+  alertSection.innerHTML = '';
+  for (let i = 1; i <= 8; i++) {
+    const a = answers[i];
+    if (!a) continue;
+    const def = alertDefs[i];
+    let cls, icon, text;
+    if (a.score === 0) {
+      cls = 'critical'; icon = '🔴';
+      text = `<strong>${def.label} — Crítico</strong>${def.critical}`;
+    } else if (a.score === 1) {
+      cls = 'warning'; icon = '🟡';
+      text = `<strong>${def.label} — Atenção</strong>Há espaço importante de melhoria aqui.`;
+    } else if (a.score === 2) {
+      cls = 'warning'; icon = '🟠';
+      text = `<strong>${def.label} — Em desenvolvimento</strong>Bom início, mas pode ser mais robusto.`;
+    } else {
+      cls = 'ok'; icon = '✅';
+      text = `<strong>${def.label} — Bem estruturado</strong>Boa prática identificada. Manter e evoluir.`;
+    }
+    alertSection.innerHTML += `
+      <div class="alert-item ${cls}">
+        <div class="alert-icon">${icon}</div>
+        <div class="alert-text">${text}</div>
+      </div>`;
+  }
+
+  // WhatsApp link
+  const firstName = name.split(' ')[0];
+  const segment = document.getElementById('leadSegment').value || 'empresa';
+  const phone = document.getElementById('leadPhone').value;
+  const msg = encodeURIComponent(
+    `Olá! Sou ${firstName}, fiz o diagnóstico financeiro no site da C3 Gestão e obtive ${score} pontos (${title}). Gostaria de conversar sobre como a C3 pode ajudar minha empresa (${segment}).`
+  );
+  document.getElementById('wppLink').href = `https://wa.me/5511973420686?text=${msg}`;
+}
+</script>
+</body>
+</html>
