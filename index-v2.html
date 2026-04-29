@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C3 Gestão — Financeira · BPO · Administrativa</title>
+<style>
+@font-face{font-family:'Sora';src:url('Sora-Thin.ttf');font-weight:100;}
+@font-face{font-family:'Sora';src:url('Sora-ExtraLight.ttf');font-weight:200;}
+@font-face{font-family:'Sora';src:url('Sora-Light.ttf');font-weight:300;}
+@font-face{font-family:'Sora';src:url('Sora-Regular.ttf');font-weight:400;}
+@font-face{font-family:'Sora';src:url('Sora-Medium.ttf');font-weight:500;}
+@font-face{font-family:'Sora';src:url('Sora-SemiBold.ttf');font-weight:600;}
+@font-face{font-family:'Sora';src:url('Sora-Bold.ttf');font-weight:700;}
+@font-face{font-family:'Sora';src:url('Sora-ExtraBold.ttf');font-weight:800;}
+
+:root{
+  --cinza-hero:#242523;   /* #242523 — preto da marca */
+  --cinza-fundo:#444544;  /* #444544 — cinza médio */
+  --cinza-card:#3a3b3a;   /* entre os dois cinzas */
+  --cinza-medio:#868686;  /* cinza claro da paleta */
+  --cinza-claro:#f0eeea;  /* off-white para seções claras */
+  --ouro:#a39372;         /* #a39372 — dourado exato da marca */
+  --ouro-claro:#c0b090;
+  --ouro-escuro:#7a6840;
+  --branco:#f5f3ef;
+  --muted:rgba(245,243,239,0.55);--body:rgba(245,243,239,0.82);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Sora',sans-serif;background:var(--cinza-fundo);color:var(--branco);overflow-x:hidden;}
+body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:min(88vw,820px);height:min(88vw,820px);background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,5 188,52 188,148 100,195 12,148 12,52' fill='none' stroke='%23a89060' stroke-width='1.5'/%3E%3Cpath d='M84 58 L54 100 L84 142' stroke='%23f5f3ef' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='108' y='58' width='13' height='84' rx='3' fill='%23a89060'/%3E%3Crect x='127' y='70' width='13' height='72' rx='3' fill='%23a89060' opacity='0.65'/%3E%3Crect x='146' y='82' width='13' height='60' rx='3' fill='%23a89060' opacity='0.38'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:contain;opacity:0.03;pointer-events:none;z-index:0;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;width:100%;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:13px 60px;background:rgba(24,24,26,0.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(168,144,96,0.2);}
+.nav-left{display:flex;align-items:center;gap:12px;}
+.nav-left img{height:40px;width:auto;object-fit:contain;}
+.nav-brand strong{display:block;font-size:0.92rem;font-weight:600;color:var(--branco);}
+.nav-brand span{display:block;font-size:0.58rem;font-weight:300;letter-spacing:0.18em;color:var(--ouro);text-transform:uppercase;}
+nav ul{list-style:none;display:flex;gap:26px;align-items:center;}
+nav ul a{color:var(--muted);text-decoration:none;font-size:0.75rem;font-weight:400;letter-spacing:0.07em;text-transform:uppercase;transition:color .3s;}
+nav ul a:hover{color:var(--ouro);}
+.nav-right{display:flex;align-items:center;gap:12px;}
+.nav-phone{font-size:0.8rem;font-weight:600;color:var(--ouro);text-decoration:none;}
+.nav-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(168,144,96,0.12);text-decoration:none;transition:background .3s;}
+.nav-icon:hover{background:rgba(168,144,96,0.28);}
+.nav-icon svg{width:16px;height:16px;fill:var(--ouro);}
+.nav-cta{background:var(--ouro)!important;color:#1a1a1c!important;padding:8px 18px!important;font-weight:700!important;border-radius:0;}
+.nav-cta:hover{background:var(--ouro-claro)!important;}
+
+/* ── CARROSSEL ── */
+.carousel{position:relative;width:100%;height:100vh;overflow:hidden;}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;opacity:0;transition:opacity 1s ease;pointer-events:none;}
+.slide.active{opacity:1;pointer-events:auto;}
+.slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1);transition:transform 8s ease;}
+.slide.active .slide-bg{transform:scale(1.05);}
+.slide-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(20,20,22,0.92) 0%,rgba(20,20,22,0.68) 55%,rgba(20,20,22,0.3) 100%);}
+.slide-content{position:relative;z-index:2;padding:0 120px 0 100px;max-width:760px;}
+.slide-tag{display:inline-flex;align-items:center;gap:10px;color:var(--ouro);font-size:0.67rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;margin-bottom:22px;}
+.slide-tag::before{content:'';width:20px;height:1px;background:var(--ouro);}
+.slide h1{font-size:clamp(2rem,4.2vw,3.4rem);font-weight:300;line-height:1.1;color:var(--branco);margin-bottom:16px;}
+.slide h1 em{font-style:normal;font-weight:800;color:var(--ouro);display:block;}
+.slide p{font-size:0.98rem;font-weight:300;color:var(--body);line-height:1.8;margin-bottom:34px;max-width:500px;}
+.slide-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.carousel-dots{position:absolute;bottom:30px;left:60px;display:flex;gap:10px;z-index:10;}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(245,243,239,0.3);cursor:pointer;transition:all .3s;border:none;padding:0;}
+.dot.active{background:var(--ouro);width:26px;border-radius:4px;}
+.cbtn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(168,144,96,0.15);border:1px solid rgba(168,144,96,0.3);color:var(--ouro);width:44px;height:44px;border-radius:50%;font-size:1.1rem;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;transition:all .3s;}
+.cbtn:hover{background:rgba(168,144,96,0.3);}
+.cbtn.prev{left:18px;}.cbtn.next{right:18px;}
+
+/* ── STRIP ── */
+.strip{background:var(--ouro);padding:22px 60px;display:flex;justify-content:center;align-items:center;position:relative;z-index:1;}
+.strip-frase{text-align:center;}
+.strip-label{font-size:0.66rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(26,26,28,0.5);margin-bottom:6px;}
+.strip-texto{font-size:clamp(1.1rem,2.6vw,1.7rem);font-weight:700;color:#1a1a1c;}
+
+/* ── BOTÕES ── */
+.btn-gold{background:var(--ouro);color:#1a1a1c;padding:13px 30px;font-family:'Sora',sans-serif;font-size:0.81rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all .3s;border:none;cursor:pointer;display:inline-block;}
+.btn-gold:hover{background:var(--ouro-claro);transform:translateY(-2px);}
+.btn-ghost{border:1px solid rgba(168,144,96,0.45);color:var(--ouro);padding:13px 30px;font-family:'Sora',sans-serif;font-size:0.81rem;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all .3s;display:inline-block;}
+.btn-ghost:hover{border-color:var(--ouro);background:rgba(168,144,96,0.07);}
+.btn-dark{background:#1a1a1c;color:var(--ouro);padding:13px 32px;font-family:'Sora',sans-serif;font-size:0.81rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all .3s;display:inline-block;border:none;cursor:pointer;}
+.btn-dark:hover{background:#353537;}
+.btn-rounded{background:#1a1a1c;color:var(--branco);padding:14px 40px;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all .3s;display:inline-block;border:none;cursor:pointer;border-radius:100px;}
+.btn-rounded:hover{background:#353537;transform:translateY(-2px);}
+
+/* ── SEÇÕES ── */
+section{padding:88px 60px;position:relative;z-index:1;}
+.sec-eye{display:inline-block;font-size:0.64rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--ouro);margin-bottom:12px;}
+.sec-title{font-size:clamp(1.7rem,3vw,2.5rem);font-weight:300;line-height:1.15;margin-bottom:16px;}
+.sec-title strong{font-weight:700;color:var(--ouro);}
+.sec-desc{font-size:0.92rem;font-weight:300;line-height:1.82;color:var(--muted);}
+
+/* ── QUEM SOMOS ── */
+#quem{background:var(--cinza-card);min-height:auto;}
+.quem-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:64px;align-items:center;margin-top:48px;}
+.foto-wrap{position:relative;aspect-ratio:3/4;max-width:300px;border:1px solid rgba(168,144,96,0.22);overflow:hidden;}
+.foto-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--ouro-escuro),var(--ouro),var(--ouro-claro));z-index:2;}
+.foto-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;}
+.foto-placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--cinza-fundo) 0%,rgba(168,144,96,0.08) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
+.foto-placeholder .ico{font-size:3rem;opacity:0.22;}
+.foto-placeholder p{font-size:0.68rem;font-weight:300;color:var(--muted);text-align:center;padding:0 20px;line-height:1.6;}
+.foto-badge{position:absolute;bottom:0;left:0;right:0;background:rgba(18,18,20,0.94);border-top:1px solid rgba(168,144,96,0.2);padding:13px 16px;}
+.foto-badge strong{display:block;font-size:0.9rem;font-weight:700;color:var(--branco);margin-bottom:2px;}
+.foto-badge span{font-size:0.65rem;font-weight:300;color:var(--ouro);letter-spacing:0.08em;}
+.quem-intro{font-size:1.15rem;font-weight:300;color:var(--branco);line-height:1.5;margin-bottom:22px;padding-left:18px;border-left:3px solid var(--ouro);}
+.quem-intro em{font-style:normal;font-weight:700;color:var(--ouro);}
+.quem-texto{font-size:1rem;font-weight:300;line-height:1.92;color:var(--body);margin-bottom:28px;}
+.quem-creds{display:flex;gap:0;border:1px solid rgba(168,144,96,0.18);margin-bottom:32px;}
+.cred{flex:1;padding:14px;border-right:1px solid rgba(168,144,96,0.18);text-align:center;}
+.cred:last-child{border-right:none;}
+.cred .num{font-size:1.5rem;font-weight:700;color:var(--ouro);line-height:1;}
+.cred .txt{font-size:0.58rem;font-weight:300;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;}
+
+/* ── SERVIÇOS — fundo claro ── */
+#servicos{background:var(--cinza-claro);}
+.serv-head{margin-bottom:44px;}
+.serv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(168,144,96,0.18);border:1px solid rgba(168,144,96,0.18);}
+.serv-card{background:white;overflow:hidden;transition:transform .3s,box-shadow .3s;}
+.serv-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.12);}
+.serv-foto{width:100%;height:130px;object-fit:cover;display:block;filter:brightness(0.82) saturate(0.8);transition:filter .3s;}
+.serv-card:hover .serv-foto{filter:brightness(0.95) saturate(1);}
+.serv-body{padding:18px 20px 22px;}
+.serv-card h3{font-size:0.88rem;font-weight:700;color:#1a1a1c;margin-bottom:7px;}
+.serv-card p{font-size:0.8rem;font-weight:400;color:#6a6865;line-height:1.72;}
+
+/* ── POR QUE C3 — dois painéis ── */
+#porquec3{position:relative;z-index:1;}
+.pq-wrapper{display:grid;grid-template-columns:1fr 1fr;min-height:560px;}
+.pq-left{background:var(--cinza-hero);padding:68px 56px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+.pq-left::after{content:'';position:absolute;top:-50px;right:-50px;width:220px;height:220px;background:var(--ouro);opacity:0.07;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);}
+.pq-left::before{content:'';position:absolute;bottom:-70px;left:-70px;width:260px;height:260px;background:var(--ouro);opacity:0.04;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);}
+.pq-left-tag{font-size:0.64rem;font-weight:500;letter-spacing:0.26em;text-transform:uppercase;color:var(--ouro);margin-bottom:14px;}
+.pq-left-title{font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:300;color:var(--branco);line-height:1.15;margin-bottom:28px;}
+.pq-left-title strong{font-weight:800;color:var(--ouro);}
+.pq-c3-items{display:flex;flex-direction:column;gap:14px;margin-bottom:34px;}
+.pq-c3-item{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:rgba(168,144,96,0.07);border-left:3px solid var(--ouro);}
+.pq-c3-ico{font-size:1.3rem;flex-shrink:0;margin-top:1px;}
+.pq-c3-item h4{font-size:0.88rem;font-weight:700;color:var(--branco);margin-bottom:3px;}
+.pq-c3-item p{font-size:0.78rem;font-weight:300;color:var(--muted);line-height:1.65;}
+.pq-right{background:var(--ouro);padding:68px 56px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+.pq-right::before{content:'';position:absolute;top:0;right:0;width:180px;height:180px;background:rgba(26,26,28,0.08);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);}
+.pq-right-tag{font-size:0.64rem;font-weight:500;letter-spacing:0.26em;text-transform:uppercase;color:rgba(26,26,28,0.5);margin-bottom:14px;}
+.pq-right-title{font-size:clamp(1.4rem,2.6vw,2rem);font-weight:800;color:#1a1a1c;line-height:1.12;margin-bottom:20px;}
+.pq-quote{font-size:0.98rem;font-weight:400;font-style:italic;color:rgba(26,26,28,0.75);line-height:1.65;margin-bottom:22px;padding:18px 20px;background:rgba(26,26,28,0.1);border-left:3px solid rgba(26,26,28,0.3);}
+.pq-quote strong{font-style:normal;font-weight:700;color:#1a1a1c;}
+.pq-right-desc{font-size:0.9rem;font-weight:300;color:rgba(26,26,28,0.72);line-height:1.8;margin-bottom:30px;}
+
+/* ── COMO FUNCIONA — fundo dourado, número preto, título branco ── */
+#etapas{background:transparent;padding:0;margin:0;line-height:0;font-size:0;}
+.etapas-tag{font-size:0.64rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(26,26,28,0.55);margin-bottom:12px;}
+.etapas-title{font-size:clamp(1.7rem,3vw,2.5rem);font-weight:300;line-height:1.15;margin-bottom:8px;color:#1a1a1c;}
+.etapas-title strong{font-weight:700;color:#1a1a1c;}
+.etapas-desc{font-size:0.92rem;font-weight:300;color:rgba(26,26,28,0.65);margin-bottom:48px;}
+.etapas-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;font-size:initial;line-height:initial;}
+.etapa{background:var(--ouro-claro);padding:36px 28px 32px;position:relative;overflow:hidden;transition:background .3s;border-right:1px solid rgba(26,26,28,0.1);}
+.etapa:last-child{border-right:none;}
+.etapa:hover{background:#c0a070;}
+/* linha superior escura */
+.etapa-top{position:absolute;top:0;left:0;right:0;height:3px;background:#1a1a1c;}
+/* número grande PRETO */
+.etapa-num{display:flex;align-items:flex-end;gap:6px;margin-bottom:14px;}
+.etapa-n{font-size:5rem;font-weight:800;color:#1a1a1c;line-height:1;opacity:0.85;}
+/* barras do símbolo C3 em branco */
+.etapa-bars{display:flex;align-items:flex-end;gap:3px;padding-bottom:8px;}
+.etapa-bars span{display:block;width:6px;border-radius:2px;background:white;}
+.etapa-bars span:nth-child(1){height:28px;}
+.etapa-bars span:nth-child(2){height:22px;opacity:0.8;}
+.etapa-bars span:nth-child(3){height:15px;opacity:0.55;}
+/* título BRANCO */
+.etapa h3{font-size:1.05rem;font-weight:700;color:white;margin-bottom:10px;text-shadow:0 1px 3px rgba(0,0,0,0.15);}
+/* texto escuro */
+.etapa p{font-size:0.82rem;font-weight:400;color:rgba(26,26,28,0.75);line-height:1.72;}
+.etapas-cta{display:none;}
+
+/* ── DIAGNÓSTICO — título elegante + formulário ── */
+#diagnostico{background:var(--cinza-hero);position:relative;overflow:hidden;padding:88px 60px;}
+.diag-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=60&fit=crop');background-size:cover;background-position:center;opacity:0.07;}
+.diag-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;}
+
+/* lado esquerdo — título elegante estilo print */
+.diag-left{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.diag-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(168,144,96,0.4);padding:7px 20px;border-radius:100px;margin-bottom:28px;width:fit-content;margin-left:auto;margin-right:auto;}
+.diag-badge span{color:var(--ouro);font-size:0.63rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;}
+.diag-title-main{font-size:clamp(3rem,6vw,5rem);font-weight:300;color:var(--branco);line-height:0.95;margin-bottom:4px;text-align:center;}
+.diag-title-sub{font-size:clamp(3rem,6vw,5rem);font-weight:300;font-style:italic;color:var(--ouro);line-height:0.95;margin-bottom:24px;text-align:center;}
+.diag-desc{font-size:1rem;font-weight:300;color:var(--muted);line-height:1.8;margin-bottom:32px;max-width:400px;text-align:center;}
+.diag-stats{display:flex;gap:32px;margin-bottom:36px;justify-content:center;}
+.diag-stat .n{font-size:1.8rem;font-weight:700;color:var(--ouro);line-height:1;text-align:center;}
+.diag-stat .l{font-size:0.58rem;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:4px;text-align:center;}
+.diag-wpp{display:flex;align-items:center;gap:12px;padding:16px 20px;background:rgba(168,144,96,0.08);border-left:3px solid var(--ouro);}
+.diag-wpp-txt{font-size:0.72rem;font-weight:300;color:var(--muted);}
+.diag-wpp-txt strong{display:block;font-size:0.82rem;font-weight:600;color:var(--branco);margin-bottom:2px;}
+
+/* lado direito — formulário */
+.diag-form{background:rgba(20,20,22,0.75);border:1px solid rgba(168,144,96,0.25);padding:38px 34px;position:relative;backdrop-filter:blur(12px);}
+.diag-form::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ouro-escuro),var(--ouro),var(--ouro-claro));}
+.form-title{font-size:1.15rem;font-weight:300;color:var(--branco);margin-bottom:4px;}
+.form-title strong{font-weight:700;color:var(--ouro);}
+.form-sub{font-size:0.72rem;font-weight:300;color:var(--muted);margin-bottom:24px;}
+.fg{margin-bottom:13px;}
+.fg label{display:block;font-size:0.6rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:#8a8885;margin-bottom:5px;}
+.fg input,.fg select{width:100%;background:rgba(53,53,55,0.8);border:1px solid rgba(168,144,96,0.2);color:var(--branco);padding:11px 13px;font-size:0.85rem;font-family:'Sora',sans-serif;font-weight:300;outline:none;transition:border-color .3s;appearance:none;}
+.fg input::placeholder{color:rgba(245,243,239,0.26);}
+.fg input:focus,.fg select:focus{border-color:var(--ouro);}
+.fg select option{background:#2c2c2e;}
+.btn-form{width:100%;background:var(--ouro);color:#1a1a1c;padding:14px;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;transition:background .3s;margin-top:4px;}
+.btn-form:hover{background:var(--ouro-claro);}
+.form-note{font-size:0.66rem;font-weight:300;color:var(--muted);line-height:1.6;margin-top:12px;text-align:center;}
+.form-note strong{color:var(--branco);}
+
+/* ── FOOTER ── */
+footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;border-top:1px solid rgba(168,144,96,0.15);font-family:"Sora",sans-serif;}
+.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px;margin-bottom:18px;align-items:center;}
+.foot-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.foot-logo img{height:38px;width:auto;object-fit:contain;}
+.foot-tagline{font-size:0.72rem;font-weight:300;color:var(--muted);line-height:1.6;max-width:210px;font-family:"Sora",sans-serif;}
+.foot-col h4{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--ouro);margin-bottom:10px;font-family:"Sora",sans-serif;}
+.foot-col a{display:flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:0.78rem;font-weight:300;margin-bottom:7px;transition:color .3s;font-family:"Sora",sans-serif;}
+.foot-col a:hover{color:var(--ouro);}
+.foot-social{display:flex;gap:10px;margin-top:4px;}
+.soc{width:34px;height:34px;border-radius:50%;background:rgba(168,144,96,0.15);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background .3s;border:1px solid rgba(168,144,96,0.25);}
+.soc:hover{background:rgba(168,144,96,0.28);}
+.soc svg{width:15px;height:15px;fill:var(--ouro);}
+.foot-bottom{padding-top:22px;border-top:1px solid rgba(168,144,96,0.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.foot-copy{font-size:0.68rem;font-weight:300;color:rgba(245,243,239,0.3);font-family:"Sora",sans-serif;letter-spacing:0.04em;}
+
+/* ── WPP FLOAT ── */
+.wpp{position:fixed;bottom:26px;right:26px;z-index:999;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 18px rgba(37,211,102,0.4);transition:transform .3s;}
+.wpp:hover{transform:scale(1.1);}
+.wpp svg{width:26px;height:26px;fill:white;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .serv-grid{grid-template-columns:repeat(2,1fr);}
+  .etapas-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:900px){
+  nav{padding:13px 20px;} nav ul{display:none;} .nav-phone{display:none;}
+  section{padding:60px 20px;} #etapas{padding:0;} #diagnostico{padding:60px 20px;} .strip{padding:18px 20px;}
+  .slide-content{padding:0 60px 0 60px;} .carousel-dots{left:20px;}
+  .quem-grid,.pq-wrapper,.diag-wrapper{grid-template-columns:1fr;gap:36px;}
+  .foto-wrap{max-width:100%;aspect-ratio:4/3;}
+  .foot-grid{grid-template-columns:1fr;} footer{padding:40px 20px;}
+  .diag-stats{gap:20px;}
+}
+@media(max-width:600px){.serv-grid{grid-template-columns:1fr;}.etapas-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:400px){.etapas-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- SVG symbols -->
+<svg style="display:none">
+  <symbol id="ico-wpp" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+  <symbol id="ico-ig" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></symbol>
+  <symbol id="ico-li" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></symbol>
+</svg>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <img src="LOGO_C3_02_-13.png" alt="C3 Gestão" style="height:36px;width:auto;">
+    <div class="nav-brand" style="display:none;"><strong>C3 gestão</strong><span>Financeira · BPO · Administrativa</span></div>
+  </div>
+  <ul>
+    <li><a href="#inicio">Início</a></li>
+    <li><a href="#quem">Quem Somos</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#diagnostico" class="nav-cta">Diagnóstico Gratuito</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:+5511973420686" class="nav-phone">(11) 97342-0686</a>
+    <a href="https://wa.me/5511973420686" class="nav-icon" target="_blank"><svg><use href="#ico-wpp"/></svg></a>
+    <a href="https://instagram.com/c3gestao" class="nav-icon" target="_blank"><svg><use href="#ico-ig"/></svg></a>
+    <a href="https://www.linkedin.com/company/c3-gest%C3%A3o-administrativa-e-financeira-ltda/" class="nav-icon" target="_blank"><svg><use href="#ico-li"/></svg></a>
+  </div>
+</nav>
+
+<!-- 1. CARROSSEL -->
+<div class="carousel" id="inicio">
+  <div class="slide active">
+    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=80&fit=crop');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <h1>Enquanto cuidamos do seu financeiro,<em>você foca no que mais importa.</em></h1>
+      <p>Assumimos a rotina financeira da sua empresa com responsabilidade, precisão e total confidencialidade.</p>
+      <div class="slide-btns"><a href="#diagnostico" class="btn-gold">Diagnóstico Gratuito</a><a href="#quem" class="btn-ghost">Conheça a C3</a></div>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80&fit=crop');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <h1>Confiança,<br>Confidencialidade<em>e Controle.</em></h1>
+      <p>Os três pilares que deram origem ao nome C3 Gestão e guiam cada decisão que tomamos pelo seu negócio.</p>
+      <div class="slide-btns"><a href="#diagnostico" class="btn-gold">Quero esse cuidado</a><a href="#porquec3" class="btn-ghost">Saiba mais</a></div>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80&fit=crop');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <h1>Decisões seguras começam com um<em>financeiro bem organizado.</em></h1>
+      <p>Criamos processos, organizamos informações e entregamos uma visão clara do negócio para você crescer com segurança.</p>
+      <div class="slide-btns"><a href="https://wa.me/5511973420686" class="btn-gold" target="_blank">Falar com a Adriana</a><a href="#servicos" class="btn-ghost">Nossas Soluções</a></div>
+    </div>
+  </div>
+  <button class="cbtn prev" onclick="moveSlide(-1)">&#8592;</button>
+  <button class="cbtn next" onclick="moveSlide(1)">&#8594;</button>
+  <div class="carousel-dots">
+    <button class="dot active" onclick="goSlide(0)"></button>
+    <button class="dot" onclick="goSlide(1)"></button>
+    <button class="dot" onclick="goSlide(2)"></button>
+  </div>
+</div>
+
+<!-- 2. STRIP -->
+<div class="strip" style="justify-content:space-between;">
+  <img src="SIMBOLO_C3_GESTAO-24.png" alt="C3 Gestão" style="height:36px;width:auto;object-fit:contain;opacity:0.6;">
+  <div class="strip-frase">
+    <div class="strip-label">✦ C3 Gestão ✦</div>
+    <div class="strip-texto">
+      Eficiência financeira que <strong>impulsiona</strong> resultados.
+    </div>
+  </div>
+  <img src="SIMBOLO_C3_GESTAO-24.png" alt="C3 Gestão" style="height:36px;width:auto;object-fit:contain;opacity:0.6;">
+</div>
+
+<!-- 3. QUEM SOMOS -->
+<section id="quem">
+  <span class="sec-eye">Quem Somos</span>
+  <h2 class="sec-title">Parceiros estratégicos no <strong>financeiro da sua empresa</strong></h2>
+  <div class="quem-grid">
+    <div>
+      <div class="foto-wrap">
+        <!-- Troque pelo: <img src="foto_adriana.jpg" alt="Adriana Estevão"> -->
+        <div class="foto-placeholder"><div class="ico">👩‍💼</div><p>Adicione sua foto no repositório: foto_adriana.jpg</p></div>
+        <div class="foto-badge"><strong>Adriana Estevão</strong><span>CEO & Fundadora · C3 Gestão</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="quem-intro">A C3 Gestão nasceu com um propósito claro: <em>organizar, controlar e trazer inteligência</em> para o financeiro das empresas.</div>
+      <p class="quem-texto">Atuamos como parceiros estratégicos, assumindo a rotina administrativa e financeira com responsabilidade e precisão. Mais do que executar processos, estruturamos o financeiro para apoiar decisões e crescimento.<br><br>Com uma atuação próxima e confiável, ajudamos empresários a sair do operacional, reduzir riscos e conduzir a empresa com mais segurança.</p>
+      <div style="padding:18px 20px;background:rgba(168,144,96,0.08);border-left:3px solid var(--ouro);margin-bottom:28px;">
+        <p style="font-size:0.88rem;font-weight:300;font-style:italic;color:var(--body);line-height:1.7;">"Acredito que a Confiança, a Confidencialidade e o Controle são essenciais para construir relacionamentos duradouros e de sucesso."</p>
+        <p style="font-size:0.75rem;font-weight:500;color:var(--ouro);margin-top:8px;letter-spacing:0.08em;">— Adriana Estevão, CEO & Fundadora</p>
+      </div>
+      <div class="quem-creds">
+        <div class="cred"><div class="num">20+</div><div class="txt">Anos de Experiência</div></div>
+        <div class="cred"><div class="num">FGV</div><div class="txt">Formação</div></div>
+        <div class="cred"><div class="num">100%</div><div class="txt">Online</div></div>
+      </div>
+      <a href="#diagnostico" class="btn-gold">Solicitar Diagnóstico Gratuito</a>
+    </div>
+  </div>
+</section>
+
+<!-- 6. COMO FUNCIONA — fundo dourado, número preto, título branco -->
+<section id="etapas">
+  <div class="etapas-grid">
+    <div class="etapa"><div class="etapa-top"></div><div class="etapa-num"><span class="etapa-n">1</span><div class="etapa-bars"><span></span><span></span><span></span></div></div><h3>Diagnóstico</h3><p>Análise completa do cenário atual com identificação de melhorias e oportunidades.</p></div>
+    <div class="etapa"><div class="etapa-top"></div><div class="etapa-num"><span class="etapa-n">2</span><div class="etapa-bars"><span></span><span></span><span></span></div></div><h3>Proposta</h3><p>Plano estruturado e personalizado ao diagnóstico e à necessidade do negócio.</p></div>
+    <div class="etapa"><div class="etapa-top"></div><div class="etapa-num"><span class="etapa-n">3</span><div class="etapa-bars"><span></span><span></span><span></span></div></div><h3>Processo</h3><p>Organização e implementação de processos e sistemas para gestão financeira.</p></div>
+    <div class="etapa"><div class="etapa-top"></div><div class="etapa-num"><span class="etapa-n">4</span><div class="etapa-bars"><span></span><span></span><span></span></div></div><h3>Gestão</h3><p>Gestão estratégica com relatórios e acompanhamentos para melhor tomada de decisão.</p></div>
+  </div>
+
+</section>
+
+<!-- 4. SERVIÇOS — fundo claro, sem ícones -->
+<section id="servicos">
+  <div class="serv-head">
+    <span class="sec-eye" style="color:var(--ouro-escuro)">Soluções Inteligentes</span>
+    <h2 class="sec-title" style="color:#1a1a1c">Enquanto cuidamos do financeiro,<br><strong>você lidera o crescimento.</strong></h2>
+    <p class="sec-desc" style="color:var(--ouro-escuro);font-weight:500;font-size:0.95rem;">Menos operacional, mais estratégia. Isso é a C3.</p>
+    <p class="sec-desc" style="color:#6a6865;margin-top:8px;">Terceirize o financeiro com quem tem experiência, método e total confidencialidade.</p>
+  </div>
+  <div class="serv-grid">
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=70&fit=crop" alt="Contas a Pagar"><div class="serv-body"><h3>Contas a Pagar e Receber</h3><p>Controle rigoroso de vencimentos, cobranças e pagamentos. Sem atrasos, sem multas.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=600&q=70&fit=crop" alt="Conciliação Bancária"><div class="serv-body"><h3>Conciliação Bancária</h3><p>Conferência diária das movimentações (D+1), garantindo precisão nos registros.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600&q=70&fit=crop" alt="Fluxo de Caixa"><div class="serv-body"><h3>Fluxo de Caixa</h3><p>Visibilidade total das entradas e saídas com projeções para decisões seguras.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=70&fit=crop" alt="DRE"><div class="serv-body"><h3>DRE e Relatórios</h3><p>Demonstrativos e relatórios semanais e mensais para gestão com dados reais.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=600&q=70&fit=crop" alt="ERP"><div class="serv-body"><h3>Implantação de ERP</h3><p>Estruturamos sistemas como NIBO com plano de contas e conciliação automática.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=70&fit=crop" alt="Planilhas"><div class="serv-body"><h3>Planilhas Personalizadas</h3><p>Montagem de planilhas sob medida para controle financeiro e gestão do negócio.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&q=70&fit=crop" alt="Documentos"><div class="serv-body"><h3>Organização e Digitalização</h3><p>Documentos, notas e boletos organizados em drive com nomenclatura adequada.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=70&fit=crop" alt="BPO"><div class="serv-body"><h3>BPO Financeiro · Facilities</h3><p>Terceirização completa do departamento financeiro com suporte personalizado.</p></div></div>
+  </div>
+  <div style="text-align:center;margin-top:44px;">
+    <a href="https://wa.me/5511973420686?text=Quero%20conhecer%20os%20serviços%20da%20C3%20Gestão" class="btn-dark" target="_blank">Quero conhecer os serviços</a>
+  </div>
+</section>
+
+<!-- 5. POR QUE C3 — estrutura estilo link, ícones circulares -->
+<div id="porquec3" style="position:relative;z-index:1;background:var(--ouro);padding:80px 60px;">
+  <!-- logo C3 acima da seção -->
+  <div style="margin-bottom:32px;">
+    <img src="SIMBOLO_C3_GESTAO-24.png" alt="C3 Gestão" style="height:56px;width:auto;object-fit:contain;opacity:0.9;">
+  </div>
+  <div style="text-align:left;margin-bottom:52px;">
+    <span style="display:inline-block;font-size:0.64rem;font-weight:500;letter-spacing:0.26em;text-transform:uppercase;color:rgba(26,26,28,0.5);margin-bottom:14px;">Por que organizar o financeiro da sua empresa com a C3 Gestão?</span>
+    <h2 style="font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:800;color:#1a1a1c;line-height:1.1;">Mais controle, segurança e clareza</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:52px;">
+
+    <!-- Card 1 -->
+    <div style="text-align:center;">
+      <div style="width:90px;height:90px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 4px 16px rgba(26,26,28,0.12);">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a1a1c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <h3 style="font-size:1rem;font-weight:700;color:#1a1a1c;margin-bottom:10px;">Mais tempo<br>para crescer</h3>
+      <p style="font-size:0.82rem;font-weight:400;color:rgba(26,26,28,0.7);line-height:1.72;">Assumimos a gestão financeira da sua empresa e você foca no crescimento do negócio.</p>
+    </div>
+
+    <!-- Card 2 -->
+    <div style="text-align:center;">
+      <div style="width:90px;height:90px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 4px 16px rgba(26,26,28,0.12);">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a1a1c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+      </div>
+      <h3 style="font-size:1rem;font-weight:700;color:#1a1a1c;margin-bottom:10px;">Segurança e<br>tranquilidade</h3>
+      <p style="font-size:0.82rem;font-weight:400;color:rgba(26,26,28,0.7);line-height:1.72;">Os dados da sua empresa são tratados com absoluto sigilo e segurança de dados.</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div style="text-align:center;">
+      <div style="width:90px;height:90px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 4px 16px rgba(26,26,28,0.12);">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a1a1c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><path d="M7 10l2 2 6-4"/></svg>
+      </div>
+      <h3 style="font-size:1rem;font-weight:700;color:#1a1a1c;margin-bottom:10px;">Controle<br>atualizado</h3>
+      <p style="font-size:0.82rem;font-weight:400;color:rgba(26,26,28,0.7);line-height:1.72;">Oferecemos relatórios para monitoramento e acompanhamento de forma clara, sinalizando todas as movimentações.</p>
+    </div>
+
+    <!-- Card 4 -->
+    <div style="text-align:center;">
+      <div style="width:90px;height:90px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 4px 16px rgba(26,26,28,0.12);">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a1a1c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><polyline points="22 20 2 20"/></svg>
+      </div>
+      <h3 style="font-size:1rem;font-weight:700;color:#1a1a1c;margin-bottom:10px;">Sistemas<br>eficientes</h3>
+      <p style="font-size:0.82rem;font-weight:400;color:rgba(26,26,28,0.7);line-height:1.72;">Centralizamos suas informações e processos em um único sistema com dashboard exclusivo para a visão do seu negócio.</p>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- 7. DIAGNÓSTICO — título elegante esquerda + formulário direita -->
+<section id="diagnostico">
+  <div class="diag-bg"></div>
+  <div style="position:relative;z-index:2;text-align:center;margin-bottom:40px;">
+    <img src="SIMBOLO_C3_GESTAO-24.png" alt="C3 Gestão" style="height:56px;width:auto;object-fit:contain;opacity:0.85;">
+  </div>
+  <div class="diag-wrapper">
+
+    <!-- ESQUERDA — título estilo print -->
+    <div class="diag-left">
+      <div class="diag-badge"><span>✦ GRATUITO · SEM COMPROMISSO</span></div>
+      <img src="LOGO_C3_02_-13.png" alt="C3 Gestão" style="height:56px;width:auto;object-fit:contain;margin-bottom:16px;">
+      <div class="diag-title-main">Diagnóstico</div>
+      <div class="diag-title-sub">Financeiro</div>
+      <p class="diag-desc">Responda algumas perguntas e descubra os pontos críticos da saúde financeira da sua empresa.</p>
+      <div class="diag-stats">
+        <div class="diag-stat"><div class="n">~3min</div><div class="l">Duração</div></div>
+        <div class="diag-stat"><div class="n">8</div><div class="l">Perguntas</div></div>
+        <div class="diag-stat"><div class="n">100%</div><div class="l">Gratuito</div></div>
+      </div>
+
+    </div>
+
+    <!-- DIREITA — formulário -->
+    <div class="diag-form">
+      <div class="form-title">Seu diagnóstico <strong>gratuito</strong></div>
+      <div class="form-sub">Para falar com um especialista, preencha e agende um bate-papo</div>
+
+      <form id="diagForm"
+            action="https://formsubmit.co/adriana@c3gestao.com.br"
+            method="POST">
+
+        <!-- Campos de controle FormSubmit -->
+        <input type="hidden" name="_next" value="https://www.c3gestao.com.br/diagnostico-c3gestao.html">
+        <input type="hidden" name="_subject" value="🔔 Novo Lead — Diagnóstico C3 Gestão">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_autoresponse" value="Olá! Recebemos seus dados e em breve a Adriana da C3 Gestão entrará em contato. Enquanto isso, aproveite para fazer o diagnóstico financeiro gratuito da sua empresa em https://www.c3gestao.com.br/diagnostico-c3gestao.html">
+
+        <div class="fg"><label>Nome *</label><input type="text" name="nome" id="f-nome" placeholder="Seu nome completo" required></div>
+        <div class="fg"><label>E-mail *</label><input type="email" name="email" id="f-email" placeholder="seu@email.com" required></div>
+        <div class="fg"><label>Telefone / WhatsApp *</label><input type="tel" name="telefone" id="f-tel" placeholder="(11) 99999-9999" required></div>
+        <div class="fg"><label>Empresa *</label><input type="text" name="empresa" id="f-empresa" placeholder="Nome da sua empresa" required></div>
+        <div class="fg">
+          <label>Faturamento Mensal *</label>
+          <select name="faturamento" id="f-fat" required>
+            <option value="">Selecione...</option>
+            <option>Prefiro conversar antes</option>
+            <option>Até R$ 50 mil</option>
+            <option>R$ 50 mil a R$ 200 mil</option>
+            <option>R$ 200 mil a R$ 500 mil</option>
+            <option>Acima de R$ 500 mil</option>
+          </select>
+        </div>
+
+        <!-- Mensagem de erro -->
+        <div id="form-erro" style="display:none;background:rgba(224,92,92,0.15);border-left:3px solid #e05c5c;padding:10px 14px;margin-bottom:12px;font-size:0.75rem;color:#e05c5c;">
+          Por favor, preencha todos os campos obrigatórios antes de continuar.
+        </div>
+
+        <button type="submit" class="btn-form" id="btn-diag">
+          Quero meu diagnóstico agora →
+        </button>
+
+        <p class="form-note">Ao preencher, você está ciente que a <strong>C3 Gestão</strong> poderá enviar comunicações e conteúdos de acordo com os seus interesses.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-logo"><img src="SIMBOLO_C3_GESTAO-24.png" alt="C3 Gestão" style="height:34px;width:auto;object-fit:contain;"><div><strong style="display:block;font-size:0.88rem;color:var(--branco);font-family:'Sora',sans-serif;font-weight:600;">C3 gestão</strong><span style="font-size:0.55rem;color:var(--ouro);letter-spacing:0.18em;text-transform:uppercase;font-weight:300;font-family:'Sora',sans-serif;">Financeira · BPO · Administrativa</span></div></div>
+
+    </div>
+    <div class="foot-col">
+      <h4>Contato</h4>
+      <a href="tel:+5511973420686">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--ouro)" style="flex-shrink:0"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        (11) 97342-0686
+      </a>
+      <a href="mailto:contato@c3gestao.com.br">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--ouro)" style="flex-shrink:0"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        contato@c3gestao.com.br
+      </a>
+    </div>
+    <div class="foot-col">
+      <h4>Redes Sociais</h4>
+      <div class="foot-social">
+        <a href="https://instagram.com/c3gestao" class="soc" target="_blank"><svg><use href="#ico-ig"/></svg></a>
+        <a href="https://www.linkedin.com/company/c3-gest%C3%A3o-administrativa-e-financeira-ltda/" class="soc" target="_blank"><svg><use href="#ico-li"/></svg></a>
+      </div>
+
+    </div>
+  </div>
+  <div class="foot-bottom" style="justify-content:center;">
+    <span class="foot-copy">© 2026 C3 Gestão · Todos os direitos reservados.</span>
+  </div>
+</footer>
+
+<a href="https://wa.me/5511973420686" class="wpp" target="_blank"><svg viewBox="0 0 24 24"><use href="#ico-wpp"/></svg></a>
+
+<script>
+// Validação do formulário de diagnóstico
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.getElementById('diagForm');
+  if (!form) return;
+
+  form.addEventListener('submit', function(e) {
+    var campos = ['f-nome','f-email','f-tel','f-empresa','f-fat'];
+    var ok = true;
+
+    campos.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (!el.value || el.value.trim() === '' || el.value === '') {
+        ok = false;
+        el.style.borderColor = '#e05c5c';
+      } else {
+        el.style.borderColor = 'var(--ouro)';
+      }
+    });
+
+    if (!ok) {
+      e.preventDefault();
+      document.getElementById('form-erro').style.display = 'block';
+      document.getElementById('diagForm').scrollIntoView({behavior:'smooth', block:'center'});
+      return false;
+    }
+
+    // Feedback visual no botão
+    var btn = document.getElementById('btn-diag');
+    btn.textContent = 'Enviando... aguarde ✦';
+    btn.style.opacity = '0.75';
+    btn.disabled = true;
+  });
+
+  // Limpar erro ao digitar
+  ['f-nome','f-email','f-tel','f-empresa','f-fat'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', function() {
+      el.style.borderColor = 'rgba(168,144,96,0.2)';
+      document.getElementById('form-erro').style.display = 'none';
+    });
+  });
+});
+
+let current=0;
+const slides=document.querySelectorAll('.slide');
+const dots=document.querySelectorAll('.dot');
+let timer=setInterval(()=>moveSlide(1),5500);
+function moveSlide(dir){
+  slides[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  current=(current+dir+slides.length)%slides.length;
+  slides[current].classList.add('active');
+  dots[current].classList.add('active');
+}
+function goSlide(n){
+  slides[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  current=n;
+  slides[current].classList.add('active');
+  dots[current].classList.add('active');
+  clearInterval(timer);
+  timer=setInterval(()=>moveSlide(1),5500);
+}
+</script>
+</body>
+</html>
