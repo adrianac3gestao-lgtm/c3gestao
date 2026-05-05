@@ -29,7 +29,7 @@
   --muted:rgba(245,243,239,0.55);--body:rgba(245,243,239,0.82);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;scroll-padding-top:92px;}
+html{scroll-behavior:smooth;}
 body{font-family:'Sora',sans-serif;background:var(--cinza-fundo);color:var(--branco);overflow-x:hidden;}
 body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:min(88vw,820px);height:min(88vw,820px);background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,5 188,52 188,148 100,195 12,148 12,52' fill='none' stroke='%23a89060' stroke-width='1.5'/%3E%3Cpath d='M84 58 L54 100 L84 142' stroke='%23f5f3ef' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='108' y='58' width='13' height='84' rx='3' fill='%23a89060'/%3E%3Crect x='127' y='70' width='13' height='72' rx='3' fill='%23a89060' opacity='0.65'/%3E%3Crect x='146' y='82' width='13' height='60' rx='3' fill='%23a89060' opacity='0.38'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:contain;opacity:0.03;pointer-events:none;z-index:0;}
 
@@ -95,7 +95,7 @@ section{padding:72px 60px;position:relative;z-index:1;}
 .sec-desc{font-size:0.92rem;font-weight:300;line-height:1.82;color:var(--muted);}
 
 /* ── QUEM SOMOS ── */
-#quem{background:var(--cinza-card);min-height:auto;scroll-margin-top:92px;}
+#quem{background:var(--cinza-card);min-height:auto;}
 .quem-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:64px;align-items:center;margin-top:48px;}
 .foto-wrap{position:relative;aspect-ratio:3/4;max-width:380px;width:100%;border:1px solid rgba(168,144,96,0.22);overflow:hidden;}
 .foto-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--ouro-escuro),var(--ouro),var(--ouro-claro));z-index:2;}
@@ -116,7 +116,7 @@ section{padding:72px 60px;position:relative;z-index:1;}
 .cred .txt{font-size:0.58rem;font-weight:300;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;}
 
 /* ── SERVIÇOS — fundo claro ── */
-#servicos{background:var(--cinza-claro);scroll-margin-top:92px;}
+#servicos{background:var(--cinza-claro);}
 .serv-head{margin-bottom:28px;}
 .serv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;background:transparent;}
 .serv-card{background:white;overflow:hidden;transition:transform .3s,box-shadow .3s;border:1px solid rgba(168,144,96,0.15);border-radius:4px;}
@@ -178,7 +178,7 @@ section{padding:72px 60px;position:relative;z-index:1;}
 .etapas-cta{display:none;}
 
 /* ── DIAGNÓSTICO — título elegante + formulário ── */
-#diagnostico{background:var(--cinza-hero);position:relative;overflow:hidden;padding:56px 60px;scroll-margin-top:92px;}
+#diagnostico{background:var(--cinza-hero);position:relative;overflow:hidden;padding:56px 60px;}
 .diag-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=60&fit=crop');background-size:cover;background-position:center;opacity:0.07;}
 .diag-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;}
 
@@ -264,8 +264,8 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 
   /* NAV mobile — logo + hambúrguer */
   nav{padding:10px 16px;position:fixed;top:0;left:0;right:0;width:100%;z-index:100;}
-  html{scroll-padding-top:80px !important;}
-  section,div[id]{scroll-margin-top:80px !important;}
+  html{}
+  section,div[id]{}
   nav ul{display:none;}
   .nav-phone{display:none;}
   .nav-right{gap:6px;}
@@ -293,7 +293,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
   .strip div{font-size:0.9rem !important;}
 
   /* SEÇÕES gerais */
-  section{padding:52px 20px;scroll-margin-top:92px;}
+  section{padding:52px 20px;}
   #etapas{padding:0;}
   #diagnostico{padding:52px 20px;}
   #porquec3{padding:52px 20px !important;}
@@ -387,11 +387,11 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
     <div class="nav-brand" style="display:none;"><strong>C3 gestão</strong><span>Financeira · BPO · Administrativa</span></div>
   </div>
   <ul>
-    <li><a href="#inicio">Início</a></li>
-    <li><a href="#quem">Quem Somos</a></li>
-    <li><a href="#porquec3">Por que C3</a></li>
-    <li><a href="#servicos">Serviços</a></li>
-    <li><a href="#diagnostico" class="nav-cta">Diagnóstico Gratuito</a></li>
+    <li><a href="#inicio" onclick="scrollTo_('#inicio');return false;">Início</a></li>
+    <li><a href="#quem" onclick="scrollTo_('#quem');return false;">Quem Somos</a></li>
+    <li><a href="#porquec3" onclick="scrollTo_('#porquec3');return false;">Por que C3</a></li>
+    <li><a href="#servicos" onclick="scrollTo_('#servicos');return false;">Serviços</a></li>
+    <li><a href="#diagnostico" onclick="scrollTo_('#diagnostico');return false;" class="nav-cta">Diagnóstico Gratuito</a></li>
   </ul>
   <div class="nav-right">
     <a href="tel:+5511973420686" class="nav-phone">(11) 97342-0686</a>
@@ -407,11 +407,11 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 
 <!-- MENU MOBILE -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#inicio" onclick="closeMenu()">Início</a>
-  <a href="#quem" onclick="closeMenu()">Quem Somos</a>
-  <a href="#servicos" onclick="closeMenu()">Serviços</a>
-  <a href="#porquec3" onclick="closeMenu()">Por que a C3</a>
-  <a href="#diagnostico" onclick="closeMenu()" class="menu-cta">Diagnóstico Gratuito</a>
+  <a href="#inicio" onclick="scrollTo_('#inicio');closeMenu();return false;">Início</a>
+  <a href="#quem" onclick="scrollTo_('#quem');closeMenu();return false;">Quem Somos</a>
+  <a href="#servicos" onclick="scrollTo_('#servicos');closeMenu();return false;">Serviços</a>
+  <a href="#porquec3" onclick="scrollTo_('#porquec3');closeMenu();return false;">Por que a C3</a>
+  <a href="#diagnostico" onclick="scrollTo_('#diagnostico');closeMenu();return false;" class="menu-cta">Diagnóstico Gratuito</a>
 </div>
 
 <!-- 1. CARROSSEL -->
@@ -422,7 +422,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
     <div class="slide-content">
       <h1>Enquanto cuidamos do seu financeiro,<em>você foca no que mais importa.</em></h1>
       <p>Assumimos a rotina financeira da sua empresa com responsabilidade, precisão e total confidencialidade.</p>
-      <div class="slide-btns"><a href="#diagnostico" class="btn-gold">Diagnóstico Gratuito</a><a href="#etapas" class="btn-ghost">Como funciona na Prática?</a></div>
+      <div class="slide-btns"><a href="#diagnostico" onclick="scrollTo_('#diagnostico');return false;" class="btn-gold">Diagnóstico Gratuito</a><a href="#etapas" onclick="scrollTo_('#etapas');return false;" class="btn-ghost">Como funciona na Prática?</a></div>
     </div>
   </div>
   <div class="slide">
@@ -431,7 +431,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
     <div class="slide-content">
       <h1>Confiança,<br>Confidencialidade<em>e Controle.</em></h1>
       <p>Confiança, Confidencialidade e Controle não são apenas valores — são a origem do nosso nome e a base de cada decisão que tomamos pelo seu negócio.</p>
-      <div class="slide-btns"><a href="#porquec3" class="btn-gold">Quanto custa?</a><a href="#porquec3" class="btn-ghost">Ver os pilares da C3</a></div>
+      <div class="slide-btns"><a href="#porquec3" onclick="scrollTo_('#porquec3');return false;" class="btn-gold">Quanto custa?</a><a href="#porquec3" onclick="scrollTo_('#porquec3');return false;" class="btn-ghost">Ver os pilares da C3</a></div>
     </div>
   </div>
   <div class="slide">
@@ -440,7 +440,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
     <div class="slide-content">
       <h1>Decisões seguras começam com um<em>financeiro bem organizado.</em></h1>
       <p>Criamos processos, organizamos informações e entregamos uma visão clara do negócio para você crescer com segurança.</p>
-      <div class="slide-btns"><a href="https://wa.me/5511973420686" class="btn-gold" target="_blank">Falar com a Adriana</a><a href="#servicos" class="btn-ghost">Explorar soluções</a></div>
+      <div class="slide-btns"><a href="https://wa.me/5511973420686" class="btn-gold" target="_blank">Falar com a Adriana</a><a href="#servicos" onclick="scrollTo_('#servicos');return false;" class="btn-ghost">Explorar soluções</a></div>
     </div>
   </div>
   <button class="cbtn prev" onclick="moveSlide(-1)">&#8592;</button>
@@ -482,7 +482,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
         <div class="cred"><div class="num">FGV</div><div class="txt">Formação</div></div>
         <div class="cred"><div class="num">100%</div><div class="txt">Online</div></div>
       </div>
-      <a href="#diagnostico" class="btn-gold">Quero organizar meu financeiro agora</a>
+      <a href="#diagnostico" onclick="scrollTo_('#diagnostico');return false;" class="btn-gold">Quero organizar meu financeiro agora</a>
     </div>
   </div>
 </section>
@@ -562,7 +562,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 </section>
 
 <!-- 6. COMO FUNCIONA — fundo dourado, número preto, título branco -->
-<section id="etapas" style="scroll-margin-top:92px;">
+<section id="etapas" style="">
   <div class="etapas-grid">
     <div class="etapa">
       <div class="etapa-num"><span class="etapa-n">1</span><div class="etapa-bars"><span></span><span></span><span></span></div></div>
@@ -757,6 +757,15 @@ function moveSlide(dir){
   slides[current].classList.add('active');
   dots[current].classList.add('active');
 }
+function scrollTo_(selector) {
+  var el = document.querySelector(selector);
+  if (!el) return;
+  var nav = document.querySelector('nav');
+  var navH = nav ? nav.getBoundingClientRect().height : 0;
+  var top = el.getBoundingClientRect().top + window.pageYOffset - navH - 4;
+  window.scrollTo({ top: top, behavior: 'smooth' });
+}
+
 function toggleMenu(){
   var m=document.getElementById('mobileMenu');
   var b=document.getElementById('hambBtn');
