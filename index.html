@@ -51,7 +51,7 @@ nav ul a:hover{color:var(--ouro);}
 .nav-cta:hover{background:var(--ouro-claro)!important;}
 
 /* ── CARROSSEL ── */
-.carousel{position:relative;width:100%;height:100vh;overflow:hidden;}
+.carousel{position:relative;width:100%;height:100vh;min-height:560px;overflow:hidden;}
 .slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;opacity:0;transition:opacity 1s ease;pointer-events:none;}
 .slide.active{opacity:1;pointer-events:auto;}
 .slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1);transition:transform 8s ease;}
@@ -272,7 +272,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
   .hamburger{display:flex !important;}
 
   /* CARROSSEL */
-  .carousel{height:72vh;min-height:420px;}
+  .carousel{height:85vh;min-height:460px;}
   .slide-content{padding:0 56px 0 20px;max-width:100%;}
   .slide h1{font-size:clamp(1.6rem,6vw,2.4rem);}
   .slide p{font-size:0.88rem;max-width:100%;}
@@ -428,7 +428,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
     <div class="slide-overlay"></div>
     <div class="slide-content">
       <h1>Confiança,<br>Confidencialidade<em>e Controle.</em></h1>
-      <p>Os três pilares que deram origem ao nome C3 Gestão e guiam cada decisão que tomamos pelo seu negócio.</p>
+      <p>Confiança, Confidencialidade e Controle não são apenas valores — são a origem do nosso nome e a base de cada decisão que tomamos pelo seu negócio.</p>
       <div class="slide-btns"><a href="#diagnostico" class="btn-gold">Quero esse cuidado</a><a href="#porquec3" class="btn-ghost">Ver os pilares da C3</a></div>
     </div>
   </div>
@@ -474,10 +474,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
     <div>
       <div class="quem-intro">A C3 Gestão nasceu com um propósito claro: <em>organizar, controlar e trazer inteligência</em> para o financeiro das empresas.</div>
       <p class="quem-texto">Atuamos como parceiros estratégicos, assumindo a rotina administrativa e financeira com responsabilidade e precisão. Mais do que executar processos, estruturamos o financeiro para apoiar decisões e crescimento.<br><br>Com uma atuação próxima e confiável, ajudamos empresários a sair do operacional, reduzir riscos e conduzir a empresa com mais segurança.</p>
-      <div style="padding:18px 20px;background:rgba(168,144,96,0.08);border-left:3px solid var(--ouro);margin-bottom:28px;">
-        <p style="font-size:0.88rem;font-weight:300;font-style:italic;color:var(--body);line-height:1.7;">"Acredito que a Confiança, a Confidencialidade e o Controle são essenciais para construir relacionamentos duradouros e de sucesso."</p>
-        <p style="font-size:0.75rem;font-weight:500;color:var(--ouro);margin-top:8px;letter-spacing:0.08em;">— Adriana Estevão, CEO & Fundadora</p>
-      </div>
+
       <div class="quem-creds">
         <div class="cred"><div class="num">20+</div><div class="txt">Anos de Experiência</div></div>
         <div class="cred"><div class="num">FGV</div><div class="txt">Formação</div></div>
@@ -527,10 +524,10 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
     <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=600&q=70&fit=crop" alt="Conciliação Bancária"><div class="serv-body"><h3>Conciliação Bancária</h3><p>Conciliação diária e em tempo real, garantindo precisão nos registros, prevenção de erros e segurança financeira para sua empresa.</p></div></div>
     <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600&q=70&fit=crop" alt="Fluxo de Caixa"><div class="serv-body"><h3>Fluxo de Caixa</h3><p>Visibilidade completa das entradas e saídas com projeções que permitem antecipar decisões estratégicas com segurança.</p></div></div>
     <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=600&q=70&fit=crop" alt="Faturamento"><div class="serv-body"><h3>Faturamento</h3><p>Controle e conformidade nas operações com emissão, envio e conferência de notas fiscais e boletos.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=600&q=70&fit=crop" alt="ERP"><div class="serv-body"><h3>Implantação de ERP</h3><p>Implantamos e configuramos sistemas como o NIBO, estruturando o plano de contas e automatizando a conciliação financeira.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=70&fit=crop" alt="ERP"><div class="serv-body"><h3>Implantação de ERP</h3><p>Implantamos e configuramos sistemas como NIBO, Omie, Meu Dinheiro Web e Conta Azul, estruturando o plano de contas e automatizando a conciliação financeira.</p></div></div>
     <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=70&fit=crop" alt="DRE"><div class="serv-body"><h3>DRE e Relatórios</h3><p>Demonstrativos de resultados e relatórios gerenciais semanais e mensais — com planilhas personalizadas para um controle financeiro preciso e estratégico.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&q=70&fit=crop" alt="Documentos"><div class="serv-body"><h3>Organização e Digitalização</h3><p>Organização e digitalização de documentos, notas e boletos em drive estruturado, com nomenclatura padronizada para fácil localização.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&q=70&fit=crop" alt="Fechamento Mensal"><div class="serv-body"><h3>Fechamento Mensal</h3><p>Integração com a contabilidade parceira e envio de documentos necessários para o fechamento mensal correto e a apuração de impostos.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&q=70&fit=crop" alt="Documentos"><div class="serv-body"><h3>Organização e Digitalização</h3><p>Organização e digitalização de documentos, notas e boletos em drive estruturado, com nomenclatura padronizada para fácil localização.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&q=70&fit=crop" alt="Fechamento Mensal"><div class="serv-body"><h3>Fechamento Mensal</h3><p>Integração com a contabilidade parceira e envio de documentos necessários para o fechamento mensal correto e a apuração de impostos.</p></div></div>
   </div>
   <div style="text-align:center;margin-top:44px;">
     <a href="https://wa.me/5511973420686?text=Quero%20conhecer%20os%20serviços%20da%20C3%20Gestão" class="btn-dark" target="_blank">Ver os serviços</a>
