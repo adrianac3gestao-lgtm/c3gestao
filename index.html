@@ -351,6 +351,11 @@ footer{background:#1c1c1e;padding:14px 60px 12px;position:relative;z-index:1;bor
 @media(max-width:600px){
   .serv-grid{grid-template-columns:1fr;}
   .etapas-grid{grid-template-columns:1fr;}
+  .etapa{display:flex;flex-direction:column;align-items:center;text-align:center;padding:28px 20px;}
+  .etapa-num{justify-content:center;width:auto;}
+  .etapa-body{display:flex;flex-direction:column;align-items:center;text-align:center;}
+  .etapa p{text-align:center;}
+  .etapas-grid{grid-template-columns:1fr;}
   .pq-cards{grid-template-columns:repeat(2,1fr);}
   .slide h1{font-size:1.5rem;}
   .diag-form{padding:24px 18px;}
@@ -527,16 +532,15 @@ footer{background:#1c1c1e;padding:14px 60px 12px;position:relative;z-index:1;bor
       <h3 style="font-size:1.2rem;font-weight:700;color:#1a1a1c;margin-bottom:10px;">Equipe<br>Sênior</h3>
       <p style="font-size:0.95rem;font-weight:400;color:rgba(26,26,28,0.7);line-height:1.72;">Terceirizar custa menos do que um funcionário interno — e você conta com profissionais especializados de alto nível.</p>
     </div>
-
-  <!-- Frase destaque + CTA dentro do Por que C3 -->
-  <div style="width:100%;text-align:center;margin-top:48px;padding:0 60px 56px;box-sizing:border-box;">
-    <p style="font-family:'Sora',sans-serif;font-size:clamp(1.3rem,2.6vw,2rem);font-weight:800;color:white;letter-spacing:-0.01em;line-height:1.2;margin:0 auto 28px;max-width:700px;text-align:center;">Descubra onde sua empresa perde dinheiro.</p>
-    <a href="#diagnostico" onclick="scrollTo_('#diagnostico');return false;" class="btn-dark" style="font-size:0.82rem;padding:14px 44px;letter-spacing:0.14em;">Diagnóstico Financeiro Gratuito →</a>
   </div>
 
   </div>
 </div>
-
+<!-- FAIXA DESCUBRA -->
+<div style="background:var(--ouro);padding:40px 60px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;z-index:1;">
+  <p style="font-family:'Sora',sans-serif;font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:800;color:white;line-height:1.15;margin-bottom:24px;white-space:nowrap;">Descubra onde sua empresa perde dinheiro.</p>
+  <a href="#diagnostico" onclick="scrollTo_('#diagnostico');return false;" class="btn-dark" style="font-size:0.82rem;padding:14px 44px;letter-spacing:0.14em;">Diagnóstico Financeiro Gratuito →</a>
+</div>
 
 <!-- 5. SERVIÇOS — fundo claro, sem ícones -->
 <section id="servicos">
