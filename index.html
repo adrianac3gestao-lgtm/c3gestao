@@ -56,7 +56,7 @@ nav ul a:hover{color:var(--ouro);}
 .slide.active{opacity:1;pointer-events:auto;}
 .slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1);transition:transform 8s ease;}
 .slide.active .slide-bg{transform:scale(1.05);}
-.slide-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(20,20,22,0.92) 0%,rgba(20,20,22,0.68) 55%,rgba(20,20,22,0.3) 100%);}
+.slide-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(20,20,22,0.85) 0%,rgba(20,20,22,0.55) 55%,rgba(20,20,22,0.15) 100%);}
 .slide-content{position:relative;z-index:2;padding:0 80px 0 80px;max-width:720px;}
 .slide-tag{display:inline-flex;align-items:center;gap:10px;color:var(--ouro);font-size:0.67rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;margin-bottom:22px;}
 .slide-tag::before{content:'';width:20px;height:1px;background:var(--ouro);}
@@ -179,7 +179,7 @@ section{padding:72px 60px;position:relative;z-index:1;}
 
 /* ── DIAGNÓSTICO — título elegante + formulário ── */
 #diagnostico{background:var(--cinza-hero);position:relative;overflow:hidden;padding:56px 60px;}
-.diag-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=60&fit=crop');background-size:cover;background-position:center;opacity:0.07;}
+.diag-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1758691736580-a41e0cfe9e9f?w=1600&q=85&fit=crop');background-size:cover;background-position:center;opacity:0.07;}
 .diag-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;}
 
 /* lado esquerdo — título elegante estilo print */
@@ -222,19 +222,19 @@ section{padding:72px 60px;position:relative;z-index:1;}
 .form-note strong{color:var(--branco);}
 
 /* ── FOOTER ── */
-footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;border-top:1px solid rgba(168,144,96,0.15);font-family:"Sora",sans-serif;}
-.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px;margin-bottom:18px;align-items:center;}
+footer{background:#1c1c1e;padding:14px 60px 12px;position:relative;z-index:1;border-top:1px solid rgba(168,144,96,0.15);font-family:"Sora",sans-serif;}
+.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:24px;margin-bottom:10px;align-items:center;}
 .foot-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
 .foot-logo img{height:38px;width:auto;object-fit:contain;}
 .foot-tagline{font-size:0.72rem;font-weight:300;color:var(--muted);line-height:1.6;max-width:210px;font-family:"Sora",sans-serif;}
-.foot-col h4{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--ouro);margin-bottom:10px;font-family:"Sora",sans-serif;}
-.foot-col a{display:flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:0.78rem;font-weight:300;margin-bottom:7px;transition:color .3s;font-family:"Sora",sans-serif;}
+.foot-col h4{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--ouro);margin-bottom:6px;font-family:"Sora",sans-serif;}
+.foot-col a{display:flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:0.76rem;font-weight:300;margin-bottom:5px;transition:color .3s;font-family:"Sora",sans-serif;}
 .foot-col a:hover{color:var(--ouro);}
 .foot-social{display:flex;gap:10px;margin-top:4px;}
 .soc{width:34px;height:34px;border-radius:50%;background:rgba(168,144,96,0.15);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background .3s;border:1px solid rgba(168,144,96,0.25);}
 .soc:hover{background:rgba(168,144,96,0.28);}
 .soc svg{width:15px;height:15px;fill:var(--ouro);}
-.foot-bottom{padding-top:22px;border-top:1px solid rgba(168,144,96,0.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.foot-bottom{padding-top:10px;border-top:1px solid rgba(168,144,96,0.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
 .foot-copy{font-size:0.68rem;font-weight:300;color:rgba(245,243,239,0.3);font-family:"Sora",sans-serif;letter-spacing:0.04em;}
 
 /* ── WPP FLOAT ── */
@@ -392,7 +392,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
     <li><a href="#quem" onclick="scrollTo_('#quem');return false;">Quem Somos</a></li>
     <li><a href="#porquec3" onclick="scrollTo_('#porquec3');return false;">Por que C3</a></li>
     <li><a href="#servicos" onclick="scrollTo_('#servicos');return false;">Serviços</a></li>
-    <li><a href="#diagnostico" onclick="scrollTo_('#diagnostico');return false;" class="nav-cta">Diagnóstico Gratuito</a></li>
+    <li><a href="#diagnostico" onclick="scrollTo_('#diagnostico');return false;">Diagnóstico Gratuito</a></li>
   </ul>
   <div class="nav-right">
     <a href="tel:+5511973420686" class="nav-phone">(11) 97342-0686</a>
@@ -410,15 +410,15 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 <div class="mobile-menu" id="mobileMenu">
   <a href="#inicio" onclick="scrollTo_('#inicio');closeMenu();return false;">Início</a>
   <a href="#quem" onclick="scrollTo_('#quem');closeMenu();return false;">Quem Somos</a>
+  <a href="#porquec3" onclick="scrollTo_('#porquec3');closeMenu();return false;">Por que C3</a>
   <a href="#servicos" onclick="scrollTo_('#servicos');closeMenu();return false;">Serviços</a>
-  <a href="#porquec3" onclick="scrollTo_('#porquec3');closeMenu();return false;">Por que a C3</a>
   <a href="#diagnostico" onclick="scrollTo_('#diagnostico');closeMenu();return false;" class="menu-cta">Diagnóstico Gratuito</a>
 </div>
 
 <!-- 1. CARROSSEL -->
 <div class="carousel" id="inicio">
   <div class="slide active">
-    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=80&fit=crop');"></div>
+    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1758691736580-a41e0cfe9e9f?w=1600&q=85&fit=crop');"></div>
     <div class="slide-overlay"></div>
     <div class="slide-content">
       <h1>Enquanto cuidamos do seu financeiro,<em>você foca no que mais importa.</em></h1>
@@ -427,7 +427,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
     </div>
   </div>
   <div class="slide">
-    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80&fit=crop');"></div>
+    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=85&fit=crop');"></div>
     <div class="slide-overlay"></div>
     <div class="slide-content">
       <h1>Confiança,<br>Confidencialidade<em>e Controle.</em></h1>
@@ -436,7 +436,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
     </div>
   </div>
   <div class="slide">
-    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80&fit=crop');"></div>
+    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=90&fit=crop');"></div>
     <div class="slide-overlay"></div>
     <div class="slide-content">
       <h1>Decisões seguras começam com um<em>financeiro bem organizado.</em></h1>
@@ -493,51 +493,73 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
   <div style="text-align:left;margin-bottom:52px;">
     <span style="display:inline-block;font-size:0.64rem;font-weight:500;letter-spacing:0.26em;text-transform:uppercase;color:rgba(26,26,28,0.5);margin-bottom:14px;">Por que organizar o financeiro da sua empresa com a C3 Gestão?</span>
     <h2 style="font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:800;color:#1a1a1c;line-height:1.1;">Mais controle, segurança e clareza</h2>
-    <div style="margin-top:16px;padding:16px 20px;background:rgba(26,26,28,0.12);border-left:4px solid rgba(26,26,28,0.3);">
-      <p style="font-family:'Sora',sans-serif;font-size:clamp(1rem,1.8vw,1.2rem);font-weight:800;color:#1a1a1c;letter-spacing:-0.01em;line-height:1.3;">Terceirizar custa menos do que um funcionário interno —<em style="font-style:normal;font-weight:300;color:rgba(26,26,28,0.75);"> e entrega muito mais.</em></p>
-    </div>
   </div>
   <div class="pq-cards" style="margin-bottom:52px;">
 
     <!-- Card 1 -->
     <div style="text-align:center;">
-      <div style="width:90px;height:90px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 4px 16px rgba(26,26,28,0.12);">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a1a1c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <div style="width:110px;height:110px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;box-shadow:0 6px 20px rgba(26,26,28,0.15);"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#1a1a1c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
-      <h3 style="font-size:1rem;font-weight:700;color:#1a1a1c;margin-bottom:10px;">Mais tempo<br>para crescer</h3>
-      <p style="font-size:0.82rem;font-weight:400;color:rgba(26,26,28,0.7);line-height:1.72;">Assumimos a gestão financeira da sua empresa e você foca no crescimento do negócio.</p>
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1a1a1c;margin-bottom:10px;">Mais tempo<br>para crescer</h3>
+      <p style="font-size:0.95rem;font-weight:400;color:rgba(26,26,28,0.7);line-height:1.72;">Assumimos a gestão financeira da sua empresa e você foca no crescimento do negócio.</p>
     </div>
 
     <!-- Card 2 -->
     <div style="text-align:center;">
-      <div style="width:90px;height:90px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 4px 16px rgba(26,26,28,0.12);">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a1a1c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+      <div style="width:110px;height:110px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;box-shadow:0 6px 20px rgba(26,26,28,0.15);"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#1a1a1c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
       </div>
-      <h3 style="font-size:1rem;font-weight:700;color:#1a1a1c;margin-bottom:10px;">Segurança e<br>tranquilidade</h3>
-      <p style="font-size:0.82rem;font-weight:400;color:rgba(26,26,28,0.7);line-height:1.72;">Os dados da sua empresa são tratados com absoluto sigilo e segurança de dados.</p>
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1a1a1c;margin-bottom:10px;">Segurança e<br>tranquilidade</h3>
+      <p style="font-size:0.95rem;font-weight:400;color:rgba(26,26,28,0.7);line-height:1.72;">Os dados da sua empresa são tratados com absoluto sigilo e segurança de dados.</p>
     </div>
 
     <!-- Card 3 -->
     <div style="text-align:center;">
-      <div style="width:90px;height:90px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 4px 16px rgba(26,26,28,0.12);">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a1a1c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><path d="M7 10l2 2 6-4"/></svg>
+      <div style="width:110px;height:110px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;box-shadow:0 6px 20px rgba(26,26,28,0.15);"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#1a1a1c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><path d="M7 10l2 2 6-4"/></svg>
       </div>
-      <h3 style="font-size:1rem;font-weight:700;color:#1a1a1c;margin-bottom:10px;">Controle<br>atualizado</h3>
-      <p style="font-size:0.82rem;font-weight:400;color:rgba(26,26,28,0.7);line-height:1.72;">Oferecemos relatórios para monitoramento e acompanhamento de forma clara, sinalizando todas as movimentações.</p>
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1a1a1c;margin-bottom:10px;">Controle<br>atualizado</h3>
+      <p style="font-size:0.95rem;font-weight:400;color:rgba(26,26,28,0.7);line-height:1.72;">Oferecemos relatórios para monitoramento e acompanhamento de forma clara, sinalizando todas as movimentações.</p>
     </div>
 
     <!-- Card 4 -->
     <div style="text-align:center;">
-      <div style="width:90px;height:90px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 4px 16px rgba(26,26,28,0.12);">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a1a1c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><polyline points="22 20 2 20"/></svg>
+      <div style="width:110px;height:110px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;box-shadow:0 6px 20px rgba(26,26,28,0.15);"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#1a1a1c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       </div>
-      <h3 style="font-size:1rem;font-weight:700;color:#1a1a1c;margin-bottom:10px;">Sistemas<br>eficientes</h3>
-      <p style="font-size:0.82rem;font-weight:400;color:rgba(26,26,28,0.7);line-height:1.72;">Centralizamos suas informações e processos em um único sistema com dashboard exclusivo para a visão do seu negócio.</p>
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1a1a1c;margin-bottom:10px;">Equipe<br>Sênior</h3>
+      <p style="font-size:0.95rem;font-weight:400;color:rgba(26,26,28,0.7);line-height:1.72;">Terceirizar custa menos do que um funcionário interno — e você conta com profissionais especializados de alto nível.</p>
     </div>
+
+  <!-- Frase destaque + CTA dentro do Por que C3 -->
+  <div style="width:100%;text-align:center;margin-top:48px;padding:0 60px 56px;box-sizing:border-box;">
+    <p style="font-family:'Sora',sans-serif;font-size:clamp(1.3rem,2.6vw,2rem);font-weight:800;color:white;letter-spacing:-0.01em;line-height:1.2;margin:0 auto 28px;max-width:700px;text-align:center;">Descubra onde sua empresa perde dinheiro.</p>
+    <a href="#diagnostico" onclick="scrollTo_('#diagnostico');return false;" class="btn-dark" style="font-size:0.82rem;padding:14px 44px;letter-spacing:0.14em;">Diagnóstico Financeiro Gratuito →</a>
+  </div>
 
   </div>
 </div>
 
+
+<!-- 5. SERVIÇOS — fundo claro, sem ícones -->
+<section id="servicos">
+  <div class="serv-head">
+    <span class="sec-eye" style="color:var(--ouro-escuro)">Soluções Inteligentes</span>
+    <p style="font-size:clamp(1.7rem,3vw,2.5rem);font-weight:300;line-height:1.15;color:#1a1a1c;margin-bottom:16px;">
+      <strong>Terceirize o financeiro</strong> com quem tem
+      <strong style="color:var(--ouro-escuro);">experiência, método</strong>
+      e total <strong>confidencialidade.</strong>
+    </p>
+  </div>
+  <div class="serv-grid">
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=70&fit=crop" alt="Contas a Pagar"><div class="serv-body"><h3>Contas a Pagar e Receber</h3><p>Gestão rigorosa de vencimentos, cobranças e pagamentos — eliminando atrasos, multas e o retrabalho do dia a dia financeiro.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=600&q=70&fit=crop" alt="Conciliação Bancária"><div class="serv-body"><h3>Conciliação Bancária</h3><p>Conciliação diária e em tempo real, garantindo precisão nos registros, prevenção de erros e segurança financeira para sua empresa.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600&q=70&fit=crop" alt="Fluxo de Caixa"><div class="serv-body"><h3>Fluxo de Caixa</h3><p>Visibilidade completa das entradas e saídas com projeções que permitem antecipar decisões estratégicas com segurança.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=600&q=70&fit=crop" alt="Faturamento"><div class="serv-body"><h3>Faturamento</h3><p>Controle e conformidade nas operações com emissão, envio e conferência de notas fiscais e boletos.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=70&fit=crop" alt="ERP"><div class="serv-body"><h3>Implantação de ERP</h3><p>Implantamos e configuramos sistemas como NIBO, Omie, Meu Dinheiro Web e Conta Azul, estruturando o plano de contas e automatizando a conciliação financeira.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=70&fit=crop" alt="DRE"><div class="serv-body"><h3>DRE e Relatórios</h3><p>Demonstrativos de resultados e relatórios gerenciais semanais e mensais — com planilhas personalizadas para um controle financeiro preciso e estratégico.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&q=70&fit=crop" alt="Documentos"><div class="serv-body"><h3>Organização e Digitalização</h3><p>Organização e digitalização de documentos, notas e boletos em drive estruturado, com nomenclatura padronizada para fácil localização.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&q=70&fit=crop" alt="Fechamento Mensal"><div class="serv-body"><h3>Fechamento Mensal</h3><p>Integração com a contabilidade parceira e envio de documentos necessários para o fechamento mensal correto e a apuração de impostos.</p></div></div>
+  </div>
+
+</section>
 
 <!-- 6. COMO FUNCIONA — fundo dourado, número preto, título branco -->
 <section id="etapas" style="">
@@ -558,29 +580,6 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
       <div class="etapa-num"><span class="etapa-n">4</span><div class="etapa-bars"><span></span><span></span><span></span></div></div>
       <div class="etapa-body"><h3>Gestão</h3><p>Gestão estratégica com relatórios e acompanhamentos para melhor tomada de decisão.</p></div>
     </div>
-  </div>
-
-</section>
-
-<!-- 5. SERVIÇOS — fundo claro, sem ícones -->
-<section id="servicos">
-  <div class="serv-head">
-    <span class="sec-eye" style="color:var(--ouro-escuro)">Soluções Inteligentes</span>
-    <p style="font-size:clamp(1rem,2vw,1.45rem);line-height:1.5;color:#1a1a1c;margin-bottom:8px;">
-      <strong>Terceirize o financeiro</strong> com quem tem
-      <strong style="color:var(--ouro-escuro);">experiência, método</strong>
-      e total <strong>confidencialidade.</strong>
-    </p>
-  </div>
-  <div class="serv-grid">
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=70&fit=crop" alt="Contas a Pagar"><div class="serv-body"><h3>Contas a Pagar e Receber</h3><p>Gestão rigorosa de vencimentos, cobranças e pagamentos — eliminando atrasos, multas e o retrabalho do dia a dia financeiro.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=600&q=70&fit=crop" alt="Conciliação Bancária"><div class="serv-body"><h3>Conciliação Bancária</h3><p>Conciliação diária e em tempo real, garantindo precisão nos registros, prevenção de erros e segurança financeira para sua empresa.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600&q=70&fit=crop" alt="Fluxo de Caixa"><div class="serv-body"><h3>Fluxo de Caixa</h3><p>Visibilidade completa das entradas e saídas com projeções que permitem antecipar decisões estratégicas com segurança.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=600&q=70&fit=crop" alt="Faturamento"><div class="serv-body"><h3>Faturamento</h3><p>Controle e conformidade nas operações com emissão, envio e conferência de notas fiscais e boletos.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=70&fit=crop" alt="ERP"><div class="serv-body"><h3>Implantação de ERP</h3><p>Implantamos e configuramos sistemas como NIBO, Omie, Meu Dinheiro Web e Conta Azul, estruturando o plano de contas e automatizando a conciliação financeira.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=70&fit=crop" alt="DRE"><div class="serv-body"><h3>DRE e Relatórios</h3><p>Demonstrativos de resultados e relatórios gerenciais semanais e mensais — com planilhas personalizadas para um controle financeiro preciso e estratégico.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&q=70&fit=crop" alt="Documentos"><div class="serv-body"><h3>Organização e Digitalização</h3><p>Organização e digitalização de documentos, notas e boletos em drive estruturado, com nomenclatura padronizada para fácil localização.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&q=70&fit=crop" alt="Fechamento Mensal"><div class="serv-body"><h3>Fechamento Mensal</h3><p>Integração com a contabilidade parceira e envio de documentos necessários para o fechamento mensal correto e a apuração de impostos.</p></div></div>
   </div>
 
 </section>
