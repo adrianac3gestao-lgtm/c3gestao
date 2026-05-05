@@ -241,6 +241,13 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 .wpp svg{width:26px;height:26px;fill:white;}
 
 /* ── RESPONSIVE ── */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px 6px;background:none;border:none;flex-shrink:0;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--ouro);border-radius:1px;transition:all .3s;}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(24,24,26,0.98);backdrop-filter:blur(14px);border-bottom:1px solid rgba(168,144,96,0.2);z-index:9999;padding:8px 0;flex-direction:column;}
+.mobile-menu.open{display:flex !important;}
+.mobile-menu a{color:var(--muted);text-decoration:none;font-size:0.9rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;padding:14px 20px;border-bottom:1px solid rgba(168,144,96,0.08);transition:color .3s;display:block;}
+.mobile-menu a:hover{color:var(--ouro);}
+.mobile-menu a.menu-cta{background:var(--ouro);color:#1a1a1c !important;font-weight:700;text-align:center;margin:10px 20px 4px;padding:13px 20px;}
 /* ── TABLET ── */
 @media(max-width:1100px){
   .serv-grid{grid-template-columns:repeat(2,1fr);}
@@ -253,23 +260,17 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
   /* body sem overflow horizontal */
   html,body{overflow-x:hidden;width:100%;}
 
-  /* NAV mobile — logo só, sem links e sem telefone */
+  /* NAV mobile — logo + hambúrguer */
   nav{padding:12px 16px;position:relative;}
-  .hamburger{display:flex !important;}
   nav ul{display:none;}
   .nav-phone{display:none;}
+  .nav-right{gap:6px;}
   .nav-right .nav-icon{display:none;}
   .nav-left img{height:32px;}
-  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}
-  .hamburger span{display:block;width:22px;height:2px;background:var(--ouro);border-radius:1px;transition:all .3s;}
-  .mobile-menu{display:none;position:fixed;top:62px;left:0;right:0;background:rgba(24,24,26,0.98);backdrop-filter:blur(14px);border-bottom:1px solid rgba(168,144,96,0.2);z-index:99;padding:12px 0;flex-direction:column;}
-  .mobile-menu.open{display:flex;}
-  .mobile-menu a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;padding:14px 24px;border-bottom:1px solid rgba(168,144,96,0.08);transition:color .3s;}
-  .mobile-menu a:hover{color:var(--ouro);}
-  .mobile-menu a:last-child{border-bottom:none;background:var(--ouro);color:#1a1a1c;font-weight:700;text-align:center;margin:12px 24px;padding:12px 24px;}
+  .hamburger{display:flex !important;}
 
   /* CARROSSEL */
-  .carousel{height:100svh;min-height:460px;}
+  .carousel{height:72vh;min-height:420px;}
   .slide-content{padding:0 56px 0 20px;max-width:100%;}
   .slide h1{font-size:clamp(1.6rem,6vw,2.4rem);}
   .slide p{font-size:0.88rem;max-width:100%;}
@@ -385,8 +386,21 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
     <a href="https://wa.me/5511973420686" class="nav-icon" target="_blank"><svg><use href="#ico-wpp"/></svg></a>
     <a href="https://instagram.com/c3gestao" class="nav-icon" target="_blank"><svg><use href="#ico-ig"/></svg></a>
     <a href="https://www.linkedin.com/company/c3-gest%C3%A3o-administrativa-e-financeira-ltda/" class="nav-icon" target="_blank"><svg><use href="#ico-li"/></svg></a>
+    <button class="hamburger" id="hambBtn" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MENU MOBILE -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#inicio" onclick="closeMenu()">Início</a>
+  <a href="#quem" onclick="closeMenu()">Quem Somos</a>
+  <a href="#servicos" onclick="closeMenu()">Serviços</a>
+  <a href="#porquec3" onclick="closeMenu()">Por que a C3</a>
+  <a href="#etapas" onclick="closeMenu()">Como Funciona</a>
+  <a href="#diagnostico" onclick="closeMenu()" class="menu-cta">Diagnóstico Gratuito</a>
+</div>
 
 <!-- 1. CARROSSEL -->
 <div class="carousel" id="inicio">
