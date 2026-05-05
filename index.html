@@ -29,7 +29,7 @@
   --muted:rgba(245,243,239,0.55);--body:rgba(245,243,239,0.82);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;scroll-padding-top:100px;}
+html{scroll-behavior:smooth;scroll-padding-top:110px;}
 body{font-family:'Sora',sans-serif;background:var(--cinza-fundo);color:var(--branco);overflow-x:hidden;}
 body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:min(88vw,820px);height:min(88vw,820px);background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,5 188,52 188,148 100,195 12,148 12,52' fill='none' stroke='%23a89060' stroke-width='1.5'/%3E%3Cpath d='M84 58 L54 100 L84 142' stroke='%23f5f3ef' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='108' y='58' width='13' height='84' rx='3' fill='%23a89060'/%3E%3Crect x='127' y='70' width='13' height='72' rx='3' fill='%23a89060' opacity='0.65'/%3E%3Crect x='146' y='82' width='13' height='60' rx='3' fill='%23a89060' opacity='0.38'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:contain;opacity:0.03;pointer-events:none;z-index:0;}
 
@@ -57,7 +57,7 @@ nav ul a:hover{color:var(--ouro);}
 .slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1);transition:transform 8s ease;}
 .slide.active .slide-bg{transform:scale(1.05);}
 .slide-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(20,20,22,0.92) 0%,rgba(20,20,22,0.68) 55%,rgba(20,20,22,0.3) 100%);}
-.slide-content{position:relative;z-index:2;padding:0 120px 0 100px;max-width:760px;}
+.slide-content{position:relative;z-index:2;padding:0 80px 0 80px;max-width:720px;}
 .slide-tag{display:inline-flex;align-items:center;gap:10px;color:var(--ouro);font-size:0.67rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;margin-bottom:22px;}
 .slide-tag::before{content:'';width:20px;height:1px;background:var(--ouro);}
 .slide h1{font-size:clamp(2rem,4.2vw,3.4rem);font-weight:300;line-height:1.1;color:var(--branco);margin-bottom:16px;}
@@ -95,7 +95,7 @@ section{padding:72px 60px;position:relative;z-index:1;}
 .sec-desc{font-size:0.92rem;font-weight:300;line-height:1.82;color:var(--muted);}
 
 /* ── QUEM SOMOS ── */
-#quem{background:var(--cinza-card);min-height:auto;scroll-margin-top:100px;}
+#quem{background:var(--cinza-card);min-height:auto;scroll-margin-top:110px;}
 .quem-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:64px;align-items:center;margin-top:48px;}
 .foto-wrap{position:relative;aspect-ratio:3/4;max-width:380px;width:100%;border:1px solid rgba(168,144,96,0.22);overflow:hidden;}
 .foto-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--ouro-escuro),var(--ouro),var(--ouro-claro));z-index:2;}
@@ -116,7 +116,7 @@ section{padding:72px 60px;position:relative;z-index:1;}
 .cred .txt{font-size:0.58rem;font-weight:300;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;}
 
 /* ── SERVIÇOS — fundo claro ── */
-#servicos{background:var(--cinza-claro);scroll-margin-top:100px;}
+#servicos{background:var(--cinza-claro);scroll-margin-top:110px;}
 .serv-head{margin-bottom:28px;}
 .serv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;background:transparent;}
 .serv-card{background:white;overflow:hidden;transition:transform .3s,box-shadow .3s;border:1px solid rgba(168,144,96,0.15);border-radius:4px;}
@@ -178,7 +178,7 @@ section{padding:72px 60px;position:relative;z-index:1;}
 .etapas-cta{display:none;}
 
 /* ── DIAGNÓSTICO — título elegante + formulário ── */
-#diagnostico{background:var(--cinza-hero);position:relative;overflow:hidden;padding:56px 60px;scroll-margin-top:100px;}
+#diagnostico{background:var(--cinza-hero);position:relative;overflow:hidden;padding:56px 60px;scroll-margin-top:110px;}
 .diag-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=60&fit=crop');background-size:cover;background-position:center;opacity:0.07;}
 .diag-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;}
 
@@ -284,14 +284,14 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
   .cbtn.next{right:6px;}
 
   /* STRIP */
-  .strip{padding:12px 24px;flex-direction:column;gap:10px;text-align:center;align-items:center;}
-  .strip img{height:42px;}
+  .strip{padding:8px 16px;flex-direction:column;gap:8px;text-align:center;align-items:center;}
+  .strip img{height:36px;}
   .strip-divider{display:none !important;}
-  .strip div{font-size:1rem !important;text-align:center !important;}
+  .strip div{font-size:0.9rem !important;text-align:center !important;}
   .strip div{font-size:0.9rem !important;}
 
   /* SEÇÕES gerais */
-  section{padding:52px 20px;scroll-margin-top:100px;}
+  section{padding:52px 20px;scroll-margin-top:110px;}
   #etapas{padding:0;}
   #diagnostico{padding:52px 20px;}
   #porquec3{padding:52px 20px !important;}
@@ -364,7 +364,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 /* Rotação automática (landscape mobile) */
 @media(max-width:900px) and (orientation:landscape){
   .carousel{height:100vw;min-height:320px;}
-  .slide-content{padding:0 60px 0 20px;}
+  .slide-content{padding:0 52px 0 24px;}
   .slide h1{font-size:1.4rem;}
 }
 </style>
@@ -420,7 +420,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
     <div class="slide-content">
       <h1>Enquanto cuidamos do seu financeiro,<em>você foca no que mais importa.</em></h1>
       <p>Assumimos a rotina financeira da sua empresa com responsabilidade, precisão e total confidencialidade.</p>
-      <div class="slide-btns"><a href="#diagnostico" class="btn-gold">Diagnóstico Gratuito</a><a href="#quem" class="btn-ghost">Como a C3 pode ajudar</a></div>
+      <div class="slide-btns"><a href="#diagnostico" class="btn-gold">Diagnóstico Gratuito</a><a href="#etapas" class="btn-ghost">Como funciona na Prática?</a></div>
     </div>
   </div>
   <div class="slide">
@@ -429,7 +429,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
     <div class="slide-content">
       <h1>Confiança,<br>Confidencialidade<em>e Controle.</em></h1>
       <p>Confiança, Confidencialidade e Controle não são apenas valores — são a origem do nosso nome e a base de cada decisão que tomamos pelo seu negócio.</p>
-      <div class="slide-btns"><a href="#diagnostico" class="btn-gold">Quero esse cuidado</a><a href="#porquec3" class="btn-ghost">Ver os pilares da C3</a></div>
+      <div class="slide-btns"><a href="#porquec3" class="btn-gold">Quanto custa?</a><a href="#porquec3" class="btn-ghost">Ver os pilares da C3</a></div>
     </div>
   </div>
   <div class="slide">
@@ -480,7 +480,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
         <div class="cred"><div class="num">FGV</div><div class="txt">Formação</div></div>
         <div class="cred"><div class="num">100%</div><div class="txt">Online</div></div>
       </div>
-      <a href="#diagnostico" class="btn-gold">Solicitar Diagnóstico Gratuito</a>
+      <a href="#diagnostico" class="btn-gold">Quero organizar meu financeiro agora</a>
     </div>
   </div>
 </section>
@@ -490,6 +490,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
   <div style="text-align:left;margin-bottom:52px;">
     <span style="display:inline-block;font-size:0.64rem;font-weight:500;letter-spacing:0.26em;text-transform:uppercase;color:rgba(26,26,28,0.5);margin-bottom:14px;">Por que organizar o financeiro da sua empresa com a C3 Gestão?</span>
     <h2 style="font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:800;color:#1a1a1c;line-height:1.1;">Mais controle, segurança e clareza</h2>
+    <p style="font-size:clamp(0.88rem,1.6vw,1rem);font-weight:400;font-style:italic;color:rgba(26,26,28,0.65);margin-top:10px;padding-left:14px;border-left:3px solid rgba(26,26,28,0.25);">Terceirizar custa menos do que um funcionário interno — e entrega mais.</p>
   </div>
   <div class="pq-cards" style="margin-bottom:52px;">
 
@@ -537,7 +538,6 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 <section id="servicos">
   <div class="serv-head">
     <span class="sec-eye" style="color:var(--ouro-escuro)">Soluções Inteligentes</span>
-    <h2 class="sec-title" style="color:#1a1a1c;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:300;margin-bottom:20px;">Soluções para quem quer <strong style="color:var(--ouro-escuro);">crescer</strong> sem se perder no operacional.</h2>
     <p style="font-size:clamp(1rem,2vw,1.45rem);line-height:1.5;color:#1a1a1c;margin-bottom:8px;">
       <strong>Terceirize o financeiro</strong> com quem tem
       <strong style="color:var(--ouro-escuro);">experiência, método</strong>
@@ -558,7 +558,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 </section>
 
 <!-- 6. COMO FUNCIONA — fundo dourado, número preto, título branco -->
-<section id="etapas" style="scroll-margin-top:100px;">
+<section id="etapas" style="scroll-margin-top:110px;">
   <div class="etapas-grid">
     <div class="etapa">
       <div class="etapa-num"><span class="etapa-n">1</span><div class="etapa-bars"><span></span><span></span><span></span></div></div>
@@ -665,7 +665,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 <footer>
   <div class="foot-grid">
     <div>
-      <div class="foot-logo"><img src="SIMBOLO_C3_GESTAO-24.png" alt="C3 Gestão" style="height:34px;width:auto;object-fit:contain;"><div><strong style="display:block;font-size:0.88rem;color:var(--branco);font-family:'Sora',sans-serif;font-weight:600;">C3 gestão</strong><span style="font-size:0.55rem;color:var(--ouro);letter-spacing:0.18em;text-transform:uppercase;font-weight:300;font-family:'Sora',sans-serif;">Financeira · BPO · Administrativa</span></div></div>
+      <div class="foot-logo"><div><strong style="display:block;font-size:0.95rem;color:var(--branco);font-family:'Sora',sans-serif;font-weight:600;">C3 gestão</strong><span style="font-size:0.6rem;color:var(--ouro);letter-spacing:0.18em;text-transform:uppercase;font-weight:300;font-family:'Sora',sans-serif;">Financeira · BPO · Administrativa</span></div></div>
 
     </div>
     <div class="foot-col">
