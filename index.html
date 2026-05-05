@@ -78,7 +78,7 @@ nav ul a:hover{color:var(--ouro);}
 .strip-texto{font-size:clamp(1.1rem,2.6vw,1.7rem);font-weight:700;color:#1a1a1c;}
 
 /* ── BOTÕES ── */
-.btn-gold{background:var(--ouro);color:#1a1a1c;padding:13px 30px;font-family:'Sora',sans-serif;font-size:0.81rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all .3s;border:none;cursor:pointer;display:inline-block;}
+.btn-gold{background:var(--ouro);color:#1a1a1c;padding:13px 24px;font-family:'Sora',sans-serif;font-size:0.81rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:all .3s;border:none;cursor:pointer;display:inline-block;white-space:nowrap;}
 .btn-gold:hover{background:var(--ouro-claro);transform:translateY(-2px);}
 .btn-ghost{border:1px solid rgba(168,144,96,0.45);color:var(--ouro);padding:13px 30px;font-family:'Sora',sans-serif;font-size:0.81rem;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all .3s;display:inline-block;}
 .btn-ghost:hover{border-color:var(--ouro);background:rgba(168,144,96,0.07);}
@@ -130,24 +130,24 @@ section{padding:72px 60px;position:relative;z-index:1;}
 /* ── POR QUE C3 — dois painéis ── */
 #porquec3{position:relative;z-index:1;}
 .pq-wrapper{display:grid;grid-template-columns:1fr 1fr;min-height:560px;}
-.pq-left{background:var(--cinza-hero);padding:48px 56px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+.pq-left{background:var(--cinza-hero);padding:72px 60px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
 .pq-left::after{content:'';position:absolute;top:-50px;right:-50px;width:220px;height:220px;background:var(--ouro);opacity:0.07;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);}
 .pq-left::before{content:'';position:absolute;bottom:-70px;left:-70px;width:260px;height:260px;background:var(--ouro);opacity:0.04;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);}
-.pq-left-tag{font-size:0.64rem;font-weight:500;letter-spacing:0.26em;text-transform:uppercase;color:var(--ouro);margin-bottom:14px;}
-.pq-left-title{font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:300;color:var(--branco);line-height:1.15;margin-bottom:28px;}
+.pq-left-tag{font-size:0.64rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--ouro);margin-bottom:12px;display:inline-block;}
+.pq-left-title{font-size:clamp(1.7rem,3vw,2.5rem);font-weight:300;color:var(--branco);line-height:1.15;margin-bottom:20px;}
 .pq-left-title strong{font-weight:800;color:var(--ouro);}
 .pq-c3-items{display:flex;flex-direction:column;gap:14px;margin-bottom:34px;}
 .pq-c3-item{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:rgba(168,144,96,0.07);border-left:3px solid var(--ouro);}
 .pq-c3-ico{font-size:1.3rem;flex-shrink:0;margin-top:1px;}
 .pq-c3-item h4{font-size:0.88rem;font-weight:700;color:var(--branco);margin-bottom:3px;}
 .pq-c3-item p{font-size:0.78rem;font-weight:300;color:var(--muted);line-height:1.65;}
-.pq-right{background:var(--ouro);padding:48px 56px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+.pq-right{background:var(--ouro);padding:72px 60px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
 .pq-right::before{content:'';position:absolute;top:0;right:0;width:180px;height:180px;background:rgba(26,26,28,0.08);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);}
-.pq-right-tag{font-size:0.64rem;font-weight:500;letter-spacing:0.26em;text-transform:uppercase;color:rgba(26,26,28,0.5);margin-bottom:14px;}
-.pq-right-title{font-size:clamp(1.4rem,2.6vw,2rem);font-weight:800;color:#1a1a1c;line-height:1.12;margin-bottom:20px;}
+.pq-right-tag{font-size:0.64rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(26,26,28,0.5);margin-bottom:12px;display:inline-block;}
+.pq-right-title{font-size:clamp(1.7rem,3vw,2.5rem);font-weight:700;color:#1a1a1c;line-height:1.15;margin-bottom:20px;}
 .pq-quote{font-size:0.98rem;font-weight:400;font-style:italic;color:rgba(26,26,28,0.75);line-height:1.65;margin-bottom:22px;padding:18px 20px;background:rgba(26,26,28,0.1);border-left:3px solid rgba(26,26,28,0.3);}
 .pq-quote strong{font-style:normal;font-weight:700;color:#1a1a1c;}
-.pq-right-desc{font-size:0.9rem;font-weight:300;color:rgba(26,26,28,0.72);line-height:1.8;margin-bottom:30px;}
+.pq-right-desc{font-size:0.92rem;font-weight:300;color:rgba(26,26,28,0.72);line-height:1.82;margin-bottom:28px;}
 .pq-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-bottom:52px;}
 
 /* ── COMO FUNCIONA — fundo dourado, número preto, título branco ── */
@@ -301,6 +301,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
   /* QUEM SOMOS */
   .quem-grid{grid-template-columns:1fr;gap:28px;}
   .foto-wrap{max-width:100%;aspect-ratio:3/4;height:auto;}
+  .btn-gold{white-space:normal;text-align:center;padding:13px 20px;font-size:0.78rem;letter-spacing:0.06em;}
   .foto-wrap img{object-position:center 10% !important;}
 
   /* SERVIÇOS */
@@ -313,8 +314,8 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 
   /* POR QUE C3 — corrigir alinhamento no mobile */
   .pq-wrapper{grid-template-columns:1fr;min-height:unset;}
-  .pq-left{padding:36px 24px;}
-  .pq-right{padding:36px 24px;}
+  .pq-left{padding:52px 24px;}
+  .pq-right{padding:52px 24px;}
   .pq-cards{grid-template-columns:repeat(2,1fr) !important;gap:14px;}
   .pq-left-title{font-size:1.4rem;}
 
@@ -482,7 +483,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
         <div class="cred"><div class="num">FGV</div><div class="txt">Formação</div></div>
         <div class="cred"><div class="num">100%</div><div class="txt">Online</div></div>
       </div>
-      <a href="#diagnostico" onclick="scrollTo_('#diagnostico');return false;" class="btn-gold">Quero organizar meu financeiro agora</a>
+      <a href="#diagnostico" onclick="scrollTo_('#diagnostico');return false;" class="btn-gold">Quero organizar meu financeiro</a>
     </div>
   </div>
 </section>
