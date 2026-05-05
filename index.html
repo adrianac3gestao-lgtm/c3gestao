@@ -29,7 +29,7 @@
   --muted:rgba(245,243,239,0.55);--body:rgba(245,243,239,0.82);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;scroll-padding-top:78px;}
 body{font-family:'Sora',sans-serif;background:var(--cinza-fundo);color:var(--branco);overflow-x:hidden;}
 body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:min(88vw,820px);height:min(88vw,820px);background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,5 188,52 188,148 100,195 12,148 12,52' fill='none' stroke='%23a89060' stroke-width='1.5'/%3E%3Cpath d='M84 58 L54 100 L84 142' stroke='%23f5f3ef' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='108' y='58' width='13' height='84' rx='3' fill='%23a89060'/%3E%3Crect x='127' y='70' width='13' height='72' rx='3' fill='%23a89060' opacity='0.65'/%3E%3Crect x='146' y='82' width='13' height='60' rx='3' fill='%23a89060' opacity='0.38'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:contain;opacity:0.03;pointer-events:none;z-index:0;}
 
@@ -51,7 +51,7 @@ nav ul a:hover{color:var(--ouro);}
 .nav-cta:hover{background:var(--ouro-claro)!important;}
 
 /* ── CARROSSEL ── */
-.carousel{position:relative;width:100%;height:100vh;min-height:560px;overflow:hidden;}
+.carousel{position:relative;width:100%;height:100dvh;min-height:560px;overflow:hidden;}
 .slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;opacity:0;transition:opacity 1s ease;pointer-events:none;}
 .slide.active{opacity:1;pointer-events:auto;}
 .slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1);transition:transform 8s ease;}
@@ -72,7 +72,7 @@ nav ul a:hover{color:var(--ouro);}
 .cbtn.prev{left:18px;}.cbtn.next{right:18px;}
 
 /* ── STRIP ── */
-.strip{background:var(--ouro);padding:14px 40px;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;position:relative;z-index:1;text-align:center;}
+.strip{background:var(--ouro);padding:12px 40px;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;position:relative;z-index:1;text-align:center;}
 .strip-frase{text-align:center;}
 .strip-label{font-size:0.66rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(26,26,28,0.5);margin-bottom:6px;}
 .strip-texto{font-size:clamp(1.1rem,2.6vw,1.7rem);font-weight:700;color:#1a1a1c;}
@@ -95,7 +95,7 @@ section{padding:88px 60px;position:relative;z-index:1;}
 .sec-desc{font-size:0.92rem;font-weight:300;line-height:1.82;color:var(--muted);}
 
 /* ── QUEM SOMOS ── */
-#quem{background:var(--cinza-card);min-height:auto;}
+#quem{background:var(--cinza-card);min-height:auto;scroll-margin-top:78px;}
 .quem-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:64px;align-items:center;margin-top:48px;}
 .foto-wrap{position:relative;aspect-ratio:3/4;max-width:380px;width:100%;border:1px solid rgba(168,144,96,0.22);overflow:hidden;}
 .foto-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--ouro-escuro),var(--ouro),var(--ouro-claro));z-index:2;}
@@ -116,7 +116,7 @@ section{padding:88px 60px;position:relative;z-index:1;}
 .cred .txt{font-size:0.58rem;font-weight:300;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;}
 
 /* ── SERVIÇOS — fundo claro ── */
-#servicos{background:var(--cinza-claro);}
+#servicos{background:var(--cinza-claro);scroll-margin-top:78px;}
 .serv-head{margin-bottom:28px;}
 .serv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;background:transparent;}
 .serv-card{background:white;overflow:hidden;transition:transform .3s,box-shadow .3s;border:1px solid rgba(168,144,96,0.15);border-radius:4px;}
@@ -178,7 +178,7 @@ section{padding:88px 60px;position:relative;z-index:1;}
 .etapas-cta{display:none;}
 
 /* ── DIAGNÓSTICO — título elegante + formulário ── */
-#diagnostico{background:var(--cinza-hero);position:relative;overflow:hidden;padding:56px 60px;}
+#diagnostico{background:var(--cinza-hero);position:relative;overflow:hidden;padding:56px 60px;scroll-margin-top:78px;}
 .diag-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=60&fit=crop');background-size:cover;background-position:center;opacity:0.07;}
 .diag-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;}
 
@@ -272,7 +272,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
   .hamburger{display:flex !important;}
 
   /* CARROSSEL */
-  .carousel{height:85vh;min-height:460px;}
+  .carousel{height:100dvh;min-height:500px;}
   .slide-content{padding:0 56px 0 20px;max-width:100%;}
   .slide h1{font-size:clamp(1.6rem,6vw,2.4rem);}
   .slide p{font-size:0.88rem;max-width:100%;}
@@ -284,14 +284,14 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
   .cbtn.next{right:6px;}
 
   /* STRIP */
-  .strip{padding:20px 24px;flex-direction:column;gap:12px;text-align:center;align-items:center;}
+  .strip{padding:12px 24px;flex-direction:column;gap:10px;text-align:center;align-items:center;}
   .strip img{height:42px;}
   .strip-divider{display:none !important;}
   .strip div{font-size:1rem !important;text-align:center !important;}
   .strip div{font-size:0.9rem !important;}
 
   /* SEÇÕES gerais */
-  section{padding:52px 20px;}
+  section{padding:52px 20px;scroll-margin-top:78px;}
   #etapas{padding:0;}
   #diagnostico{padding:52px 20px;}
   #porquec3{padding:52px 20px !important;}
@@ -486,7 +486,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 </section>
 
 <!-- 6. COMO FUNCIONA — fundo dourado, número preto, título branco -->
-<section id="etapas">
+<section id="etapas" style="scroll-margin-top:78px;">
   <div class="etapas-grid">
     <div class="etapa">
       <div class="etapa-num"><span class="etapa-n">1</span><div class="etapa-bars"><span></span><span></span><span></span></div></div>
