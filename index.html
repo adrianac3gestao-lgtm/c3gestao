@@ -116,8 +116,8 @@ section{padding:88px 60px;position:relative;z-index:1;}
 /* ── SERVIÇOS — fundo claro ── */
 #servicos{background:var(--cinza-claro);}
 .serv-head{margin-bottom:44px;}
-.serv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(168,144,96,0.18);border:1px solid rgba(168,144,96,0.18);}
-.serv-card{background:white;overflow:hidden;transition:transform .3s,box-shadow .3s;}
+.serv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;background:transparent;}
+.serv-card{background:white;overflow:hidden;transition:transform .3s,box-shadow .3s;border:1px solid rgba(168,144,96,0.15);border-radius:4px;}
 .serv-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.12);}
 .serv-foto{width:100%;height:130px;object-fit:cover;display:block;filter:brightness(0.82) saturate(0.8);transition:filter .3s;}
 .serv-card:hover .serv-foto{filter:brightness(0.95) saturate(1);}
@@ -146,6 +146,7 @@ section{padding:88px 60px;position:relative;z-index:1;}
 .pq-quote{font-size:0.98rem;font-weight:400;font-style:italic;color:rgba(26,26,28,0.75);line-height:1.65;margin-bottom:22px;padding:18px 20px;background:rgba(26,26,28,0.1);border-left:3px solid rgba(26,26,28,0.3);}
 .pq-quote strong{font-style:normal;font-weight:700;color:#1a1a1c;}
 .pq-right-desc{font-size:0.9rem;font-weight:300;color:rgba(26,26,28,0.72);line-height:1.8;margin-bottom:30px;}
+.pq-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-bottom:52px;}
 
 /* ── COMO FUNCIONA — fundo dourado, número preto, título branco ── */
 #etapas{background:transparent;padding:0;margin:0;line-height:0;font-size:0;}
@@ -208,6 +209,14 @@ section{padding:88px 60px;position:relative;z-index:1;}
 .btn-form{width:100%;background:var(--ouro);color:#1a1a1c;padding:14px;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;transition:background .3s;margin-top:4px;}
 .btn-form:hover{background:var(--ouro-claro);}
 .form-note{font-size:0.66rem;font-weight:300;color:var(--muted);line-height:1.6;margin-top:12px;text-align:center;}
+.form-divider{display:flex;align-items:center;gap:10px;margin:16px 0 12px;}
+.form-divider::before,.form-divider::after{content:'';flex:1;height:1px;background:rgba(168,144,96,0.2);}
+.form-divider span{font-size:0.62rem;font-weight:400;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;}
+.btn-secondary{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s;text-decoration:none;}
+.btn-wpp-sec{background:rgba(37,211,102,0.12);color:#25D366;border:1px solid rgba(37,211,102,0.3);}
+.btn-wpp-sec:hover{background:rgba(37,211,102,0.2);}
+.btn-email-sec{background:rgba(168,144,96,0.08);color:var(--ouro);border:1px solid rgba(168,144,96,0.25);margin-top:8px;}
+.btn-email-sec:hover{background:rgba(168,144,96,0.15);}
 .form-note strong{color:var(--branco);}
 
 /* ── FOOTER ── */
@@ -284,7 +293,8 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 
   /* QUEM SOMOS */
   .quem-grid{grid-template-columns:1fr;gap:28px;}
-  .foto-wrap{max-width:100%;height:320px;aspect-ratio:unset;}
+  .foto-wrap{max-width:100%;height:360px;aspect-ratio:unset;}
+  .foto-wrap img{object-position:center 10% !important;}
 
   /* SERVIÇOS */
   .serv-grid{grid-template-columns:repeat(2,1fr);}
@@ -298,7 +308,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
   .pq-wrapper{grid-template-columns:1fr;min-height:unset;}
   .pq-left{padding:40px 24px;}
   .pq-right{padding:40px 24px;}
-  .pq-cards{display:grid !important;grid-template-columns:repeat(2,1fr) !important;gap:14px;}
+  .pq-cards{grid-template-columns:repeat(2,1fr) !important;gap:14px;}
   .pq-left-title{font-size:1.4rem;}
 
   /* DIAGNÓSTICO */
@@ -486,14 +496,14 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
     <p class="sec-desc" style="color:#6a6865;margin-top:8px;">Terceirize o financeiro com quem tem experiência, método e total confidencialidade.</p>
   </div>
   <div class="serv-grid">
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=70&fit=crop" alt="Contas a Pagar"><div class="serv-body"><h3>Contas a Pagar e Receber</h3><p>Controle rigoroso de vencimentos, cobranças e pagamentos. Sem atrasos, sem multas.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=600&q=70&fit=crop" alt="Conciliação Bancária"><div class="serv-body"><h3>Conciliação Bancária</h3><p>Conciliação em tempo real, garantindo precisão nos registros e prevenção de erros, contribuindo com a segurança financeira de sua empresa.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600&q=70&fit=crop" alt="Fluxo de Caixa"><div class="serv-body"><h3>Fluxo de Caixa</h3><p>Visibilidade total das entradas e saídas. Projeções para antecipar decisões com segurança.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=600&q=70&fit=crop" alt="Faturamento"><div class="serv-body"><h3>Faturamento</h3><p>Garantindo conformidade e controle das operações com a emissão, envio e conferência de NF e Boletos.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=600&q=70&fit=crop" alt="ERP"><div class="serv-body"><h3>Implantação de ERP</h3><p>Estruturamos sistemas como NIBO com plano de contas e conciliação automática.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=70&fit=crop" alt="DRE"><div class="serv-body"><h3>DRE e Relatórios</h3><p>Demonstrativos e relatórios semanais e mensais para gestão com dados reais, com planilhas personalizadas para o controle financeiro.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&q=70&fit=crop" alt="Documentos"><div class="serv-body"><h3>Organização e Digitalização</h3><p>Documentos, notas e boletos organizados em drive com nomenclatura adequada.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&q=70&fit=crop" alt="Fechamento Mensal"><div class="serv-body"><h3>Fechamento Mensal</h3><p>Interface com a Contabilidade terceira e envio de documentos necessários para o correto fechamento e apuração de impostos.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=70&fit=crop" alt="Contas a Pagar"><div class="serv-body"><h3>Contas a Pagar e Receber</h3><p>Gestão rigorosa de vencimentos, cobranças e pagamentos — eliminando atrasos, multas e o retrabalho do dia a dia financeiro.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=600&q=70&fit=crop" alt="Conciliação Bancária"><div class="serv-body"><h3>Conciliação Bancária</h3><p>Conciliação diária e em tempo real, garantindo precisão nos registros, prevenção de erros e segurança financeira para sua empresa.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600&q=70&fit=crop" alt="Fluxo de Caixa"><div class="serv-body"><h3>Fluxo de Caixa</h3><p>Visibilidade completa das entradas e saídas com projeções que permitem antecipar decisões estratégicas com segurança.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=600&q=70&fit=crop" alt="Faturamento"><div class="serv-body"><h3>Faturamento</h3><p>Controle e conformidade nas operações com emissão, envio e conferência de notas fiscais e boletos.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=600&q=70&fit=crop" alt="ERP"><div class="serv-body"><h3>Implantação de ERP</h3><p>Implantamos e configuramos sistemas como o NIBO, estruturando o plano de contas e automatizando a conciliação financeira.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=70&fit=crop" alt="DRE"><div class="serv-body"><h3>DRE e Relatórios</h3><p>Demonstrativos de resultados e relatórios gerenciais semanais e mensais — com planilhas personalizadas para um controle financeiro preciso e estratégico.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&q=70&fit=crop" alt="Documentos"><div class="serv-body"><h3>Organização e Digitalização</h3><p>Organização e digitalização de documentos, notas e boletos em drive estruturado, com nomenclatura padronizada para fácil localização.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&q=70&fit=crop" alt="Fechamento Mensal"><div class="serv-body"><h3>Fechamento Mensal</h3><p>Integração com a contabilidade parceira e envio de documentos necessários para o fechamento mensal correto e a apuração de impostos.</p></div></div>
   </div>
   <div style="text-align:center;margin-top:44px;">
     <a href="https://wa.me/5511973420686?text=Quero%20conhecer%20os%20serviços%20da%20C3%20Gestão" class="btn-dark" target="_blank">Quero conhecer os serviços</a>
@@ -605,12 +615,26 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
           Por favor, preencha todos os campos obrigatórios antes de continuar.
         </div>
 
+        <!-- BOTÃO PRINCIPAL -->
         <button type="submit" class="btn-form" id="btn-diag">
           Quero meu diagnóstico agora →
         </button>
-
-        <p class="form-note">Ao preencher, você está ciente que a <strong>C3 Gestão</strong> poderá enviar comunicações e conteúdos de acordo com os seus interesses.</p>
       </form>
+
+      <!-- DIVISOR -->
+      <div class="form-divider"><span>ou</span></div>
+
+      <!-- BOTÃO EMAIL -->
+      <a href="mailto:contato@c3gestao.com.br?subject=Quero%20um%20retorno%20da%20C3%20Gestão&body=Olá%20Adriana,%20gostaria%20de%20receber%20um%20retorno%20sobre%20como%20a%20C3%20Gestão%20pode%20ajudar%20minha%20empresa."
+         class="btn-secondary btn-email-sec">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        Quero um retorno da Adriana
+      </a>
+
+      <!-- NOTA LGPD -->
+      <p class="form-note" style="margin-top:14px;">Ao preencher, você está ciente que a <strong>C3 Gestão</strong> poderá enviar comunicações e conteúdos de acordo com os seus interesses.</p>
     </div>
   </div>
 </section>
