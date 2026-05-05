@@ -70,7 +70,7 @@ nav ul a:hover{color:var(--ouro);}
 .cbtn.prev{left:18px;}.cbtn.next{right:18px;}
 
 /* ── STRIP ── */
-.strip{background:var(--ouro);padding:22px 60px;display:flex;justify-content:center;align-items:center;position:relative;z-index:1;}
+.strip{background:var(--ouro);padding:22px 40px;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;position:relative;z-index:1;text-align:center;}
 .strip-frase{text-align:center;}
 .strip-label{font-size:0.66rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(26,26,28,0.5);margin-bottom:6px;}
 .strip-texto{font-size:clamp(1.1rem,2.6vw,1.7rem);font-weight:700;color:#1a1a1c;}
@@ -97,7 +97,7 @@ section{padding:88px 60px;position:relative;z-index:1;}
 .quem-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:64px;align-items:center;margin-top:48px;}
 .foto-wrap{position:relative;aspect-ratio:3/4;max-width:300px;border:1px solid rgba(168,144,96,0.22);overflow:hidden;}
 .foto-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--ouro-escuro),var(--ouro),var(--ouro-claro));z-index:2;}
-.foto-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;}
+.foto-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 15%;}
 .foto-placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--cinza-fundo) 0%,rgba(168,144,96,0.08) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
 .foto-placeholder .ico{font-size:3rem;opacity:0.22;}
 .foto-placeholder p{font-size:0.68rem;font-weight:300;color:var(--muted);text-align:center;padding:0 20px;line-height:1.6;}
@@ -272,7 +272,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
   .cbtn.next{right:6px;}
 
   /* STRIP */
-  .strip{padding:14px 16px;flex-direction:column;gap:10px;text-align:center;}
+  .strip{padding:14px 16px;flex-direction:column;gap:8px;text-align:center;align-items:center;}
   .strip img{height:36px;}
   .strip div{font-size:0.9rem !important;}
 
@@ -284,7 +284,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 
   /* QUEM SOMOS */
   .quem-grid{grid-template-columns:1fr;gap:28px;}
-  .foto-wrap{max-width:100%;max-height:280px;aspect-ratio:unset;}
+  .foto-wrap{max-width:100%;height:320px;aspect-ratio:unset;}
 
   /* SERVIÇOS */
   .serv-grid{grid-template-columns:repeat(2,1fr);}
@@ -298,7 +298,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
   .pq-wrapper{grid-template-columns:1fr;min-height:unset;}
   .pq-left{padding:40px 24px;}
   .pq-right{padding:40px 24px;}
-  .pq-cards{grid-template-columns:repeat(2,1fr);gap:14px;}
+  .pq-cards{display:grid !important;grid-template-columns:repeat(2,1fr) !important;gap:14px;}
   .pq-left-title{font-size:1.4rem;}
 
   /* DIAGNÓSTICO */
@@ -487,13 +487,13 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
   </div>
   <div class="serv-grid">
     <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=70&fit=crop" alt="Contas a Pagar"><div class="serv-body"><h3>Contas a Pagar e Receber</h3><p>Controle rigoroso de vencimentos, cobranças e pagamentos. Sem atrasos, sem multas.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=600&q=70&fit=crop" alt="Conciliação Bancária"><div class="serv-body"><h3>Conciliação Bancária</h3><p>Conferência diária das movimentações (D+1), garantindo precisão nos registros.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600&q=70&fit=crop" alt="Fluxo de Caixa"><div class="serv-body"><h3>Fluxo de Caixa</h3><p>Visibilidade total das entradas e saídas com projeções para decisões seguras.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=70&fit=crop" alt="DRE"><div class="serv-body"><h3>DRE e Relatórios</h3><p>Demonstrativos e relatórios semanais e mensais para gestão com dados reais.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=600&q=70&fit=crop" alt="Conciliação Bancária"><div class="serv-body"><h3>Conciliação Bancária</h3><p>Conciliação em tempo real, garantindo precisão nos registros e prevenção de erros, contribuindo com a segurança financeira de sua empresa.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600&q=70&fit=crop" alt="Fluxo de Caixa"><div class="serv-body"><h3>Fluxo de Caixa</h3><p>Visibilidade total das entradas e saídas. Projeções para antecipar decisões com segurança.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=600&q=70&fit=crop" alt="Faturamento"><div class="serv-body"><h3>Faturamento</h3><p>Garantindo conformidade e controle das operações com a emissão, envio e conferência de NF e Boletos.</p></div></div>
     <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=600&q=70&fit=crop" alt="ERP"><div class="serv-body"><h3>Implantação de ERP</h3><p>Estruturamos sistemas como NIBO com plano de contas e conciliação automática.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=70&fit=crop" alt="Planilhas"><div class="serv-body"><h3>Planilhas Personalizadas</h3><p>Montagem de planilhas sob medida para controle financeiro e gestão do negócio.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=70&fit=crop" alt="DRE"><div class="serv-body"><h3>DRE e Relatórios</h3><p>Demonstrativos e relatórios semanais e mensais para gestão com dados reais, com planilhas personalizadas para o controle financeiro.</p></div></div>
     <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&q=70&fit=crop" alt="Documentos"><div class="serv-body"><h3>Organização e Digitalização</h3><p>Documentos, notas e boletos organizados em drive com nomenclatura adequada.</p></div></div>
-    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=70&fit=crop" alt="BPO"><div class="serv-body"><h3>BPO Financeiro · Facilities</h3><p>Terceirização completa do departamento financeiro com suporte personalizado.</p></div></div>
+    <div class="serv-card"><img class="serv-foto" src="https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&q=70&fit=crop" alt="Fechamento Mensal"><div class="serv-body"><h3>Fechamento Mensal</h3><p>Interface com a Contabilidade terceira e envio de documentos necessários para o correto fechamento e apuração de impostos.</p></div></div>
   </div>
   <div style="text-align:center;margin-top:44px;">
     <a href="https://wa.me/5511973420686?text=Quero%20conhecer%20os%20serviços%20da%20C3%20Gestão" class="btn-dark" target="_blank">Quero conhecer os serviços</a>
@@ -506,7 +506,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
     <span style="display:inline-block;font-size:0.64rem;font-weight:500;letter-spacing:0.26em;text-transform:uppercase;color:rgba(26,26,28,0.5);margin-bottom:14px;">Por que organizar o financeiro da sua empresa com a C3 Gestão?</span>
     <h2 style="font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:800;color:#1a1a1c;line-height:1.1;">Mais controle, segurança e clareza</h2>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:52px;">
+  <div class="pq-cards" style="margin-bottom:52px;">
 
     <!-- Card 1 -->
     <div style="text-align:center;">
@@ -559,7 +559,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
       <img src="logo_c3_diagnostico.png" alt="C3 Gestão" style="height:80px;width:auto;object-fit:contain;margin-bottom:20px;">
       <div class="diag-title-main">Diagnóstico</div>
       <div class="diag-title-sub">Financeiro</div>
-      <p class="diag-desc">Responda algumas perguntas e descubra os pontos críticos da saúde financeira da sua empresa.</p>
+      <p class="diag-desc">Responda 8 perguntas e descubra os pontos críticos da saúde financeira da sua empresa.</p>
       <div class="diag-stats">
         <div class="diag-stat"><div class="n">~3min</div><div class="l">Duração</div></div>
         <div class="diag-stat"><div class="n">8</div><div class="l">Perguntas</div></div>
