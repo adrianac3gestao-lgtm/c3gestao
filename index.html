@@ -74,6 +74,7 @@ nav ul a:hover{color:var(--ouro);}
 /* ── STRIP ── */
 .strip{background:var(--ouro);padding:14px 40px;display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:nowrap;position:relative;z-index:1;text-align:center;}
 .strip-frase{text-align:center;}
+.faixa-frase{white-space:nowrap;}
 .strip-label{font-size:0.66rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(26,26,28,0.5);margin-bottom:6px;}
 .strip-texto{font-size:clamp(1.1rem,2.6vw,1.7rem);font-weight:700;color:#1a1a1c;}
 
@@ -197,20 +198,20 @@ section{padding:72px 60px;position:relative;z-index:1;}
 .diag-wpp-txt strong{display:block;font-size:0.82rem;font-weight:600;color:var(--branco);margin-bottom:2px;}
 
 /* lado direito — formulário */
-.diag-form{background:rgba(20,20,22,0.75);border:1px solid rgba(168,144,96,0.25);padding:38px 34px;position:relative;backdrop-filter:blur(12px);}
+.diag-form{background:#F5EDD6;border:1px solid rgba(163,147,114,0.35);padding:28px 26px;position:relative;}
 .diag-form::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ouro-escuro),var(--ouro),var(--ouro-claro));}
-.form-title{font-size:1.15rem;font-weight:300;color:var(--branco);margin-bottom:4px;}
+.form-title{font-size:1rem;font-weight:300;color:#1a1a1c;margin-bottom:3px;}
 .form-title strong{font-weight:700;color:var(--ouro);}
-.form-sub{font-size:0.72rem;font-weight:300;color:var(--muted);margin-bottom:24px;}
-.fg{margin-bottom:13px;}
-.fg label{display:block;font-size:0.6rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:#8a8885;margin-bottom:5px;}
-.fg input,.fg select{width:100%;background:rgba(53,53,55,0.8);border:1px solid rgba(168,144,96,0.2);color:var(--branco);padding:11px 13px;font-size:0.85rem;font-family:'Sora',sans-serif;font-weight:300;outline:none;transition:border-color .3s;appearance:none;}
-.fg input::placeholder{color:rgba(245,243,239,0.26);}
+.form-sub{font-size:0.68rem;font-weight:300;color:rgba(26,26,28,0.6);margin-bottom:16px;}
+.fg{margin-bottom:9px;}
+.fg label{display:block;font-size:0.6rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:#5a5855;margin-bottom:5px;}
+.fg input,.fg select{width:100%;background:white;border:1px solid rgba(163,147,114,0.4);color:#1a1a1c;padding:9px 11px;font-size:0.8rem;font-family:'Sora',sans-serif;font-weight:300;outline:none;transition:border-color .3s;appearance:none;}
+.fg input::placeholder{color:rgba(26,26,28,0.35);}
 .fg input:focus,.fg select:focus{border-color:var(--ouro);}
-.fg select option{background:#2c2c2e;}
-.btn-form{width:100%;background:var(--ouro);color:#1a1a1c;padding:14px;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;transition:background .3s;margin-top:4px;}
+.fg select option{background:white;color:#1a1a1c;}
+.btn-form{width:100%;background:var(--ouro);color:#1a1a1c;padding:11px;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;transition:background .3s;margin-top:4px;}
 .btn-form:hover{background:var(--ouro-claro);}
-.form-note{font-size:0.66rem;font-weight:300;color:var(--muted);line-height:1.6;margin-top:12px;text-align:center;}
+.form-note{font-size:0.66rem;font-weight:300;color:rgba(26,26,28,0.55);line-height:1.6;margin-top:12px;text-align:center;}
 .form-divider{display:flex;align-items:center;gap:10px;margin:16px 0 12px;}
 .form-divider::before,.form-divider::after{content:'';flex:1;height:1px;background:rgba(168,144,96,0.2);}
 .form-divider span{font-size:0.62rem;font-weight:400;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;}
@@ -219,7 +220,7 @@ section{padding:72px 60px;position:relative;z-index:1;}
 .btn-wpp-sec:hover{background:rgba(37,211,102,0.2);}
 .btn-email-sec{background:rgba(168,144,96,0.08);color:var(--ouro);border:1px solid rgba(168,144,96,0.25);margin-top:8px;}
 .btn-email-sec:hover{background:rgba(168,144,96,0.15);}
-.form-note strong{color:var(--branco);}
+.form-note strong{color:#1a1a1c;}
 
 /* ── FOOTER ── */
 footer{background:#1c1c1e;padding:14px 60px 12px;position:relative;z-index:1;border-top:1px solid rgba(168,144,96,0.15);font-family:"Sora",sans-serif;}
@@ -324,6 +325,8 @@ footer{background:#1c1c1e;padding:14px 60px 12px;position:relative;z-index:1;bor
   .diag-wrapper{grid-template-columns:1fr;gap:32px;}
   .diag-left{align-items:center;text-align:center;}
   .diag-stats{gap:20px;justify-content:center;}
+  .faixa-descubra{padding:28px 20px !important;}
+  .faixa-descubra p{white-space:normal !important;font-size:clamp(1.1rem,5vw,1.5rem) !important;text-align:center !important;}
   .diag-h1,.diag-title-main{font-size:clamp(2.2rem,8vw,3.5rem);}
   .diag-title-sub,.diag-h2{font-size:clamp(2.2rem,8vw,3.5rem);}
 
@@ -400,7 +403,7 @@ footer{background:#1c1c1e;padding:14px 60px 12px;position:relative;z-index:1;bor
     <li><a href="#servicos" onclick="scrollTo_('#servicos');return false;">Serviços</a></li>
     <li><a href="#diagnostico" onclick="scrollTo_('#diagnostico');return false;">Diagnóstico Gratuito</a></li>
   </ul>
-  <a href="#diagnostico" onclick="scrollTo_('#diagnostico');return false;" class="nav-cta-mobile" style="display:none;background:var(--ouro);color:#1a1a1c;padding:7px 14px;font-family:'Sora',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;white-space:nowrap;">Diagnóstico Financeiro</a>
+  <a href="#diagnostico" onclick="scrollTo_('#diagnostico');return false;" class="nav-cta-mobile" style="display:none;background:var(--ouro);color:#1a1a1c;padding:7px 14px;font-family:'Sora',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;white-space:nowrap;">Diagnóstico Gratuito</a>
   <div class="nav-right">
     <a href="tel:+5511973420686" class="nav-phone">(11) 97342-0686</a>
     <a href="https://wa.me/5511973420686" class="nav-icon" target="_blank"><svg><use href="#ico-wpp"/></svg></a>
@@ -538,7 +541,7 @@ footer{background:#1c1c1e;padding:14px 60px 12px;position:relative;z-index:1;bor
   </div>
 </div>
 <!-- FAIXA DESCUBRA -->
-<div style="background:var(--ouro);padding:40px 60px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;z-index:1;">
+<div class="faixa-descubra" style="background:var(--ouro);padding:40px 60px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;z-index:1;">
   <p style="font-family:'Sora',sans-serif;font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:800;color:white;line-height:1.15;margin-bottom:24px;white-space:nowrap;">Descubra onde sua empresa perde dinheiro.</p>
   <a href="#diagnostico" onclick="scrollTo_('#diagnostico');return false;" class="btn-dark" style="font-size:0.82rem;padding:14px 44px;letter-spacing:0.14em;">Diagnóstico Financeiro Gratuito →</a>
 </div>
