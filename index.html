@@ -32,9 +32,9 @@ body{font-family:'Sora',sans-serif;background:var(--cinza-fundo);color:var(--bra
 body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:min(88vw,820px);height:min(88vw,820px);background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,5 188,52 188,148 100,195 12,148 12,52' fill='none' stroke='%23a89060' stroke-width='1.5'/%3E%3Cpath d='M84 58 L54 100 L84 142' stroke='%23f5f3ef' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='108' y='58' width='13' height='84' rx='3' fill='%23a89060'/%3E%3Crect x='127' y='70' width='13' height='72' rx='3' fill='%23a89060' opacity='0.65'/%3E%3Crect x='146' y='82' width='13' height='60' rx='3' fill='%23a89060' opacity='0.38'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:contain;opacity:0.03;pointer-events:none;z-index:0;}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;width:100%;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:13px 60px;background:rgba(24,24,26,0.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(168,144,96,0.2);}
+nav{position:fixed;top:0;width:100%;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:10px 60px;background:rgba(24,24,26,0.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(168,144,96,0.2);}
 .nav-left{display:flex;align-items:center;gap:12px;}
-.nav-left img{height:40px;width:auto;object-fit:contain;}
+.nav-left img{height:52px;width:auto;object-fit:contain;}
 .nav-brand strong{display:block;font-size:0.92rem;font-weight:600;color:var(--branco);}
 .nav-brand span{display:block;font-size:0.58rem;font-weight:300;letter-spacing:0.18em;color:var(--ouro);text-transform:uppercase;}
 nav ul{list-style:none;display:flex;gap:26px;align-items:center;}
@@ -95,7 +95,7 @@ section{padding:88px 60px;position:relative;z-index:1;}
 /* ── QUEM SOMOS ── */
 #quem{background:var(--cinza-card);min-height:auto;}
 .quem-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:64px;align-items:center;margin-top:48px;}
-.foto-wrap{position:relative;aspect-ratio:3/4;max-width:300px;border:1px solid rgba(168,144,96,0.22);overflow:hidden;}
+.foto-wrap{position:relative;aspect-ratio:3/4;max-width:380px;width:100%;border:1px solid rgba(168,144,96,0.22);overflow:hidden;}
 .foto-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--ouro-escuro),var(--ouro),var(--ouro-claro));z-index:2;}
 .foto-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 15%;}
 .foto-placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--cinza-fundo) 0%,rgba(168,144,96,0.08) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
@@ -243,7 +243,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 /* ── RESPONSIVE ── */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px 6px;background:none;border:none;flex-shrink:0;}
 .hamburger span{display:block;width:22px;height:2px;background:var(--ouro);border-radius:1px;transition:all .3s;}
-.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(24,24,26,0.98);backdrop-filter:blur(14px);border-bottom:1px solid rgba(168,144,96,0.2);z-index:9999;padding:8px 0;flex-direction:column;}
+.mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(24,24,26,0.98);backdrop-filter:blur(14px);border-bottom:1px solid rgba(168,144,96,0.2);z-index:9999;padding:8px 0;flex-direction:column;}
 .mobile-menu.open{display:flex !important;}
 .mobile-menu a{color:var(--muted);text-decoration:none;font-size:0.9rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;padding:14px 20px;border-bottom:1px solid rgba(168,144,96,0.08);transition:color .3s;display:block;}
 .mobile-menu a:hover{color:var(--ouro);}
@@ -266,7 +266,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
   .nav-phone{display:none;}
   .nav-right{gap:6px;}
   .nav-right .nav-icon{display:none;}
-  .nav-left img{height:32px;}
+  .nav-left img{height:44px;}
   .hamburger{display:flex !important;}
 
   /* CARROSSEL */
@@ -282,8 +282,10 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
   .cbtn.next{right:6px;}
 
   /* STRIP */
-  .strip{padding:14px 16px;flex-direction:column;gap:8px;text-align:center;align-items:center;}
-  .strip img{height:36px;}
+  .strip{padding:20px 24px;flex-direction:column;gap:12px;text-align:center;align-items:center;}
+  .strip img{height:42px;}
+  .strip-divider{display:none !important;}
+  .strip div{font-size:1rem !important;text-align:center !important;}
   .strip div{font-size:0.9rem !important;}
 
   /* SEÇÕES gerais */
@@ -294,7 +296,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 
   /* QUEM SOMOS */
   .quem-grid{grid-template-columns:1fr;gap:28px;}
-  .foto-wrap{max-width:100%;height:360px;aspect-ratio:unset;}
+  .foto-wrap{max-width:100%;aspect-ratio:3/4;height:auto;}
   .foto-wrap img{object-position:center 10% !important;}
 
   /* SERVIÇOS */
@@ -320,8 +322,13 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
   .diag-title-sub,.diag-h2{font-size:clamp(2.2rem,8vw,3.5rem);}
 
   /* RODAPÉ */
-  .foot-grid{grid-template-columns:1fr;gap:20px;}
+  .foot-grid{grid-template-columns:1fr;gap:24px;}
   footer{padding:32px 20px 16px;}
+  .foot-grid > div{text-align:center;}
+  .foot-logo{justify-content:center;}
+  .foot-col a{justify-content:center;}
+  .foot-social{justify-content:center;}
+  .foot-tagline{max-width:100%;}
   .foot-bottom{padding-top:14px;}
 
   /* WPP FLUTUANTE — garantir dentro da tela */
@@ -349,7 +356,7 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 @media(max-width:380px){
   .etapas-grid{grid-template-columns:1fr;}
   nav{padding:10px 12px;}
-  .nav-left img{height:28px;}
+  .nav-left img{height:38px;}
 }
 
 /* Rotação automática (landscape mobile) */
@@ -442,9 +449,9 @@ footer{background:#1c1c1e;padding:22px 60px 16px;position:relative;z-index:1;bor
 
 <!-- 2. STRIP -->
 <div class="strip" style="background:var(--ouro);padding:16px 60px;display:flex;justify-content:center;align-items:center;gap:24px;position:relative;z-index:1;">
-  <img src="logo_c3_dourado.png" alt="C3 Gestão" style="height:44px;width:auto;object-fit:contain;">
-  <div style="width:1px;height:36px;background:rgba(26,26,28,0.2);"></div>
-  <div style="font-size:clamp(0.9rem,2.2vw,1.4rem);font-weight:700;color:#1a1a1c;font-family:'Sora',sans-serif;">Eficiência financeira que <strong>impulsiona</strong> resultados.</div>
+  <img src="logo_c3_dourado.png" alt="C3 Gestão" style="height:50px;width:auto;object-fit:contain;">
+  <div style="width:1px;height:40px;background:rgba(26,26,28,0.2);flex-shrink:0;" class="strip-divider"></div>
+  <div style="font-size:clamp(0.95rem,2.2vw,1.5rem);font-weight:700;color:#1a1a1c;font-family:'Sora',sans-serif;text-align:center;">Eficiência financeira que <strong>impulsiona</strong> resultados.</div>
 </div>
 </div>
 
