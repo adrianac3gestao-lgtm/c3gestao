@@ -1120,14 +1120,11 @@ const dimsResumo = dims.map(d => {
   return `${d.label}: ${pct}%`;
 }).join(' | ');
 
-const urlParams = new URLSearchParams(window.location.search);
 
 const payload = {
   timestamp: new Date().toISOString(),
   startedAt: '',
   pageUrl: window.location.href,
-  userAgent: navigator.userAgent,
-
   nome: name,
   whatsapp: phone || '(não informado)',
   segmento: segment,
@@ -1140,16 +1137,10 @@ const payload = {
   maturidade: title,
   dimensoes: dimsResumo,
   recomendacao: subtitle,
-  respostas: respostas,
-
-  utm_source: urlParams.get('utm_source') || '',
-  utm_medium: urlParams.get('utm_medium') || '',
-  utm_campaign: urlParams.get('utm_campaign') || '',
-  utm_content: urlParams.get('utm_content') || '',
-  utm_term: urlParams.get('utm_term') || ''
+  respostas: respostas
 };
 
-fetch('https://script.google.com/macros/s/AKfycbz485eMw5KCIvCZj_IbckL93BRfO8orvqFCsLu0FDvwsa6ghHEGAdHa-74HulWEIgj63w/exec', {
+fetch('https://script.google.com/macros/s/AKfycbyCoHffsPJpHIFR6o-4X7J8CASXIGbqiZvfiiMG8HPo8S7pdpjahPux33NMUAAzSUT5/exec', {
   method: 'POST',
   mode: 'no-cors',
   headers: { 'Content-Type': 'text/plain;charset=utf-8' },
