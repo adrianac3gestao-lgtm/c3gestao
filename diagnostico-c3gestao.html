@@ -1084,43 +1084,80 @@ function showResult() {
   );
   document.getElementById('wppLink').href = `https://wa.me/5511973420686?text=${msg}`;
 
-  // --- FORMSUBMIT: envia todas as respostas para adriana@c3gestao.com.br ---
-  const qLabels = {
-    1: 'Controle de caixa',
-    2: 'Contas a pagar',
-    3: 'DRE / Relatórios',
-    4: 'Separação PF/PJ',
-    5: 'Planejamento financeiro',
-    6: 'Organização documental',
-    7: 'Tempo gasto no financeiro',
-    8: 'Base das decisões',
-  };
+  // --- APPS SCRIPT: envia o lead para planilha + e-mail ---
+const qLabels = {
+  1: 'Controle de caixa',
+  2: 'Contas a pagar',
+  3: 'DRE / Relatórios',
+  4: 'Separação PF/PJ',
+  5: 'Planejamento financeiro',
+  6: 'Organização documental',
+  7: 'Tempo gasto no financeiro',
+  8: 'Base das decisões',
+};
 
-  let respostasTexto = '';
-  for (let i = 1; i <= 8; i++) {
-    const a = answers[i];
-    respostasTexto += `Q${i} — ${qLabels[i]}: ${a ? a.icon + ' ' + a.label + ' (score ' + a.score + '/3)' : 'Não respondido'}\n`;
-  }
+const respostas = [];
+let respostasTexto = '';
 
-  const payload = {
-    _subject: `🔔 Novo Diagnóstico C3 Gestão — ${name} | Score: ${score}/100 (${title})`,
-    _template: 'table',
-    _captcha: 'false',
-    Nome: name,
-    WhatsApp: phone || '(não informado)',
-    Segmento: segment,
-    Score: `${score}/100 — ${title}`,
-    'Resumo do diagnóstico': respostasTexto,
-  };
+for (let i = 1; i <= 8; i++) {
+  const a = answers[i];
 
-  fetch('https://formsubmit.co/ajax/adriana@c3gestao.com.br', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify(payload),
-  })
-  .then(r => r.json())
-  .then(data => console.log('FormSubmit OK:', data))
-  .catch(err => console.warn('FormSubmit erro:', err));
+  respostas.push({
+    numero: i,
+    dimensao: qLabels[i],
+    pergunta: qLabels[i],
+    resposta: a ? `${a.icon} ${a.label}` : 'Não respondido',
+    pontos: a ? a.score : ''
+  });
+
+  respostasTexto += `Q${i} — ${qLabels[i]}: ${a ? a.icon + ' ' + a.label + ' (score ' + a.score + '/3)' : 'Não respondido'}\n`;
+}
+
+const dimsResumo = dims.map(d => {
+  let pts = 0;
+  d.qs.forEach(q => { pts += answers[q] ? answers[q].score : 0; });
+  const pct = Math.round((pts / d.max) * 100);
+  return `${d.label}: ${pct}%`;
+}).join(' | ');
+
+const urlParams = new URLSearchParams(window.location.search);
+
+const payload = {
+  timestamp: new Date().toISOString(),
+  startedAt: '',
+  pageUrl: window.location.href,
+  userAgent: navigator.userAgent,
+
+  nome: name,
+  whatsapp: phone || '(não informado)',
+  segmento: segment,
+  faturamento: '',
+  funcao: '',
+  urgencia: '',
+  dorPrincipal: '',
+
+  score: score,
+  maturidade: title,
+  dimensoes: dimsResumo,
+  recomendacao: subtitle,
+  respostas: respostas,
+
+  utm_source: urlParams.get('utm_source') || '',
+  utm_medium: urlParams.get('utm_medium') || '',
+  utm_campaign: urlParams.get('utm_campaign') || '',
+  utm_content: urlParams.get('utm_content') || '',
+  utm_term: urlParams.get('utm_term') || ''
+};
+
+fetch('https://script.google.com/macros/s/AKfycbz485eMw5KCIvCZj_IbckL93BRfO8orvqFCsLu0FDvwsa6ghHEGAdHa-74HulWEIgj63w/exec', {
+  method: 'POST',
+  mode: 'no-cors',
+  headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+  body: JSON.stringify(payload),
+})
+.then(() => console.log('Apps Script: lead enviado'))
+.catch(err => console.warn('Apps Script erro:', err));
+  
 }
 </script>
 </body>
