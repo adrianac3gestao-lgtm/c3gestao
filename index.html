@@ -259,6 +259,18 @@ footer{background:#1c1c1e;padding:14px 60px 12px;position:relative;z-index:1;bor
 .mobile-menu.open{display:flex !important;}
 .mobile-menu a{color:var(--muted);text-decoration:none;font-size:0.9rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;padding:14px 20px;border-bottom:1px solid rgba(168,144,96,0.08);transition:color .3s;display:block;}
 .mobile-menu a:hover{color:var(--ouro);}
+nav ul a.nav-material{color:var(--ouro);font-weight:600;}
+nav ul a{white-space:nowrap;}
+@media(min-width:901px) and (max-width:1280px){nav{padding:12px 32px;}nav ul{gap:18px;}.nav-phone{display:none !important;}}
+@media(min-width:901px) and (max-width:1080px){nav ul{gap:13px;}nav ul a{font-size:0.66rem;letter-spacing:0.04em;}.nav-right a[href*="instagram"],.nav-right a[href*="linkedin"]{display:none;}}
+.mobile-menu a.nav-material{color:var(--ouro);font-weight:600;}
+#materiais{background:#242523;padding:56px 60px;border-top:1px solid rgba(168,144,96,0.2);border-bottom:1px solid rgba(168,144,96,0.2);}
+.mat-wrap{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:48px;}
+.mat-wrap img{width:170px;flex:0 0 auto;transform:rotate(-3deg);box-shadow:0 18px 40px rgba(0,0,0,0.5);}
+.mat-badge{font-size:0.66rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ouro);}
+.mat-title{font-size:1.6rem;font-weight:700;color:var(--branco);margin:10px 0 8px;line-height:1.25;}
+.mat-desc{font-size:0.9rem;font-weight:300;color:var(--muted);line-height:1.7;margin-bottom:20px;max-width:560px;}
+@media(max-width:860px){#materiais{padding:44px 20px;}.mat-wrap{flex-direction:column;text-align:center;gap:28px;}.mat-wrap img{width:140px;}.mat-desc{margin-left:auto;margin-right:auto;}}
 .mobile-menu a.menu-cta{background:var(--ouro);color:#1a1a1c !important;font-weight:700;text-align:center;margin:10px 20px 4px;padding:13px 20px;}
 /* ── TABLET ── */
 @media(max-width:1100px){
@@ -411,6 +423,7 @@ footer{background:#1c1c1e;padding:14px 60px 12px;position:relative;z-index:1;bor
     <li><a href="#porquec3" onclick="scrollTo_('#porquec3');return false;">Por que C3</a></li>
     <li><a href="#servicos" onclick="scrollTo_('#servicos');return false;">Serviços</a></li>
     <li><a href="#diagnostico" onclick="scrollTo_('#diagnostico');return false;">Diagnóstico Gratuito</a></li>
+    <li><a href="politica-de-pagamentos.html?origem=site-menu" class="nav-material">Material Gratuito</a></li>
   </ul>
   <a href="#diagnostico" onclick="scrollTo_('#diagnostico');return false;" class="nav-cta-mobile" style="display:none;background:var(--ouro);color:#1a1a1c;padding:7px 14px;font-family:'Sora',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;white-space:nowrap;">Diagnóstico Gratuito</a>
   <div class="nav-right">
@@ -431,6 +444,7 @@ footer{background:#1c1c1e;padding:14px 60px 12px;position:relative;z-index:1;bor
   <a href="#quem" onclick="scrollTo_('#quem');closeMenu();return false;">Quem Somos</a>
   <a href="#porquec3" onclick="scrollTo_('#porquec3');closeMenu();return false;">Por que C3</a>
   <a href="#servicos" onclick="scrollTo_('#servicos');closeMenu();return false;">Serviços</a>
+  <a href="politica-de-pagamentos.html?origem=site-menu" class="nav-material">Material Gratuito</a>
 </div>
 
 <!-- 1. CARROSSEL -->
@@ -599,6 +613,19 @@ footer{background:#1c1c1e;padding:14px 60px 12px;position:relative;z-index:1;bor
     </div>
   </div>
 
+</section>
+
+<!-- 6b. MATERIAL GRATUITO — Política de Pagamentos -->
+<section id="materiais">
+  <div class="mat-wrap">
+    <img src="politica-de-pagamentos-capa.png" alt="Modelo de Política de Pagamentos">
+    <div>
+      <div class="mat-badge">Material gratuito</div>
+      <div class="mat-title">Modelo de Política de Pagamentos</div>
+      <p class="mat-desc">Regras, alçadas de aprovação e o processo de contas a pagar em um modelo pronto para adaptar à sua empresa.</p>
+      <a href="politica-de-pagamentos.html?origem=site-banner" class="btn-gold">Baixar o modelo →</a>
+    </div>
+  </div>
 </section>
 
 <!-- 7. DIAGNÓSTICO — título elegante esquerda + formulário direita -->

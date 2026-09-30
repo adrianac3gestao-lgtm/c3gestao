@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18182047261"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18182047261');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Modelo de Política de Pagamentos | C3 Gestão</title>
+<meta name="description" content="Modelo gratuito de Política de Pagamentos para pequenas e médias empresas: regras, alçadas de aprovação e processo de contas a pagar. Material da C3 Gestão.">
+<meta property="og:title" content="Modelo de Política de Pagamentos — C3 Gestão">
+<meta property="og:description" content="Regras, alçadas de aprovação e o processo de contas a pagar em um modelo pronto para adaptar à sua empresa.">
+<meta property="og:image" content="https://www.c3gestao.com.br/politica-de-pagamentos-capa.png">
+<style>
+@font-face{font-family:'Sora';src:url('Sora-Light.ttf');font-weight:300;}
+@font-face{font-family:'Sora';src:url('Sora-Regular.ttf');font-weight:400;}
+@font-face{font-family:'Sora';src:url('Sora-SemiBold.ttf');font-weight:600;}
+@font-face{font-family:'Sora';src:url('Sora-Bold.ttf');font-weight:700;}
+:root{
+  --preto:#242523; --cinza:#3a3b3a; --cinza-medio:#868686; --claro:#f0eeea;
+  --ouro:#a39372; --ouro-claro:#c0b090; --branco:#f5f3ef;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Sora',Arial,sans-serif;background:var(--preto);color:var(--branco);line-height:1.6;}
+a{color:inherit;}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 6vw;border-bottom:1px solid rgba(163,147,114,0.25);}
+header img{height:38px;width:auto;display:block;}
+header .voltar{font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ouro-claro);text-decoration:none;}
+.hero{display:grid;grid-template-columns:1.1fr 0.9fr;grid-template-areas:"txt card" "mock card";column-gap:56px;row-gap:0;max-width:1160px;margin:0 auto;padding:64px 6vw 72px;align-items:start;}
+.badge{display:inline-block;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:var(--ouro);border:1px solid var(--ouro);padding:6px 14px;}
+h1{font-size:clamp(2rem,4.2vw,3.1rem);font-weight:700;line-height:1.15;margin:22px 0 16px;}
+h1 span{color:var(--ouro);}
+.lead{font-size:1.02rem;font-weight:300;color:#d9d6cf;max-width:560px;}
+.inside{margin:30px 0 0;list-style:none;}
+.inside li{padding:12px 0 12px 30px;border-top:1px solid rgba(163,147,114,0.2);position:relative;font-size:0.95rem;}
+.inside li:last-child{border-bottom:1px solid rgba(163,147,114,0.2);}
+.inside li::before{content:'';position:absolute;left:4px;top:21px;width:10px;height:10px;background:var(--ouro);transform:rotate(45deg);}
+.txt{grid-area:txt;} .card{grid-area:card;} .mockup{grid-area:mock;margin-top:40px;display:flex;justify-content:center;}
+.mockup img{width:min(340px,80%);transform:rotate(-3deg);box-shadow:0 26px 60px rgba(0,0,0,0.55);border-radius:3px;}
+.card{background:var(--branco);color:var(--preto);padding:34px 30px;border-top:4px solid var(--ouro);position:sticky;top:24px;}
+.card h2{font-size:1.35rem;font-weight:700;line-height:1.25;}
+.card p.sub{font-size:0.85rem;color:#6e6c64;margin:6px 0 22px;}
+.fg{margin-bottom:14px;}
+.fg label{display:block;font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;}
+.fg input{width:100%;padding:12px 14px;border:1px solid #d6d2c8;background:#fff;font-family:inherit;font-size:0.95rem;color:var(--preto);}
+.fg input:focus{outline:2px solid var(--ouro);border-color:var(--ouro);}
+button{width:100%;margin-top:8px;padding:16px;border:none;background:var(--preto);color:var(--branco);font-family:inherit;font-weight:700;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;}
+button:hover{background:var(--ouro);color:var(--preto);}
+.nota{font-size:0.75rem;color:#6e6c64;margin-top:14px;line-height:1.5;}
+.implantar{background:var(--claro);color:var(--preto);text-align:center;padding:64px 6vw;}
+.implantar h3{font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:700;max-width:720px;margin:0 auto;line-height:1.3;}
+.implantar p{max-width:640px;margin:14px auto 28px;color:#555;font-size:0.95rem;}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-block;padding:14px 30px;font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;}
+.btn-gold{background:var(--ouro);color:var(--preto);}
+.btn-line{border:1.5px solid var(--preto);color:var(--preto);}
+footer{text-align:center;padding:40px 6vw 48px;font-size:0.8rem;color:var(--cinza-medio);}
+footer .pilares{color:var(--ouro);letter-spacing:0.16em;text-transform:uppercase;font-weight:700;font-size:0.72rem;margin-bottom:10px;}
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;grid-template-areas:"txt" "card" "mock";row-gap:36px;padding:40px 16px 56px;}
+  .mockup{margin-top:0;}
+  .card{position:static;}
+  header{padding:14px 16px;}
+  header img{height:30px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html"><img src="LOGO_C3_02_SEM-FUNDO_-15.png" alt="C3 Gestão"></a>
+  <a class="voltar" href="index.html">Conheça a C3 →</a>
+</header>
+
+<section class="hero">
+  <div class="txt">
+    <div class="badge">Material gratuito</div>
+    <h1>Modelo de <span>Política de Pagamentos</span></h1>
+    <p class="lead">Um modelo pronto para adaptar à sua empresa, com as regras que evitam erro, pagamento em dobro e fraude no contas a pagar.</p>
+    <ul class="inside">
+      <li>14 regras organizadas em 4 temas: documentos, aprovação e segurança, execução e registro, adiantamentos e reembolsos</li>
+      <li>Tabela de alçadas: quem aprova cada faixa de valor</li>
+      <li>Processo de contas a pagar passo a passo, com responsáveis e prazos</li>
+      <li>Campos para preencher, aprovar e assinar</li>
+    </ul>
+  </div>
+  <div class="mockup"><img src="politica-de-pagamentos-capa.png" alt="Prévia do modelo de Política de Pagamentos"></div>
+
+  <div class="card">
+    <h2>Receba o modelo agora</h2>
+    <p class="sub">Preencha os campos e o download começa em seguida.</p>
+    <form action="https://formsubmit.co/adriana@c3gestao.com.br" method="POST">
+      <input type="hidden" name="_next" value="https://www.c3gestao.com.br/modelo-politica-de-pagamentos-c3.pdf">
+      <input type="hidden" name="_subject" value="Novo Lead — Modelo de Política de Pagamentos">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_autoresponse" value="Olá! Obrigada pelo interesse. Aqui está o seu Modelo de Política de Pagamentos: https://www.c3gestao.com.br/modelo-politica-de-pagamentos-c3.pdf — Se quiser ajuda para implantar na sua empresa, é só responder este e-mail. Adriana — C3 Gestão.">
+      <input type="hidden" name="origem" id="origem" value="site">
+      <div class="fg"><label for="nome">Nome *</label><input type="text" id="nome" name="nome" placeholder="Seu nome" required></div>
+      <div class="fg"><label for="email">E-mail *</label><input type="email" id="email" name="email" placeholder="seu@email.com" required></div>
+      <div class="fg"><label for="tel">WhatsApp *</label><input type="tel" id="tel" name="telefone" placeholder="(11) 99999-9999" maxlength="15" required></div>
+      <div class="fg"><label for="empresa">Empresa</label><input type="text" id="empresa" name="empresa" placeholder="Nome da sua empresa"></div>
+      <button type="submit">Baixar o modelo →</button>
+      <p class="nota">Você também recebe o link por e-mail. Seus dados são usados apenas pela C3 Gestão para contato — confidencialidade é um dos nossos pilares.</p>
+    </form>
+  </div>
+</section>
+
+<section class="implantar">
+  <h3>Ter a política no papel é o primeiro passo. Fazer ela funcionar todo mês é o que a C3 faz.</h3>
+  <p>Contas a pagar, contas a receber, faturamento, relatórios gerenciais e fechamento mensal com qualidade.</p>
+  <div class="btns">
+    <a class="btn btn-gold" href="index.html#diagnostico">Diagnóstico financeiro gratuito</a>
+    <a class="btn btn-line" href="https://wa.me/5511973420686" target="_blank" rel="noopener">Falar com a Adriana</a>
+  </div>
+</section>
+
+<footer>
+  <div class="pilares">Confidencialidade · Confiança · Controle</div>
+  contato@c3gestao.com.br · (11) 97342-0686 · @c3gestao
+</footer>
+
+<script>
+  // Origem do lead: ?origem=instagram ou ?origem=linkedin no link enviado
+  try {
+    var o = new URLSearchParams(location.search).get('origem');
+    if (o) document.getElementById('origem').value = o.slice(0, 40);
+  } catch (e) {}
+  // Máscara simples de telefone
+  document.getElementById('tel').addEventListener('input', function () {
+    var v = this.value.replace(/\D/g, '').slice(0, 11);
+    if (v.length > 6) this.value = '(' + v.slice(0, 2) + ') ' + v.slice(2, v.length - 4) + '-' + v.slice(-4);
+    else if (v.length > 2) this.value = '(' + v.slice(0, 2) + ') ' + v.slice(2);
+    else this.value = v;
+  });
+</script>
+</body>
+</html>
