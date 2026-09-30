@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18182047261"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'AW-18182047261');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Modelo de Política de Pagamentos | C3 Gestão</title>
@@ -94,18 +86,13 @@ footer .pilares{color:var(--ouro);letter-spacing:0.16em;text-transform:uppercase
   <div class="card">
     <h2>Receba o modelo agora</h2>
     <p class="sub">Preencha os campos e o download começa em seguida.</p>
-    <form action="https://formsubmit.co/adriana@c3gestao.com.br" method="POST">
-      <input type="hidden" name="_next" value="https://www.c3gestao.com.br/modelo-politica-de-pagamentos-c3.pdf">
-      <input type="hidden" name="_subject" value="Novo Lead — Modelo de Política de Pagamentos">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_autoresponse" value="Olá! Obrigada pelo interesse. Aqui está o seu Modelo de Política de Pagamentos: https://www.c3gestao.com.br/modelo-politica-de-pagamentos-c3.pdf — Se quiser ajuda para implantar na sua empresa, é só responder este e-mail. Adriana — C3 Gestão.">
+    <form id="leadForm" action="modelo-politica-de-pagamentos-c3.pdf" method="GET">
       <input type="hidden" name="origem" id="origem" value="site">
       <div class="fg"><label for="nome">Nome *</label><input type="text" id="nome" name="nome" placeholder="Seu nome" required></div>
       <div class="fg"><label for="email">E-mail *</label><input type="email" id="email" name="email" placeholder="seu@email.com" required></div>
       <div class="fg"><label for="tel">WhatsApp *</label><input type="tel" id="tel" name="telefone" placeholder="(11) 99999-9999" maxlength="15" required></div>
       <div class="fg"><label for="empresa">Empresa</label><input type="text" id="empresa" name="empresa" placeholder="Nome da sua empresa"></div>
-      <button type="submit">Baixar o modelo →</button>
+      <button type="submit" id="btnLead">Baixar o modelo →</button>
       <p class="nota">Você também recebe o link por e-mail. Seus dados são usados apenas pela C3 Gestão para contato — confidencialidade é um dos nossos pilares.</p>
     </form>
   </div>
@@ -138,6 +125,37 @@ footer .pilares{color:var(--ouro);letter-spacing:0.16em;text-transform:uppercase
     else if (v.length > 2) this.value = '(' + v.slice(0, 2) + ') ' + v.slice(2);
     else this.value = v;
   });
+  // Envio do lead para a planilha da C3 em segundo plano + download garantido:
+  // mesmo se o envio falhar ou demorar, a pessoa recebe o PDF.
+  (function () {
+    var C3_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzx_1I8BauhJ5gjsCRy-nGrbQNAtdfy5CEFd_FVKReyeY-1VL7I6x1zb7fkppep1i9b/exec';
+    var PDF = 'https://www.c3gestao.com.br/modelo-politica-de-pagamentos-c3.pdf';
+    var form = document.getElementById('leadForm');
+    var btn = document.getElementById('btnLead');
+    form.addEventListener('submit', function (ev) {
+      if (!window.fetch) return; // navegador muito antigo: só baixa o PDF
+      ev.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+      var done = false;
+      function baixar() { if (done) return; done = true; window.location.href = PDF; }
+      setTimeout(baixar, 5000);
+      var payload = {
+        formulario: 'politica',
+        nome: document.getElementById('nome').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        telefone: document.getElementById('tel').value.trim(),
+        empresa: document.getElementById('empresa').value.trim(),
+        origem: document.getElementById('origem').value,
+        pagina: window.location.href
+      };
+      fetch(C3_SCRIPT_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      }).catch(function () {}).then(baixar);
+    });
+  })();
 </script>
 </body>
 </html>

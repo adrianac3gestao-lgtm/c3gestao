@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18182047261"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18182047261');
-</script>
 <meta charset="UTF-8">
 <meta name="description" content="C3 Gestão oferece BPO Financeiro, gestão de contas, fluxo de caixa, DRE e conciliação bancária para pequenas e médias empresas. Atendimento online em São Paulo e todo o Brasil.">
 <meta name="keywords" content="BPO financeiro, gestão financeira para empresas, terceirizar financeiro, contas a pagar, fluxo de caixa, DRE, conciliação bancária, BPO financeiro São Paulo, gestão financeira PME">
@@ -653,16 +644,7 @@ nav ul a{white-space:nowrap;}
       <div class="form-title">Seu diagnóstico <strong>gratuito</strong></div>
       <div class="form-sub">Para falar com um especialista, preencha e agende um bate-papo</div>
 
-      <form id="diagForm"
-            action="https://formsubmit.co/adriana@c3gestao.com.br"
-            method="POST">
-
-        <!-- Campos de controle FormSubmit -->
-        <input type="hidden" name="_next" value="https://www.c3gestao.com.br/diagnostico-c3gestao.html">
-        <input type="hidden" name="_subject" value="🔔 Novo Lead — Diagnóstico C3 Gestão">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_autoresponse" value="Olá! Recebemos seus dados e em breve a Adriana da C3 Gestão entrará em contato. Enquanto isso, aproveite para fazer o diagnóstico financeiro gratuito da sua empresa em https://www.c3gestao.com.br/diagnostico-c3gestao.html">
+      <form id="diagForm" action="diagnostico-c3gestao.html" method="GET">
 
         <div class="fg"><label>Nome *</label><input type="text" name="nome" id="f-nome" placeholder="Seu nome completo" required></div>
         <div class="fg"><label>E-mail *</label><input type="email" name="email" id="f-email" placeholder="seu@email.com" required></div>
@@ -754,6 +736,8 @@ function maskTel(el){
   el.value=v;
 }
 
+var C3_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzx_1I8BauhJ5gjsCRy-nGrbQNAtdfy5CEFd_FVKReyeY-1VL7I6x1zb7fkppep1i9b/exec';
+
 // Validação do formulário de diagnóstico
 document.addEventListener('DOMContentLoaded', function() {
   var form = document.getElementById('diagForm');
@@ -782,10 +766,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Feedback visual no botão
+    e.preventDefault();
     var btn = document.getElementById('btn-diag');
     btn.textContent = 'Enviando... aguarde ✦';
     btn.style.opacity = '0.75';
     btn.disabled = true;
+
+    // Envia o contato para a planilha da C3 e segue para o diagnóstico
+    var destino = 'diagnostico-c3gestao.html';
+    var foi = false;
+    function seguir() { if (foi) return; foi = true; window.location.href = destino; }
+    setTimeout(seguir, 5000);
+    var payload = {
+      formulario: 'diagnostico-inicio',
+      nome: document.getElementById('f-nome').value.trim(),
+      email: document.getElementById('f-email').value.trim(),
+      telefone: document.getElementById('f-tel').value.trim(),
+      empresa: document.getElementById('f-empresa').value.trim(),
+      faturamento: document.getElementById('f-fat').value,
+      pagina: window.location.href
+    };
+    try {
+      fetch(C3_SCRIPT_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      }).catch(function () {}).then(seguir);
+    } catch (err) { seguir(); }
   });
 
   // Limpar erro ao digitar
